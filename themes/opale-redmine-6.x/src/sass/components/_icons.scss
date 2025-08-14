@@ -1,0 +1,334 @@
+@use "sass:list";
+@use "sass:string";
+@use "../variables";
+@use "../vendor/tabler-icons";
+@use "../mixins/variants";
+
+$icon-map: (
+  // Non SVG redmine icons
+  icon-download:                tabler-icons.$ti-icon-download,
+  // Non SVG plugins icons
+  banner-icon-edit:             tabler-icons.$ti-icon-pencil,
+  banner-icon-off:              tabler-icons.$ti-icon-x,
+);
+$icons-selector: ();
+
+@each $class, $icon in $icon-map {
+  $icons-selector: list.append($icons-selector, string.unquote(".#{$class}"), "comma");
+
+  .#{$class}:not(:has(svg)) {
+    @include variants.ti-icon-style;
+
+    &::before {
+      @include variants.ti-icon-variant($icon);
+    }
+  }
+}
+
+#{$icons-selector} {
+  &.icon:not(:has(svg)) {
+    background-image: none;
+  }
+}
+
+
+// SVG Icons
+
+.icon svg,
+.icon-only svg {
+  flex-shrink: 0;
+}
+
+svg {
+  &.icon-svg {
+    stroke-width: 1.5;
+    stroke: variables.$link-color;
+    fill: none;
+    vertical-align: middle;
+  }
+
+  &.icon-ok {
+    stroke: variables.$brand-success;
+  }
+
+  &.s20 {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+
+  &.s18 {
+    width: 1.125rem;
+    height: 1.125rem;
+  }
+
+  &.s16 {
+    width: 1rem;
+    height: 1rem;
+  }
+
+  &.s14 {
+    width: 0.875rem;
+    height: 0.875rem;
+  }
+
+  &.s12 {
+    width: 0.75rem;
+    height: 0.75rem;
+  }
+}
+
+a.icon:hover svg,
+a.icon-only:hover svg {
+  stroke: variables.$link-hover-color;
+}
+
+.icon-error svg.icon-svg {
+  stroke: variables.$brand-danger;
+}
+
+.icon-warning svg.icon-svg {
+  stroke: variables.$brand-warning;
+}
+
+.icon-fav svg.icon-svg {
+  stroke: variables.$yellow;
+  fill: variables.$yellow;
+}
+
+span.icon-label {
+  margin-left: variables.$icon-space;
+}
+
+
+// Buttons icons
+
+.icon,
+.icon-only {
+  display: inline-flex;
+  align-items: center;
+  vertical-align: middle;
+}
+
+.icon-only {
+  width: variables.$icon-width;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+// A empty icon should behave more like icon-only
+
+a.icon:empty {
+  display: inline-block;
+}
+
+
+// Zoom icons
+
+.icon-zoom-in + .icon-zoom-out {
+  margin-left: variables.$padding-small-vertical;
+}
+
+
+// Alternative icons
+
+.atom {
+  @include variants.ti-icon-style;
+
+  &::before {
+    @include variants.ti-icon-variant(tabler-icons.$ti-icon-rss);
+  }
+}
+
+.sort {
+  @include variants.ti-icon-style("after");
+
+  padding-left: 0;
+
+  &::after {
+    margin-left: .2em;
+  }
+
+  &.asc::after {
+    @include variants.ti-icon-variant(tabler-icons.$ti-icon-sort-ascending);
+  }
+
+  &.desc::after {
+    @include variants.ti-icon-variant(tabler-icons.$ti-icon-sort-descending);
+  }
+
+  .sort-by-id &,
+  .sort-by-done-ratio &,
+  .sort-by-estimated-hours &,
+  .sort-by-spent-hours & {
+    &.asc::after  { @include variants.ti-icon-variant(tabler-icons.$ti-icon-sort-ascending-numbers); }
+    &.desc::after { @include variants.ti-icon-variant(tabler-icons.$ti-icon-sort-descending-numbers); }
+  }
+
+  .sort-by-assigned-to &,
+  .sort-by-subject & {
+    &.asc::after  { @include variants.ti-icon-variant(tabler-icons.$ti-icon-sort-ascending-letters); }
+    &.desc::after { @include variants.ti-icon-variant(tabler-icons.$ti-icon-sort-descending-letters); }
+  }
+}
+
+em.info.error {
+  @include variants.ti-icon-style;
+
+  &::before {
+    @include variants.ti-icon-variant(tabler-icons.$ti-icon-exclamation-circle);
+  }
+}
+
+div.wiki {
+  .external {
+    @include variants.ti-icon-style;
+
+    &::before {
+      @include variants.ti-icon-variant(tabler-icons.$ti-icon-external-link);
+
+      display: inline;
+      margin-right: .3em;
+      font-size: .8em;
+    }
+  }
+}
+
+.other-formats {
+  %other-format {
+    @include variants.ti-icon-style;
+
+    background-image: none;
+
+    &::before {
+      margin-right: .3em;
+    }
+  }
+
+  .atom {
+    @extend %other-format;
+  }
+
+  .pdf {
+    @extend %other-format;
+
+    &::before {
+      @include variants.ti-icon-variant(tabler-icons.$ti-icon-file-type-pdf);
+    }
+  }
+
+  .html {
+    @extend %other-format;
+
+    &::before {
+      @include variants.ti-icon-variant(tabler-icons.$ti-icon-file-type-html);
+    }
+  }
+
+  .txt {
+    @extend %other-format;
+
+    &::before {
+      @include variants.ti-icon-variant(tabler-icons.$ti-icon-file-type-txt);
+    }
+  }
+
+  .csv {
+    @extend %other-format;
+
+    &::before {
+      @include variants.ti-icon-variant(tabler-icons.$ti-icon-file-type-csv);
+    }
+  }
+
+  .png {
+    @extend %other-format;
+
+    &::before {
+      @include variants.ti-icon-variant(tabler-icons.$ti-icon-file-type-png);
+    }
+  }
+}
+
+
+// Drag-and-drop sorting
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(359deg);
+  }
+}
+
+.sort-handle {
+  cursor: move;
+
+  &.ajax-loading {
+    @include variants.ti-icon-style;
+
+    &::before {
+      @include variants.ti-icon-variant(tabler-icons.$ti-icon-refresh);
+
+      animation: spin 1s linear infinite;
+      color: variables.$gray-700;
+    }
+  }
+}
+
+
+// Colorize
+
+#admin-menu {
+  li {
+    > a {
+      .icon-svg {
+        stroke: variables.$gray-900;
+      }
+    }
+  }
+}
+
+a.icon,
+a.icon-only {
+  @include variants.icon-variant(default);
+}
+
+a.icon-edit,
+a.icon-copy,
+a.icon-time-add {
+  @include variants.icon-variant(info);
+}
+
+a.icon-add,
+a.icon-save,
+.icon-checked,
+a.icon-checked,
+a.icon-reload {
+  @include variants.icon-variant(success);
+}
+
+a.icon-del,
+a.remove-upload,
+a.icon-bookmark {
+  @include variants.icon-variant(danger);
+}
+
+#content .other-formats {
+   a {
+    @include variants.icon-variant(info, false);
+
+    &.atom {
+      @include variants.icon-variant(warning, false);
+    }
+
+    &.csv {
+      @include variants.icon-variant(success, false);
+    }
+
+    &.pdf {
+      @include variants.icon-variant(danger, false);
+    }
+  }
+}

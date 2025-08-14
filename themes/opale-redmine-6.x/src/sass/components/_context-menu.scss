@@ -1,0 +1,38 @@
+@use "sass:color";
+@use "../variables";
+@use "../mixins/shadows";
+@use "../mixins/variants";
+
+#wrapper {
+  .context-menu-selection {
+    &,
+    > td {
+      background-color: variables.$brand-primary !important; // stylelint-disable-line declaration-no-important
+      color: variables.$brand-text !important; // stylelint-disable-line declaration-no-important
+    }
+  }
+
+  #context-menu {
+    > ul,
+    > ul > li > ul {
+      @include shadows.nice-shadow(2);
+
+      border: 0 none !important; // stylelint-disable-line declaration-no-important
+    }
+
+    ul {
+      padding: 3px;
+    }
+
+    li {
+      padding: 0;
+      border: 0 none;
+      border-radius: variables.$border-radius-small;
+      background: transparent;
+
+      &:hover {
+        background-color: variables.$pagination-hover-bg;
+      }
+    }
+  }
+}
