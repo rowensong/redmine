@@ -141,6 +141,5 @@ bundle exec rails db:create db:migrate
 4. scss watch 는 수동으로 돌려야함 (프로젝트 폴더에서 실행필요)
 
 ```
-cd themes/opale-redmine-6.x
-LIVERELOAD_PORT=35731 npx grunt watch --verbose
+npm run watch
 ```

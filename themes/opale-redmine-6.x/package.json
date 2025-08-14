@@ -21,6 +21,7 @@
     "build": "grunt",
     "watch": "grunt watch",
     "serve": "grunt watch",
+    "watch:livereload": "LIVERELOAD_PORT=35731 npx grunt watch --verbose",
     "lint:sass": "stylelint src/sass/**/*.scss",
     "lint": "npm run -S lint:sass"
   },

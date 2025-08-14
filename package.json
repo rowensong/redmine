@@ -1,5 +1,8 @@
 {
   "dependencies": {},
+  "scripts": {
+    "watch": "cd themes/opale-redmine-6.x && LIVERELOAD_PORT=35731 npx grunt watch --verbose"
+  },
   "devDependencies": {
     "stylelint": "^15.11.0"
   }
