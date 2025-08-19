@@ -1,76 +1,35 @@
-// JNIUI25 color set
-// brand colors
-$main900: #17382c;
-$main800: #205b43;
-$main700: #0d8054;
-$main600: #009d66;
-$main500: #00c473;
-$main400: #4edca1;
-$main300: #76e7b9;
-$main200: #9df3d0;
-$main100: #dffcf0;
-$main50: #f6fffb;
+// 잔디 레드마인 컬러셋
+$mainColor: #00c473;
+$subColor: #69a7f3;
 
-$sub900: #1c2f47;
-$sub800: #26374d;
-$sub700: #214a85;
-$sub600: #4e7fc9;
-$sub500: #69a7f3;
-$sub400: #87b9f5;
-$sub300: #a5caf8;
-$sub200: #d2e5fb;
-$sub100: #eaf6fc;
-$sub50: #f5fbfd;
-
-// monochrome colors
 $black: #000000;
 $white: #ffffff;
 
-$monochromeText: #333;
-$monochromeTextDark: #e8e9ed;
-
-$monochromeGray: #a2a2a2;
-$monochromeGrayDark: #757575;
-
-$monochromeDisabled: #d5d5d5;
-$monochromeDisabledDark: #555555;
-
-$monochromePlaceHolder: #c2c2c2;
-$monochromePlaceHolderDark: #6c7077;
-
-$monochromeBorder: #dcdfe5;
-$monochromeBorderDark: #383d47;
-
-// theme layering model
-
-$gray50: #dadde1;
-$gray40: #e6e8eb;
-$gray30: #eceef1;
-$gray20: #f2f4f8;
 $gray10: #fafbfc;
+$gray10hover: #f1f2f4;
+$gray20: #f2f4f8;
+$gray20hover: #e9ecf0;
+$gray30: #eceef1;
+$gray30hover: #e4e6e9;
+$gray40: #e6e8eb;
+$gray40hover: #dee0e4;
+$gray50: #dadde1;
+$gray50hover: #d2d6da;
 
-$gray900: #1e2329;
-$gray800: #272c32;
-$gray700: #2f353c;
-$gray600: #373e47;
-$gray500: #3f4751;
-$gray400: #464e59;
+$text: #333;
+$textHover: #343435;
+$gray: #a2a2a2;
+$grayHover: #9d9e9e;
+$darkGray: #757575;
+$darkGrayHover: #737374;
+$disabled: #d5d5d5;
+$disabledHover: #cececf;
+$placeholder: #c2c2c2;
 
-// secondary colors
-$birthday: #f65197; // 이미지 처리를 해서 쓸일이 있을지 모르겠음 스쿼클에서만 쓰일경우 삭제해도 무방할듯
+$border: #dcdfe5;
+
 $favorite: #f9bb00;
 $link: #438fff;
 $warning: #ff5c48;
-$myThread: #dfecf5;
-$myThreadDark: #1f2b3b;
-
-// highlight
-$message: #fff2d2;
-$messageDark: #6d5819;
-
-// effect colors
-$hover: rgba(#444d5a, 0.05);
-$hoverDark: rgba(#ffffff, 0.05);
-$scrim: rgba(#0e111a, 0.12);
-$scrimDark: rgba(#000000, 0.3);
-$boxShadowDefault: 0px 8px 16px 0px rgba(0, 0, 0, 0.08);
+$warningHover: #f65b49;
+$scrim: #0e111a;
