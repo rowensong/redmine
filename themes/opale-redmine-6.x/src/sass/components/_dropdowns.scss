@@ -15,25 +15,26 @@
   }
 
   &-trigger {
-    display: inline-block;
+    display: inline-flex;
     position: relative;
     box-sizing: border-box;
     cursor: pointer;
     user-select: none;
+    min-height: 36px;
   }
 
   &-content {
-    @include shadows.nice-shadow(2);
-
     display: none;
     position: absolute;
     z-index: 1002;
-    top: variables.$input-height-base + variables.$btn-padding-vertical;
+    top: 38px;
     right: 0;
-    min-width: 150px;
+    min-width: 160px;
     overflow: hidden;
-    border-radius: variables.$border-radius-base;
-    background: variables.$body-bg;
+    border: 1px solid #dcdfe5;
+    border-radius: 8px;
+    background: #fff;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.08);
   }
 
   &-items {
@@ -74,7 +75,8 @@
     > * {
       display: block;
       margin: 1px;
-      padding: (variables.$btn-padding-vertical - 1px) (variables.$btn-padding-horizontal-small - 1px);
+      padding: (variables.$btn-padding-vertical - 1px)
+        (variables.$btn-padding-horizontal-small - 1px);
       border-radius: variables.$border-radius-base - 1px;
     }
   }
@@ -82,74 +84,41 @@
 
 .contextual {
   .drdn-items {
-    padding: 3px;
+    padding: 8px;
 
+    a {
+      display: block;
+      padding: 8px;
+      border-radius: 6px;
+
+      &:hover {
+        background-color: #f6f6f6;
+      }
+    }
     a,
     span {
-      padding-top: variables.$pagination-padding-vertical;
-      padding-bottom: variables.$pagination-padding-vertical;
-      border: 1px solid transparent;
-      border-radius: variables.$border-radius-small;
-      color: variables.$pagination-color;
-
-      &:hover,
-      &:focus {
-        border-color: variables.$pagination-hover-border;
-        background-color: variables.$pagination-hover-bg;
-        color: variables.$pagination-hover-color;
-        text-decoration: none;
-
-        &.icon-edit::before,
-        &.icon-copy::before {
-          color: map.get(map.get(variables.$icon-color-map, info), normal);
-        }
-
-        &.icon-add::before {
-          color: map.get(map.get(variables.$icon-color-map, success), normal);
-        }
-
-        &.icon-del::before {
-          color: map.get(map.get(variables.$icon-color-map, danger), normal);
-        }
-      }
+      font-size: 14px;
+      line-height: 20px;
+      color: #333;
+      margin: 0;
     }
   }
 
   &:not(.journal-actions) > .drdn {
     &.expanded {
       > .drdn-trigger {
-        border-color: variables.$pagination-active-border;
-        background-color: variables.$pagination-active-bg;
-        color: variables.$pagination-active-color;
-
-        svg.icon-svg {
-          stroke: variables.$pagination-active-color;
-        }
+        background-color: #f1f2f4;
       }
     }
 
     .drdn-trigger {
-      padding: (variables.$btn-padding-vertical - 1px) variables.$btn-padding-horizontal-small;
-      border: 1px solid variables.$pagination-border;
-      border-radius: variables.$border-radius-base;
-      background-color: variables.$pagination-bg;
-      box-shadow: none;
-      color: variables.$pagination-color;
-      text-align: center;
-
-      > .icon-only {
-        margin: 0 -4px;
-      }
-
-      &:hover,
-      &:focus {
-        border-color: variables.$pagination-hover-border;
-        background-color: variables.$pagination-hover-bg;
-        color: variables.$pagination-hover-color;
-
-        svg.icon-svg {
-          stroke: variables.$pagination-hover-color;
-        }
+      padding: 7px 9px;
+      border-radius: 6px;
+      border: 1px solid #dcdfe5;
+      background-color: #fafbfc;
+      color: #a2a2a2;
+      &:hover {
+        background-color: #f1f2f4;
       }
     }
   }

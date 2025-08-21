@@ -29,7 +29,7 @@
   }
 
   li {
-    margin: 0 .8em 0 0;
+    margin: 0 0.8em 0 0;
     padding: 0;
     float: left;
     list-style-type: none;
@@ -69,7 +69,9 @@
       @include variants.ti-icon-style;
 
       &::before {
-        @include variants.ti-icon-variant(tabler-icons.$ti-icon-user-square-rounded);
+        @include variants.ti-icon-variant(
+          tabler-icons.$ti-icon-user-square-rounded
+        );
 
         margin-right: 4px;
       }
@@ -97,10 +99,9 @@
 
   > ul > li {
     margin-right: 0;
-    margin-left: .8em;
+    margin-left: 0.8em;
   }
 }
-
 
 // Header
 
@@ -112,13 +113,17 @@
   color: variables.$header-text;
 
   > h1 {
-    padding: variables.$header-padding-vertical variables.$header-padding-horizontal;
+    padding: variables.$header-padding-vertical
+      variables.$header-padding-horizontal;
 
     @if variables.$use-logo {
-      padding-left: variables.$logo-image-width + variables.$logo-position-horizontal + variables.$logo-space;
+      padding-left: variables.$logo-image-width +
+        variables.$logo-position-horizontal +
+        variables.$logo-space;
       background-image: url("../images/logo/logo.png");
       background-repeat: no-repeat;
-      background-position: variables.$logo-position-horizontal variables.$logo-position-vertical;
+      background-position: variables.$logo-position-horizontal
+        variables.$logo-position-vertical;
     }
 
     .root {
@@ -147,7 +152,13 @@
 
 #quick-search {
   #header & {
-    margin-top: math.floor((variables.$header-title-line-height + variables.$header-padding-vertical * 2 - variables.$input-height-base) * .5) - 1px;
+    margin-top: math.floor(
+        (
+            variables.$header-title-line-height +
+              variables.$header-padding-vertical * 2 -
+              variables.$input-height-base
+          ) * 0.5
+      ) - 1px;
     margin-right: variables.$header-padding-horizontal;
     float: right;
     color: variables.$header-text;
@@ -193,7 +204,7 @@
 
       z-index: 1003;
       height: auto;
-      padding-bottom: variables.$header-padding-horizontal * .5;
+      padding-bottom: variables.$header-padding-horizontal * 0.5;
       border-color: variables.$quick-search-dropdown-bg;
       background-color: variables.$quick-search-dropdown-bg;
 
@@ -219,7 +230,7 @@
         @include variants.ti-icon-variant(tabler-icons.$ti-icon-chevron-down);
 
         position: absolute;
-        top: (variables.$font-size-base * .5);
+        top: (variables.$font-size-base * 0.5);
         right: variables.$input-padding-horizontal;
       }
     }
@@ -229,15 +240,10 @@
       background: variables.$quick-search-dropdown-bg;
 
       > .quick-search {
-        padding: variables.$header-padding-horizontal * .5;
+        padding: variables.$header-padding-horizontal * 0.5;
 
         svg.icon-svg {
           display: none;
-        }
-
-        > input {
-          width: 100%;
-          padding-left: variables.$input-padding-horizontal !important;
         }
       }
     }
@@ -275,7 +281,8 @@
 }
 
 #main-menu {
-  $tabs-height: variables.$main-menu-padding-vertical * 2 + variables.$line-height-computed;
+  $tabs-height: variables.$main-menu-padding-vertical * 2 +
+    variables.$line-height-computed;
 
   clear: both;
   background-color: variables.$main-menu-bg;
@@ -305,7 +312,8 @@
     @include clearfix.clearfix;
 
     margin: 0;
-    padding: 0 (variables.$padding-side - variables.$main-menu-padding-horizontal);
+    padding: 0
+      (variables.$padding-side - variables.$main-menu-padding-horizontal);
     color: variables.$main-menu-link;
     list-style: none;
 
@@ -326,7 +334,8 @@
 
       > a {
         display: block;
-        padding: variables.$main-menu-padding-vertical variables.$main-menu-padding-horizontal;
+        padding: variables.$main-menu-padding-vertical
+          variables.$main-menu-padding-horizontal;
         transition: box-shadow variables.$transition-time-long;
         color: variables.$main-menu-link;
         line-height: variables.$line-height-computed;
@@ -340,12 +349,14 @@
         &:hover,
         &:focus {
           background-color: variables.$main-menu-bg-hover;
-          box-shadow: inset 0 (-(variables.$main-menu-shadow-width)) 0 variables.$main-menu-shadow-hover;
+          box-shadow: inset 0 (-(variables.$main-menu-shadow-width)) 0
+            variables.$main-menu-shadow-hover;
           text-decoration: none;
         }
 
         &.selected {
-          padding-bottom: variables.$main-menu-padding-vertical - variables.$main-menu-shadow-width;
+          padding-bottom: variables.$main-menu-padding-vertical -
+            variables.$main-menu-shadow-width;
           border-bottom: 3px solid variables.$main-menu-shadow-active;
           background-color: variables.$main-menu-bg-active;
           box-shadow: none;
@@ -390,7 +401,8 @@
     padding: 0;
     overflow: hidden;
     transition: visibility 0ms 50ms;
-    border-radius: 0 0 variables.$border-radius-base variables.$border-radius-base;
+    border-radius: 0 0 variables.$border-radius-base
+      variables.$border-radius-base;
     background: variables.$main-menu-dropdown-bg;
     list-style: none;
 
@@ -400,7 +412,8 @@
 
     a {
       display: block;
-      padding: variables.$tab-padding-vertical (variables.$tab-padding-horizontal * 2);
+      padding: variables.$tab-padding-vertical
+        (variables.$tab-padding-horizontal * 2);
       border-top: 1px solid variables.$main-menu-border;
       color: variables.$main-menu-link;
 

@@ -8,18 +8,12 @@
 // Forms
 
 form {
-  .filter > div,
-  #list-definition > div div,
-  td {
-    padding: variables.$table-condensed-cell-padding;
-  }
-
   fieldset {
     > button,
     > input,
     > select {
       margin-right: 5px;
-      margin-bottom: variables.$line-height-computed * .5;
+      margin-bottom: variables.$line-height-computed * 0.5;
     }
   }
 
@@ -90,13 +84,12 @@ input[type="search"],
 input[type="email"],
 input[type="text"],
 input[type="password"] {
-  transition:
-    border-color variables.$transition-time ease-in-out,
-    box-shadow variables.$transition-time ease-in-out;
-  vertical-align: top;
-
-  @include forms.form-field;
-  @include forms.form-control-focus;
+  border-radius: 6px;
+  border: 1px solid #dcdfe5;
+  padding: 8px;
+  font-size: 14px;
+  line-height: 20px;
+  color: #333;
 
   &[disabled],
   &[readonly],
@@ -104,8 +97,15 @@ input[type="password"] {
     border-color: variables.$input-border;
     opacity: 1;
     background-color: variables.$input-bg-disabled;
-    box-shadow: inset 0 1px 2px rgb(0 0 0 / .075);
   }
+}
+
+select {
+  padding-right: 40px;
+  appearance: none;
+  background: #fff
+    url("data:image/svg+xml,%3Csvg%20width%3D%2210%22%20height%3D%226%22%20viewBox%3D%220%200%2010%206%22%20fill%3D%22none%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cpath%20fill-rule%3D%22evenodd%22%20clip-rule%3D%22evenodd%22%20d%3D%22M5.00001%203.86864L1.5657%200.434326L0.434326%201.5657L4.43433%205.5657C4.58436%205.71573%204.78784%205.80001%205.00001%205.80001C5.21218%205.80001%205.41567%205.71573%205.5657%205.5657L9.5657%201.5657L8.43433%200.434326L5.00001%203.86864Z%22%20fill%3D%22%23333333%22/%3E%3C/svg%3E")
+    no-repeat right 12px center / 10px 6px;
 }
 
 textarea {
@@ -161,11 +161,6 @@ select {
   &[multiple],
   &[size] {
     height: auto;
-    min-height: variables.$input-height-base;
-  }
-
-  &[size="1"] {
-    height: variables.$input-height-base;
   }
 
   option[disabled] {
@@ -181,7 +176,6 @@ select {
   }
 }
 
-
 // Browser hacks: unfortunately every browser has different capabilities when
 // it comes to styling <select> and <option> tags.
 
@@ -196,7 +190,8 @@ select {
 
     option,
     optgroup::before {
-      padding: variables.$input-padding-vertical variables.$input-padding-horizontal;
+      padding: variables.$input-padding-vertical
+        variables.$input-padding-horizontal;
       border-bottom: 1px dotted variables.$gray-400;
     }
 
@@ -216,7 +211,8 @@ select {
 
   // For some reason nested selectors will not work
   select[multiple] option {
-    padding: variables.$input-padding-vertical variables.$input-padding-horizontal;
+    padding: variables.$input-padding-vertical
+      variables.$input-padding-horizontal;
     border-bottom: 1px dotted variables.$gray-400;
   }
 }
@@ -229,33 +225,24 @@ select:-moz-focusring {
 fieldset {
   min-width: 0;
   margin: 0;
-  padding: (variables.$line-height-computed * .5) 0;
-  border: 0 none;
-  border-top: 1px solid variables.$legend-border-color;
+  border: 0;
 
   > p > label:first-child {
     margin-right: variables.$label-space;
   }
 }
 
-legend {
-  padding-right: 5px;
-  color: variables.$legend-color;
-}
-
-
 // Required fields' asterisk
 
 span.required {
   position: relative;
   top: 3px;
-  margin-left: -.2em;
+  margin-left: -0.2em;
   color: variables.$red;
   font-size: 1.5em;
   font-weight: variables.$font-weight-normal;
   line-height: 0;
 }
-
 
 // Field's hint
 
@@ -268,7 +255,6 @@ em.info {
   line-height: variables.$line-height-base;
 }
 
-
 // Wiki editor
 
 .wiki-edit {
@@ -276,7 +262,6 @@ em.info {
   font-family: variables.$font-family-monospace;
   line-height: variables.$wiki-line-height;
 }
-
 
 // Tabular forms
 
@@ -295,7 +280,7 @@ em.info {
   p {
     @include clearfix.clearfix;
 
-    margin: 0 0 (variables.$line-height-computed * .5);
+    margin: 0 0 (variables.$line-height-computed * 0.5);
     padding-left: variables.$label-width + variables.$label-space;
     clear: left;
     line-height: variables.$input-height-base;
@@ -416,7 +401,6 @@ label.block {
   }
 }
 
-
 // Hack: align description edit icon with label
 
 label[for="issue_description"] + a {
@@ -427,13 +411,11 @@ label[for="issue_description"] + a {
   }
 }
 
-
 // Hack: better looking filter checkbox in sidebar in projects list
 
 label[for="closed"] {
-  margin-bottom: variables.$line-height-computed * .5;
+  margin-bottom: variables.$line-height-computed * 0.5;
 }
-
 
 // Input sizes
 
@@ -457,7 +439,11 @@ label[for="closed"] {
 @if variables.$issue-subject-large {
   $input-padding-large-vertical: 8px;
   $input-padding-large-horizontal: 12px;
-  $input-height-large: (math.ceil(variables.$font-size-large-px * variables.$line-height-large) + ($input-padding-large-vertical * 2) + 2);
+  $input-height-large: (
+    math.ceil(variables.$font-size-large-px * variables.$line-height-large) +
+      ($input-padding-large-vertical * 2) +
+      2
+  );
 
   label[for="issue_subject"] {
     padding-top: $input-padding-large-vertical;
@@ -475,7 +461,7 @@ label[for="closed"] {
 // Add space below WYSIWYG
 
 .jstEditor {
-  margin-bottom: variables.$line-height-computed * .5;
+  margin-bottom: variables.$line-height-computed * 0.5;
 }
 
 // User form
@@ -490,7 +476,6 @@ label[for="closed"] {
   }
 }
 
-
 // Attachments
 
 #attachments_fields,
@@ -498,7 +483,7 @@ label[for="closed"] {
 .attachments_fields {
   > span {
     display: block;
-    margin-bottom: variables.$line-height-computed * .25;
+    margin-bottom: variables.$line-height-computed * 0.25;
   }
 
   svg.svg-attachment {
@@ -507,8 +492,8 @@ label[for="closed"] {
 
   input {
     width: 21.5em;
-    margin-right: .5em;
-    margin-bottom: variables.$line-height-computed * .25;
+    margin-right: 0.5em;
+    margin-bottom: variables.$line-height-computed * 0.25;
 
     &.deleted_attachment {
       width: auto;
@@ -551,7 +536,6 @@ label[for="closed"] {
   }
 }
 
-
 // Issue form elements
 
 #issue-form {
@@ -578,37 +562,26 @@ label[for="closed"] {
   #issue_done_ratio {
     width: 5.5em;
     min-width: 1em;
-    padding-left: .2em;
+    padding-left: 0.2em;
     text-align: right;
   }
 }
 
-
-
 #issue_is_private_wrap {
-  margin-right: 0 !important; // stylelint-disable-line declaration-no-important
-  margin-bottom: 0;
-  padding-left: 0;
   float: right;
-
-  input {
-    margin-top: variables.$check-input-margin-btn-v;
-    margin-right: 3px;
-  }
-
+  margin: 8px 0 0;
   label {
-    display: inline-block !important; // stylelint-disable-line declaration-no-important
+    // stylelint-disable-line declaration-no-important
     margin-right: 0;
     padding-left: 0;
   }
 }
 
-
 #users_for_watcher,
 #watchers_inputs {
   display: block;
   max-height: variables.$check-list-max-height;
-  margin-bottom: variables.$line-height-computed * .5;
+  margin-bottom: variables.$line-height-computed * 0.5;
   overflow: auto;
 
   label {
@@ -624,7 +597,6 @@ label[for="closed"] {
   max-width: 64em;
   columns: 18em 3;
 }
-
 
 // List of custom field values
 
@@ -651,7 +623,6 @@ label[for="closed"] {
   }
 }
 
-
 // Filters
 
 fieldset#filters {
@@ -663,38 +634,6 @@ fieldset#filters {
 
   div,
   td {
-    &.field {
-      padding-right: variables.$table-cell-padding * 2;
-      white-space: nowrap;
-
-      @media screen and (min-width: variables.$screen-sm-min) {
-        min-width: 180px;
-      }
-    }
-
-    &.operator {
-      min-width: 180px;
-      padding-right: variables.$table-cell-padding * 2;
-
-      select {
-        width: 100%;
-      }
-    }
-
-    &.values {
-      min-width: 130px;
-      white-space: nowrap;
-
-      select {
-        min-width: 130px;
-      }
-    }
-
-    &.add-filter {
-      padding-top: variables.$table-condensed-cell-padding * 2;
-      text-align: right;
-    }
-
     input[type="checkbox"],
     input[type="radio"] {
       margin-top: variables.$check-input-margin-btn-v;
@@ -703,22 +642,13 @@ fieldset#filters {
 
   div.filter {
     display: flex;
-  }
-
-  div.add-filter {
-    padding-top: variables.$table-condensed-cell-padding;
-
-    @media screen and (min-width: variables.$redmine-responsive-min) {
-      float: right;
-      text-align: right;
+    align-items: center;
+    margin-bottom: 8px;
+    &:last-child {
+      margin-bottom: 0;
     }
   }
 }
-
-#filters-table {
-  float: left;
-}
-
 
 #activity_scope_form {
   li {
@@ -728,7 +658,6 @@ fieldset#filters {
     }
   }
 }
-
 
 #query_form {
   p {
@@ -747,10 +676,9 @@ fieldset#filters {
 .query_sort_criteria_count {
   display: inline-block;
   min-width: 1em;
-  margin-bottom: variables.$line-height-computed * .25;
+  margin-bottom: variables.$line-height-computed * 0.25;
   line-height: variables.$input-height-base;
 }
-
 
 // Reset label style for trackers selector in custom field editor
 
@@ -763,7 +691,6 @@ label.no-css {
   text-align: left;
 }
 
-
 // Search form
 
 #search-form {
@@ -772,7 +699,7 @@ label.no-css {
   input,
   select {
     margin-right: 5px;
-    margin-bottom: variables.$line-height-computed * .5;
+    margin-bottom: variables.$line-height-computed * 0.5;
   }
 
   label {
@@ -790,7 +717,6 @@ label.no-css {
     margin-bottom: 0;
   }
 }
-
 
 // Objects selection
 

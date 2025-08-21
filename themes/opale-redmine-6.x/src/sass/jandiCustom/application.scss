@@ -1,22 +1,215 @@
 @use "jniuiColorSet" as *;
 @use "font-icon" as *;
+
+a {
+  color: initial;
+  &:hover {
+    color: initial;
+  }
+}
+
+input[type="button"],
+input[type="submit"],
+input[type="reset"],
+button {
+  display: inline-block;
+  border-radius: 6px;
+  background-color: $text;
+  font-size: 13px;
+  line-height: 18px;
+  color: $white;
+  padding: 7px 8px;
+  border: none;
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    background-color: $textHover;
+    text-decoration: none;
+  }
+
+  &.disabled,
+  &[disabled],
+  fieldset[disabled] & {
+    opacity: 0.65;
+    box-shadow: none;
+    pointer-events: none;
+  }
+}
+
+input.autocomplete {
+  width: 100%;
+  margin-top: 12px;
+  display: block;
+  background-image: url("data:image/svg+xml;utf8,<svg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'><path fill-rule='evenodd' clip-rule='evenodd' d='M7.0002 1.2002C3.79694 1.2002 1.2002 3.79694 1.2002 7.0002C1.2002 10.2034 3.79694 12.8002 7.0002 12.8002C8.31347 12.8002 9.5248 12.3637 10.497 11.6279L13.7681 14.8989L14.8994 13.7676L11.6283 10.4965C12.3639 9.52434 12.8002 8.31322 12.8002 7.0002C12.8002 3.79694 10.2034 1.2002 7.0002 1.2002ZM2.8002 7.0002C2.8002 4.6806 4.6806 2.8002 7.0002 2.8002C9.31979 2.8002 11.2002 4.6806 11.2002 7.0002C11.2002 9.31979 9.31979 11.2002 7.0002 11.2002C4.6806 11.2002 2.8002 9.31979 2.8002 7.0002Z' fill='%23A2A2A2'/></svg>");
+  padding-right: 0;
+  padding-left: 30px;
+  background-position: 10px center;
+}
+
+body {
+  font-size: 14px;
+  line-height: 20px;
+  height: 100vh;
+  #wrapper {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
 #main {
+  display: flex;
+  align-items: stretch;
+  // height: 100%;
+  flex-grow: 1;
+
+  // input checkbox
+  input[type="checkbox"] {
+    display: none;
+    + label {
+      display: flex;
+      align-items: center;
+      position: relative;
+      line-height: initial;
+      &:before {
+        cursor: pointer;
+        width: 16px;
+        height: 16px;
+        border-radius: 4px;
+        border: 1px solid $border;
+        content: "";
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 6px;
+        box-sizing: border-box;
+        background-color: $white;
+      }
+      a {
+        display: block;
+      }
+    }
+    &:checked {
+      + label {
+        &:before {
+          content: "\e96e";
+          font-family: "icomoon";
+          font-size: 14px;
+          line-height: 14px;
+          border-color: transparent;
+          color: $white;
+          background-color: $black;
+        }
+      }
+    }
+  }
+
+  input[type="radio"] {
+    display: none;
+    + label {
+      display: flex;
+      align-items: center;
+      position: relative;
+      line-height: initial;
+      cursor: pointer;
+      &:before {
+        cursor: pointer;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        border: 1px solid $border;
+        content: "";
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 6px;
+        box-sizing: border-box;
+        background-color: $white;
+      }
+      a {
+        display: block;
+      }
+    }
+    &:checked {
+      + label {
+        &:after {
+          position: absolute;
+          left: 3px;
+          top: 50%;
+          transform: translateY(-50%);
+          content: "";
+          width: 10px;
+          height: 10px;
+          border-radius: 50%;
+          background-color: $text;
+        }
+      }
+    }
+  }
+
+  .inline {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    align-items: center;
+    margin-right: 8px;
+    cursor: pointer;
+    input[type="checkbox"] {
+      display: none;
+    }
+
+    &:after {
+      cursor: pointer;
+      width: 16px;
+      height: 16px;
+      border-radius: 4px;
+      border: 1px solid $border;
+      content: "";
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 6px;
+      box-sizing: border-box;
+      background-color: $white;
+      order: -1;
+    }
+    &:has(input:checked)::after {
+      content: "\e96e";
+      font-family: "icomoon";
+      font-size: 14px;
+      line-height: 14px;
+      border-color: transparent;
+      color: $white;
+      background-color: $black;
+    }
+  }
+
   #sidebar-switch-panel {
-    right: 16px;
-    width: 32px;
-    height: 32px;
-    border: 0;
+    right: -38px;
+    width: 36px;
+    height: 36px;
+    border: 1px solid $border;
+    border-radius: 0 6px 6px 0;
     background: none;
     display: flex;
     align-items: center;
     justify-content: center;
     left: auto;
     top: 16px;
+    &:hover {
+      background: $whiteHover;
+      #sidebar-switch-button {
+        &:after {
+          content: "\ea03";
+        }
+      }
+    }
   }
 
   #sidebar-switch-button {
-    width: 32px;
-    height: 32px;
+    width: 100%;
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -27,8 +220,702 @@
       content: "\ea02";
       font-family: "icomoon";
       color: $gray;
-      font-size: 24px;
+      font-size: 20px;
       line-height: 1;
+    }
+  }
+
+  #content {
+    padding-left: 60px;
+  }
+
+  #sidebar {
+    border-right: 1px solid $border;
+    padding: 16px;
+    background-color: $gray10;
+  }
+
+  #sidebar-wrapper {
+    > h3 {
+      display: flex;
+      align-items: center;
+      margin: 0;
+      padding: 8px;
+      font-size: 14px;
+      line-height: 20px;
+      color: $gray;
+      &::before {
+        content: "\e94b";
+        font-family: "icomoon";
+        font-size: 16px;
+        margin-right: 4px;
+      }
+    }
+    .queries {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      li {
+        position: relative;
+        .query {
+          display: block;
+          font-size: 14px;
+          line-height: 20px;
+          color: $text;
+          padding: 8px 8px 8px 28px;
+          border-radius: 6px;
+          &:hover {
+            background: $whiteHover;
+          }
+        }
+        .icon-clear-query {
+          position: absolute;
+          right: 8px;
+          top: 50%;
+          transform: translateY(-50%);
+          font-size: 16px;
+          line-height: 20px;
+          color: $gray;
+
+          .icon-label,
+          svg {
+            display: none;
+          }
+          &:after {
+            content: "\e916";
+            font-family: "icomoon";
+            font-size: 16px;
+            line-height: 16px;
+          }
+        }
+        .selected {
+          background: $whiteHover;
+          font-weight: bold;
+        }
+      }
+    }
+
+    #watchers {
+      position: relative;
+      > h3 {
+        display: flex;
+        align-items: center;
+        margin: 0;
+        padding: 8px;
+        font-size: 14px;
+        line-height: 20px;
+        color: $gray;
+        &::before {
+          content: "\e94b";
+          font-family: "icomoon";
+          font-size: 16px;
+          margin-right: 4px;
+        }
+      }
+      .contextual {
+        position: absolute;
+        right: 0;
+        top: 10px;
+        a {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: $gray;
+          font-size: 13px;
+          line-height: 18px;
+          font-weight: 500;
+          &:before {
+            content: "\e969";
+            font-family: "icomoon";
+            font-size: 16px;
+            line-height: 16px;
+            display: block;
+            margin-right: 4px;
+            font-weight: normal;
+          }
+        }
+      }
+      .watchers {
+        margin: 0;
+        padding: 0;
+        li {
+          display: block;
+          font-size: 14px;
+          line-height: 20px;
+          color: $text;
+          padding: 8px 0px 8px 28px;
+          border-radius: 6px;
+          margin-bottom: 0;
+        }
+        .delete {
+          .icon-label {
+            display: none;
+          }
+          &:after {
+            content: "\e966";
+            font-family: "icomoon";
+            font-size: 16px;
+            line-height: 16px;
+            color: $placeholder;
+          }
+          &:hover {
+            &:after {
+              color: $warning;
+            }
+          }
+        }
+        svg {
+          display: none;
+        }
+      }
+    }
+
+    // api 접근키
+    h4 + div {
+      padding: 8px 10px;
+      margin: 0;
+      font-size: 14px;
+      line-height: 20px;
+      color: $text;
+      pre {
+        word-break: break-all;
+        white-space: normal;
+      }
+    }
+  }
+
+  &.collapsedsidebar {
+    #sidebar-switch-panel {
+      &:hover {
+        #sidebar-switch-button {
+          &:after {
+            content: "\ea04";
+          }
+        }
+      }
+    }
+    #sidebar {
+      margin-left: -261px;
+    }
+  }
+
+  #issue_is_private_label {
+    &:after {
+      display: none;
+    }
+  }
+}
+
+// 작업내역
+.controller-activities {
+  #activity_scope_form {
+    > h3 {
+      display: flex;
+      align-items: center;
+      margin: 0;
+      padding: 8px;
+      font-size: 14px;
+      line-height: 20px;
+      color: $gray;
+      &::before {
+        content: "\ea0b";
+        font-family: "icomoon";
+        font-size: 16px;
+        margin-right: 4px;
+      }
+    }
+    p {
+      padding: 8px 10px;
+      margin: 0;
+      select,
+      input {
+        width: 100%;
+        margin-top: 12px;
+        display: block;
+      }
+    }
+
+    ul {
+      list-style: none;
+      margin: 12px 10px 0;
+      padding: 18px 0 8px;
+      border-top: 1px solid $border;
+      li {
+        padding: 8px 0;
+        a {
+          font-size: 14px;
+          line-height: 20px;
+          color: $text;
+        }
+      }
+    }
+
+    input[type="submit"] {
+      margin-top: 0;
+      width: auto;
+      margin-left: auto;
+      margin-right: 0;
+    }
+  }
+}
+
+// 내 계정
+.action-account {
+  #main {
+    #sidebar-wrapper {
+      > h3 {
+        &::before {
+          content: "\e949";
+        }
+      }
+      p {
+        padding: 8px 10px;
+        font-size: 14px;
+        line-height: 20px;
+        color: $text;
+        margin: 0;
+        strong {
+          font-weight: normal;
+        }
+
+        a[rel="nofollow"] {
+          color: $link;
+        }
+      }
+      h4 {
+        padding: 8px 10px;
+        margin: 0;
+      }
+    }
+  }
+}
+
+// 레프트 메뉴가 없는경우 main에 nosidebar 클래스가 붙나 싶음
+
+#main {
+  &.nosidebar {
+    #content {
+      padding-left: 20px;
+    }
+  }
+}
+
+.contextual {
+  a {
+    min-height: 36px;
+    box-sizing: border-box;
+  }
+  .icon-add {
+    background-color: $text;
+    .icon-label {
+      display: flex;
+      font-size: 14px;
+      line-height: 20px;
+      color: $white;
+      align-items: center;
+      margin: 0;
+      font-weight: bold;
+      &:before {
+        content: "\e969";
+        font-family: "icomoon";
+        font-size: 16px;
+        line-height: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 4px;
+        font-weight: normal;
+      }
+    }
+    &:hover {
+      background-color: $textHover;
+    }
+  }
+  // 이게 헤더 쪽인가?
+  .drdn-trigger {
+    .icon-actions {
+      &::before {
+        content: "\e973";
+        font-family: "icomoon";
+        font-size: 16px;
+        line-height: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: normal;
+      }
+      .icon-label {
+        font-size: 0;
+        margin-left: 0;
+      }
+    }
+  }
+
+  .icon-settings {
+    padding: 9px !important;
+    border: 1px solid $border;
+    background-color: $gray10;
+    color: $gray;
+    &::before {
+      content: "\e973";
+      font-family: "icomoon";
+      font-size: 16px;
+      line-height: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: normal;
+    }
+    .icon-label {
+      font-size: 0;
+      margin-left: 0;
+    }
+  }
+
+  .icon-time-add {
+    border: 1px solid $border;
+  }
+}
+
+// 필터 레이아웃 세팅
+#query_form {
+  border: 1px solid $border;
+  border-radius: 6px;
+  padding: 16px;
+  margin-bottom: 16px;
+  fieldset {
+    margin-bottom: 0;
+  }
+}
+
+.collapsible {
+  > legend {
+    font-weight: bold;
+    cursor: pointer;
+    margin-bottom: 16px;
+    &::before {
+      content: "\ea15";
+      font-family: "icomoon";
+      font-size: 16px;
+      line-height: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: normal;
+      margin-right: 4px;
+    }
+    &.icon-collapsed {
+      &::before {
+        content: "\ea12";
+      }
+    }
+  }
+}
+
+.add-filter {
+  margin-top: 8px;
+  width: auto;
+  display: flex;
+  align-items: center;
+  label {
+    width: 180px;
+    flex-shrink: 0;
+    margin-right: 8px;
+  }
+  select {
+    width: 100%;
+    max-width: 180px;
+    flex-shrink: 0;
+  }
+}
+
+fieldset#filters {
+  &.collapsible {
+    &.collapsed {
+      > legend {
+        margin-bottom: 0px;
+      }
+    }
+  }
+  .filter {
+    .field {
+      min-width: 180px;
+      flex-shrink: 0;
+      margin-right: 8px;
+    }
+    .operator {
+      min-width: 180px;
+      flex-shrink: 0;
+      margin-right: 8px;
+    }
+    .values {
+      min-width: 180px;
+      flex-shrink: 0;
+
+      > span {
+        display: flex;
+        align-items: center;
+      }
+      .toggle-multiselect {
+        display: none;
+      }
+    }
+    select {
+      width: 100%;
+    }
+  }
+}
+
+fieldset#options {
+  margin-top: 32px;
+  position: relative;
+  margin-bottom: 32px;
+  &:before {
+    content: "";
+    display: block;
+    position: absolute;
+    border-top: 1px solid $border;
+    top: -52px;
+    left: 0;
+    width: 100%;
+  }
+  legend {
+    margin-top: 16px;
+  }
+  &.collapsed {
+    margin-bottom: 16px;
+  }
+
+  legend {
+    + .hidden {
+      > div:not(.hidden) {
+        display: flex;
+        align-items: center;
+        .field {
+          min-width: 180px;
+          flex-shrink: 0;
+          margin-right: 8px;
+        }
+      }
+    }
+  }
+}
+
+#query_form {
+  .buttons {
+    .icon-label {
+      margin-left: 0;
+      font-size: 14px;
+      line-height: 20px;
+    }
+    .icon {
+      border: 1px solid $border;
+      padding-top: 7px;
+      padding-bottom: 7px;
+      &:hover {
+        background-color: $whiteHover;
+      }
+      &:before {
+        content: "";
+        font-family: "icomoon";
+        font-size: 16px;
+        line-height: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: normal;
+        margin-right: 4px;
+        color: $gray;
+      }
+    }
+    .icon-checked {
+      background-color: $text;
+      color: $white;
+      border-color: transparent;
+      &:hover {
+        background-color: $textHover;
+      }
+      &:before {
+        content: "\e96e";
+        color: $white;
+      }
+    }
+    .icon-reload {
+      &:before {
+        content: "\e9fa";
+      }
+    }
+  }
+}
+
+.other-formats {
+  font-size: 14px;
+  line-height: 20px;
+  color: $gray;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  span {
+    margin: 0;
+    margin-left: 8px;
+    &:first-child {
+      margin-left: 16px;
+    }
+    a {
+      border: 1px solid $border;
+      font-size: 13px;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 3px 8px;
+      &:hover {
+        background-color: $whiteHover;
+      }
+      &:before {
+        content: "\ea16" !important;
+        font-family: "icomoon" !important;
+        font-size: 16px;
+        line-height: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: normal;
+        margin-right: 4px;
+        color: $gray !important;
+      }
+    }
+  }
+}
+
+#list-definition {
+  align-items: flex-start !important;
+  flex-direction: column;
+  > div {
+    margin-bottom: 16px;
+    > .field + div {
+      display: flex;
+      margin-right: 8px;
+    }
+  }
+}
+
+.pagination .items {
+  font-size: 14px;
+  line-height: 20px;
+  color: $text;
+}
+
+.drdn-content {
+  .drdn-items {
+    a {
+      all: unset;
+      padding: 8px;
+    }
+  }
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  .pages {
+    display: flex;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+
+    li {
+      span,
+      a {
+        width: 44px;
+        height: 28px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 6px;
+        font-size: 14px;
+        line-height: 20px;
+        font-weight: bold;
+        color: $text;
+        &:hover {
+          background-color: $whiteHover;
+        }
+      }
+    }
+    .previous {
+      margin-right: 6px;
+      a,
+      span {
+        &:before {
+          content: "\e9c3";
+          font-family: "icomoon";
+          font-size: 16px;
+          line-height: 16px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+      }
+    }
+
+    .next {
+      margin-left: 6px;
+      a,
+      span {
+        &:before {
+          content: "\e9c3";
+          font-family: "icomoon";
+          font-size: 16px;
+          line-height: 16px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transform: rotate(180deg);
+        }
+      }
+    }
+
+    .previous,
+    .next {
+      width: 32px;
+      a,
+      span {
+        font-size: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: $disabled;
+        width: 32px;
+        height: 28px;
+        border-radius: 6px;
+        cursor: not-allowed;
+
+        &:hover {
+          background-color: $whiteHover;
+        }
+      }
+      &.page {
+        a,
+        span {
+          color: $text;
+          cursor: pointer;
+        }
+      }
+    }
+
+    .current {
+      span,
+      a {
+        border: 1px solid $border;
+        color: $link;
+      }
+    }
+  }
+  > span {
+    font-size: 14px;
+    line-height: 20px;
+    a {
+      color: $link;
     }
   }
 }

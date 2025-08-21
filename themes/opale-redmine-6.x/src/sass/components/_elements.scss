@@ -8,23 +8,17 @@
 
 // Various layout elements
 
-
 // Collapsible
 
 a.collapsible,
 a.collapsible.icon,
 .collapsible > legend {
-  color: variables.$link-color;
-  cursor: pointer;
-  user-select: none;
-
-  &:hover,
-  &:focus {
-    color: variables.$link-hover-color;
-    text-decoration: none;
+  font-size: 14px;
+  line-height: 20px;
+  svg {
+    display: none;
   }
 }
-
 
 // Elements with context menus (doesn't really work on Windows)
 
@@ -32,19 +26,20 @@ a.collapsible.icon,
   cursor: context-menu;
 }
 
-
 // Actions for block
 
 .contextual {
   float: right;
   cursor: default;
-
+  display: flex;
+  align-items: center;
+  gap: 0 4px;
+  margin-top: -3px;
   input,
   select {
-    font-size: .9em;
+    font-size: 0.9em;
   }
 }
-
 
 // Accessibility specific styles
 
@@ -88,7 +83,6 @@ img {
   overflow-x: auto;
 }
 
-
 // Container
 
 .box {
@@ -117,7 +111,6 @@ img {
   }
 }
 
-
 // Column form layout
 
 .splitcontent {
@@ -136,18 +129,17 @@ img {
 }
 
 .splitcontentleft {
-  margin-right: variables.$padding-side * .5;
+  margin-right: variables.$padding-side * 0.5;
 }
 
 .splitcontentright {
-  margin-left: variables.$padding-side * .5;
+  margin-left: variables.$padding-side * 0.5;
 }
 
 .splitcontenttop {
   flex: 2;
   flex-basis: 100%;
 }
-
 
 // Watchers list
 
@@ -194,12 +186,11 @@ img {
       }
 
       img.gravatar {
-        margin-right: .5em;
+        margin-right: 0.5em;
       }
     }
   }
 }
-
 
 // Users selection list
 
@@ -221,15 +212,13 @@ img {
   }
 }
 
-
 // Subtitle paragraph (can be seen on activity list)
 
 p.subtitle {
-  margin-top: (variables.$line-height-computed * -.5);
+  margin-top: (variables.$line-height-computed * -0.5);
   margin-bottom: variables.$line-height-computed;
   font-style: italic;
 }
-
 
 // My page layout
 
@@ -293,13 +282,18 @@ a.close-icon:not(:has(svg)) {
 
 #my-page {
   .mypage-box {
-    &:not(.block-welcome, .block-projectinformation, .block-text, .block-text_async) {
+    &:not(
+        .block-welcome,
+        .block-projectinformation,
+        .block-text,
+        .block-text_async
+      ) {
       padding: variables.$panel-body-padding;
       border: 1px solid variables.$panel-border;
       border-radius: variables.$border-radius-base;
       background-color: variables.$panel-bg;
       color: variables.$panel-color;
-      font-size: .92em;
+      font-size: 0.92em;
       word-wrap: break-word;
 
       > h3 {
@@ -317,7 +311,6 @@ a.close-icon:not(:has(svg)) {
     }
   }
 }
-
 
 // Resetting font for SCM (repository files)
 
@@ -349,7 +342,7 @@ a.close-icon:not(:has(svg)) {
 
   th.line-num,
   td.line-code {
-    padding: .15em .4em;
+    padding: 0.15em 0.4em;
   }
 
   th.line-num,
@@ -368,8 +361,14 @@ a.close-icon:not(:has(svg)) {
 
   tr:target {
     th.line-num {
-      border-color: color.adjust(color.adjust(variables.$highlight-bg, $hue: -8deg), $lightness: -15%);
-      background-color: color.adjust(color.adjust(variables.$highlight-bg, $hue: -8deg), $lightness: -7%);
+      border-color: color.adjust(
+        color.adjust(variables.$highlight-bg, $hue: -8deg),
+        $lightness: -15%
+      );
+      background-color: color.adjust(
+        color.adjust(variables.$highlight-bg, $hue: -8deg),
+        $lightness: -7%
+      );
       color: variables.$highlight-text;
     }
 
@@ -391,7 +390,6 @@ a.close-icon:not(:has(svg)) {
     border: 0 none;
   }
 }
-
 
 // Projects list
 
@@ -417,27 +415,33 @@ ul.projects {
     &.root {
       display: flex;
       flex-wrap: wrap;
-      margin-right: -(variables.$padding-side * .5);
-      margin-left: -(variables.$padding-side * .5);
+      margin-right: -(variables.$padding-side * 0.5);
+      margin-left: -(variables.$padding-side * 0.5);
 
       > li {
         display: block;
         box-sizing: border-box;
         flex: 0 1 auto;
         width: 100%;
-        margin-right: variables.$padding-side * .5;
-        margin-left: variables.$padding-side * .5;
+        margin-right: variables.$padding-side * 0.5;
+        margin-left: variables.$padding-side * 0.5;
         padding: variables.$panel-body-padding;
         border: 1px solid variables.$panel-border;
         border-radius: variables.$border-radius-base;
         background-color: variables.$panel-bg;
         color: variables.$panel-color;
 
-        @media screen and (min-width: variables.$screen-sm-min) { width: calc(50% - #{variables.$padding-side}); }
+        @media screen and (min-width: variables.$screen-sm-min) {
+          width: calc(50% - #{variables.$padding-side});
+        }
 
-        @media screen and (min-width: variables.$screen-md-min) { width: calc(33.333% - #{variables.$padding-side}); }
+        @media screen and (min-width: variables.$screen-md-min) {
+          width: calc(33.333% - #{variables.$padding-side});
+        }
 
-        @media screen and (min-width: variables.$screen-lg-min) { width: calc(25% - #{variables.$padding-side}); }
+        @media screen and (min-width: variables.$screen-lg-min) {
+          width: calc(25% - #{variables.$padding-side});
+        }
       }
     }
   }
@@ -452,7 +456,7 @@ ul.projects {
     }
 
     &.child {
-      margin-top: variables.$line-height-computed * .5;
+      margin-top: variables.$line-height-computed * 0.5;
     }
 
     svg.icon-svg {
@@ -493,7 +497,6 @@ table.projects {
   }
 }
 
-
 // Time report
 
 #time-report {
@@ -515,7 +518,8 @@ table.projects {
     }
 
     &.total {
-      border-top: 2px solid color.adjust(variables.$table-border-color, $lightness: -5%);
+      border-top: 2px solid
+        color.adjust(variables.$table-border-color, $lightness: -5%);
       background-color: variables.$table-bg-active;
       font-weight: variables.$font-weight-bold;
     }
@@ -537,7 +541,6 @@ table.projects {
     font-size: variables.$font-size-large;
   }
 }
-
 
 // Version issue list and page layout
 
@@ -612,7 +615,6 @@ div#version-summary {
   }
 }
 
-
 // Add form bottom space
 
 #new_document,
@@ -622,11 +624,12 @@ div#version-summary {
   margin-bottom: variables.$line-height-computed;
 }
 
-
 // Ajax indicator
 
 @keyframes spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 #ajax-indicator {
@@ -638,11 +641,17 @@ div#version-summary {
   left: 50%;
   box-sizing: border-box;
   width: 200px;
-  margin: ((variables.$padding-large-vertical * 2 + 1px * 2 + variables.$line-height-computed) * -.5) (200px * -.5);
+  margin: (
+      (
+          variables.$padding-large-vertical * 2 + 1px * 2 +
+            variables.$line-height-computed
+        ) * -0.5
+    )
+    (200px * -0.5);
   padding: variables.$padding-large-vertical variables.$padding-large-horizontal;
   border: 1px solid variables.$highlight-border;
   border-radius: variables.$border-radius-base;
-  opacity: .9;
+  opacity: 0.9;
   background-color: variables.$highlight-bg;
   color: variables.$highlight-text;
   font-weight: variables.$font-weight-bold;
@@ -657,16 +666,15 @@ div#version-summary {
       box-sizing: border-box;
       width: variables.$line-height-computed;
       height: variables.$line-height-computed;
-      margin-right: variables.$line-height-computed * .5;
+      margin-right: variables.$line-height-computed * 0.5;
       animation: spin 1s linear infinite;
-      border: 3px solid color.adjust(variables.$highlight-text, $alpha: -.7);
+      border: 3px solid color.adjust(variables.$highlight-text, $alpha: -0.7);
       border-radius: 50%;
       border-top-color: variables.$highlight-text;
       vertical-align: bottom;
     }
   }
 }
-
 
 // Boards (forum)
 
@@ -716,12 +724,11 @@ div.table-list.boards {
   }
 }
 
-
 // Topic page
 
 .controller-messages.action-show {
   h2 {
-    margin-bottom: variables.$line-height-computed * .5;
+    margin-bottom: variables.$line-height-computed * 0.5;
   }
 
   .message {
@@ -732,7 +739,8 @@ div.table-list.boards {
     > h4,
     > p {
       margin-bottom: 0;
-      padding: variables.$bubble-padding-vertical variables.$bubble-padding-horizontal;
+      padding: variables.$bubble-padding-vertical
+        variables.$bubble-padding-horizontal;
       color: variables.$gray-700;
       font-size: variables.$font-size-list;
 
@@ -748,14 +756,16 @@ div.table-list.boards {
     .wiki {
       padding: variables.$panel-body-padding;
       border-top: 1px solid variables.$bubble-border;
-      border-radius: 0 0 variables.$panel-border-radius variables.$panel-border-radius;
+      border-radius: 0 0 variables.$panel-border-radius
+        variables.$panel-border-radius;
       background: variables.$body-bg;
     }
 
     .contextual {
       position: relative;
       z-index: 1;
-      padding: (variables.$bubble-padding-vertical - 1px) variables.$bubble-padding-vertical 0 0;
+      padding: (variables.$bubble-padding-vertical - 1px)
+        variables.$bubble-padding-vertical 0 0;
 
       a {
         display: inline-block;
@@ -774,7 +784,8 @@ div.table-list.boards {
 
   @if variables.$use-gravatars {
     .reply {
-      margin-left: variables.$bubble-gravatar-size + variables.$bubble-gravatar-space;
+      margin-left: variables.$bubble-gravatar-size +
+        variables.$bubble-gravatar-space;
 
       > h4 {
         position: relative;
@@ -808,8 +819,14 @@ div.table-list.boards {
       }
 
       img.gravatar {
-        margin-top: variables.$line-height-computed - variables.$bubble-gravatar-size;
-        margin-left: -(variables.$bubble-gravatar-size + variables.$bubble-gravatar-space + variables.$bubble-padding-horizontal + 1px);
+        margin-top: variables.$line-height-computed -
+          variables.$bubble-gravatar-size;
+        margin-left: -(
+            variables.$bubble-gravatar-size +
+              variables.$bubble-gravatar-space +
+              variables.$bubble-padding-horizontal +
+              1px
+          );
         float: left;
       }
     }
@@ -819,7 +836,6 @@ div.table-list.boards {
 #message_content {
   height: variables.$line-height-computed * 6;
 }
-
 
 // Documents
 
@@ -866,20 +882,19 @@ div.table-list.boards {
   }
 }
 
-
 // News
 
 .news.box {
   p > a:not(:last-child) {
     display: inline-block;
-    margin-bottom: math.floor(variables.$line-height-computed * .25);
+    margin-bottom: math.floor(variables.$line-height-computed * 0.25);
     font-size: variables.$font-size-h4;
   }
 
   .summary,
   .author {
     display: block;
-    margin-bottom: math.floor(variables.$line-height-computed * .25);
+    margin-bottom: math.floor(variables.$line-height-computed * 0.25);
 
     + br {
       display: none;
@@ -894,7 +909,7 @@ div.table-list.boards {
 #edit-news + p {
   em {
     display: block;
-    margin-bottom: math.floor(variables.$line-height-computed * .25);
+    margin-bottom: math.floor(variables.$line-height-computed * 0.25);
 
     + br {
       display: none;
@@ -904,7 +919,8 @@ div.table-list.boards {
 
 .news.box .summary,
 #edit-news + p em {
-  padding: math.floor(variables.$line-height-computed * .25) variables.$padding-base-horizontal;
+  padding: math.floor(variables.$line-height-computed * 0.25)
+    variables.$padding-base-horizontal;
   border-left: 4px solid variables.$blockquote-border-color;
 }
 
@@ -915,7 +931,7 @@ div.table-list.boards {
 
   header {
     h3 {
-      margin-bottom: variables.$line-height-computed * .5;
+      margin-bottom: variables.$line-height-computed * 0.5;
 
       > a {
         font-weight: variables.$font-weight-bold;
@@ -936,13 +952,12 @@ div.table-list.boards {
   }
 }
 
-
 // News comments
 
 #comments {
   > h4 {
     margin-top: variables.$line-height-computed;
-    margin-bottom: variables.$line-height-computed * .5;
+    margin-bottom: variables.$line-height-computed * 0.5;
   }
 }
 

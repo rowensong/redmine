@@ -75,6 +75,13 @@ if [ -d "$THEME_DIR" ] && command -v npm >/dev/null 2>&1; then
     nohup npx grunt watch --verbose >> "$LOG_DIR/theme-watch.log" 2>&1 & echo $! > "$PID_DIR/theme_watch.pid"
   )
   echo "[Theme] watcher started (logs: $LOG_DIR/theme-watch.log)"
+  
+  # 테마 파일들을 public/themes로 링크
+  echo "[Theme] public/themes 링크 생성"
+  mkdir -p "public/themes/opale-redmine-6.x"
+  ln -sf "../../../themes/opale-redmine-6.x/stylesheets" "public/themes/opale-redmine-6.x/stylesheets" 2>/dev/null || true
+  ln -sf "../../../themes/opale-redmine-6.x/javascripts" "public/themes/opale-redmine-6.x/javascripts" 2>/dev/null || true
+  ln -sf "../../../themes/opale-redmine-6.x/webfonts" "public/themes/opale-redmine-6.x/webfonts" 2>/dev/null || true
 else
   echo "[Theme] 테마 감시는 스킵(npm 또는 디렉터리 없음)"
 fi

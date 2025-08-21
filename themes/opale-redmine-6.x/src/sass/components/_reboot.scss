@@ -21,14 +21,7 @@ body {
 }
 
 a {
-  color: variables.$link-color;
   text-decoration: none;
-
-  &:hover,
-  &:focus {
-    color: variables.$link-hover-color;
-    text-decoration: variables.$link-hover-decoration;
-  }
 
   &.issue.closed {
     color: variables.$link-color-issue-closed;
@@ -62,15 +55,16 @@ h1 {
   margin: 0;
   font-size: 2em;
   font-weight: variables.$font-weight-semi-bold;
-  line-height: variables.$line-height-large * .825;
+  line-height: variables.$line-height-large * 0.825;
 }
 
 h2 {
   margin-top: 0;
-  margin-bottom: variables.$line-height-computed;
-  font-size: 1.43em;
-  font-weight: variables.$font-weight-semi-bold;
-  line-height: variables.$line-height-large;
+  font-size: 20px;
+  line-height: 28px;
+  font-weight: bold;
+  margin: 0;
+  margin-bottom: 16px;
 
   img {
     vertical-align: middle;
@@ -93,7 +87,7 @@ h4 {
 }
 
 p {
-  margin: 0 0 (variables.$line-height-computed * .5);
+  margin: 0 0 (variables.$line-height-computed * 0.5);
 }
 
 small {
@@ -107,7 +101,8 @@ table {
 
   th,
   td {
-    padding: variables.$table-condensed-cell-padding variables.$table-cell-padding;
+    padding: variables.$table-condensed-cell-padding
+      variables.$table-cell-padding;
   }
 
   p {
@@ -116,7 +111,7 @@ table {
 
   form {
     p {
-      margin-bottom: (variables.$line-height-computed * .5);
+      margin-bottom: (variables.$line-height-computed * 0.5);
 
       &:last-child {
         margin-bottom: 0;
@@ -128,7 +123,7 @@ table {
 ul,
 ol {
   margin-top: 0;
-  margin-bottom: (variables.$line-height-computed * .5);
+  margin-bottom: (variables.$line-height-computed * 0.5);
   padding-left: 1.5em;
 
   ul,
@@ -167,14 +162,15 @@ hr {
   border-top: 1px solid variables.$hr-border;
 
   li & {
-    margin-top: variables.$line-height-computed * .5;
-    margin-bottom: variables.$line-height-computed * .5;
+    margin-top: variables.$line-height-computed * 0.5;
+    margin-bottom: variables.$line-height-computed * 0.5;
   }
 }
 
 blockquote {
   margin: 0 0 variables.$line-height-computed;
-  padding: math.floor(variables.$line-height-computed * .25) variables.$padding-large-horizontal;
+  padding: math.floor(variables.$line-height-computed * 0.25)
+    variables.$padding-large-horizontal;
   border-left: 4px solid variables.$blockquote-border-color;
 
   > :first-child {

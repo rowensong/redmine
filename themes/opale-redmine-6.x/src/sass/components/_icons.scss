@@ -6,15 +6,19 @@
 
 $icon-map: (
   // Non SVG redmine icons
-  icon-download:                tabler-icons.$ti-icon-download,
+  icon-download: tabler-icons.$ti-icon-download,
   // Non SVG plugins icons
-  banner-icon-edit:             tabler-icons.$ti-icon-pencil,
-  banner-icon-off:              tabler-icons.$ti-icon-x,
+  banner-icon-edit: tabler-icons.$ti-icon-pencil,
+  banner-icon-off: tabler-icons.$ti-icon-x
 );
 $icons-selector: ();
 
 @each $class, $icon in $icon-map {
-  $icons-selector: list.append($icons-selector, string.unquote(".#{$class}"), "comma");
+  $icons-selector: list.append(
+    $icons-selector,
+    string.unquote(".#{$class}"),
+    "comma"
+  );
 
   .#{$class}:not(:has(svg)) {
     @include variants.ti-icon-style;
@@ -30,7 +34,6 @@ $icons-selector: ();
     background-image: none;
   }
 }
-
 
 // SVG Icons
 
@@ -99,7 +102,6 @@ span.icon-label {
   margin-left: variables.$icon-space;
 }
 
-
 // Buttons icons
 
 .icon,
@@ -109,25 +111,17 @@ span.icon-label {
   vertical-align: middle;
 }
 
-.icon-only {
-  width: variables.$icon-width;
-  overflow: hidden;
-  white-space: nowrap;
-}
-
 // A empty icon should behave more like icon-only
 
 a.icon:empty {
   display: inline-block;
 }
 
-
 // Zoom icons
 
 .icon-zoom-in + .icon-zoom-out {
   margin-left: variables.$padding-small-vertical;
 }
-
 
 // Alternative icons
 
@@ -145,7 +139,7 @@ a.icon:empty {
   padding-left: 0;
 
   &::after {
-    margin-left: .2em;
+    margin-left: 0.2em;
   }
 
   &.asc::after {
@@ -160,14 +154,30 @@ a.icon:empty {
   .sort-by-done-ratio &,
   .sort-by-estimated-hours &,
   .sort-by-spent-hours & {
-    &.asc::after  { @include variants.ti-icon-variant(tabler-icons.$ti-icon-sort-ascending-numbers); }
-    &.desc::after { @include variants.ti-icon-variant(tabler-icons.$ti-icon-sort-descending-numbers); }
+    &.asc::after {
+      @include variants.ti-icon-variant(
+        tabler-icons.$ti-icon-sort-ascending-numbers
+      );
+    }
+    &.desc::after {
+      @include variants.ti-icon-variant(
+        tabler-icons.$ti-icon-sort-descending-numbers
+      );
+    }
   }
 
   .sort-by-assigned-to &,
   .sort-by-subject & {
-    &.asc::after  { @include variants.ti-icon-variant(tabler-icons.$ti-icon-sort-ascending-letters); }
-    &.desc::after { @include variants.ti-icon-variant(tabler-icons.$ti-icon-sort-descending-letters); }
+    &.asc::after {
+      @include variants.ti-icon-variant(
+        tabler-icons.$ti-icon-sort-ascending-letters
+      );
+    }
+    &.desc::after {
+      @include variants.ti-icon-variant(
+        tabler-icons.$ti-icon-sort-descending-letters
+      );
+    }
   }
 }
 
@@ -187,8 +197,8 @@ div.wiki {
       @include variants.ti-icon-variant(tabler-icons.$ti-icon-external-link);
 
       display: inline;
-      margin-right: .3em;
-      font-size: .8em;
+      margin-right: 0.3em;
+      font-size: 0.8em;
     }
   }
 }
@@ -200,7 +210,7 @@ div.wiki {
     background-image: none;
 
     &::before {
-      margin-right: .3em;
+      margin-right: 0.3em;
     }
   }
 
@@ -249,7 +259,6 @@ div.wiki {
   }
 }
 
-
 // Drag-and-drop sorting
 
 @keyframes spin {
@@ -276,7 +285,6 @@ div.wiki {
     }
   }
 }
-
 
 // Colorize
 
@@ -316,7 +324,7 @@ a.icon-bookmark {
 }
 
 #content .other-formats {
-   a {
+  a {
     @include variants.icon-variant(info, false);
 
     &.atom {

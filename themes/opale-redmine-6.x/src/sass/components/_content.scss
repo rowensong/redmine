@@ -27,7 +27,6 @@
   }
 }
 
-
 // Main container
 
 #content {
@@ -45,7 +44,6 @@
     overflow: hidden;
   }
 }
-
 
 // Sidebar
 
@@ -90,137 +88,16 @@
     @if not variables.$flexbox-layout {
       padding-bottom: variables.$padding-side * 3;
     }
-
-    @if variables.$sidebar-position == "left" {
-      border-right: 1px solid variables.$sidebar-link-active-border;
-      box-shadow: inset -9px 0 6px -6px rgb(0 0 0 / .05);
-    } @else {
-      border-left: 1px solid variables.$sidebar-link-active-border;
-      box-shadow: inset 9px 0 6px -6px rgb(0 0 0 / .05);
-    }
   }
 
   h3 {
     margin-top: variables.$line-height-computed * 1.5;
   }
 
-  #sidebar-wrapper > h3:first-child,
-  #sidebar-wrapper > form:first-child > h3,
-  #sidebar-wrapper > #watchers:first-child > h3 {
-    margin-top: variables.$line-height-computed * .25;
-  }
-
-  ul {
-    &:nth-child(n) {
-      margin: 0 0 (variables.$line-height-computed * .5);
-      padding: 0;
-
-      @if variables.$sidebar-position == "left" {
-        margin-right: -(variables.$sidebar-padding-horizontal);
-      }
-    }
-
-    &:not(.watchers) {
-      li {
-        position: relative;
-        margin: 0;
-        padding: 0;
-        list-style-type: none;
-
-        > a:not(.icon-only) {
-          display: block;
-          padding: variables.$sidebar-padding-vertical variables.$sidebar-padding-horizontal;
-          border: 1px solid transparent;
-
-          @if variables.$sidebar-position == "left" {
-            border-left-width: 3px;
-            border-radius: variables.$border-radius-large 0 0 variables.$border-radius-large;
-          } @else {
-            margin-left: -(variables.$sidebar-padding-horizontal);
-            border-right-width: 3px;
-            border-radius: 0 variables.$border-radius-large variables.$border-radius-large 0;
-          }
-
-          &:hover {
-            background-color: variables.$sidebar-link-hover-bg;
-            color: variables.$sidebar-link-hover-text;
-            text-decoration: none;
-          }
-
-          &.selected {
-            border-color: variables.$sidebar-link-active-border;
-            background-color: variables.$sidebar-link-active-bg;
-            color: variables.$sidebar-link-active-text;
-
-            @if variables.$sidebar-position == "left" {
-              margin-right: -1px;
-              border-right-color: variables.$body-bg;
-              border-left-color: variables.$sidebar-link-active-side;
-              box-shadow: -3px 1px 2px rgb(0 0 0 / .1);
-            } @else {
-              margin-left: -(variables.$sidebar-padding-horizontal + 1px);
-              border-right-color: variables.$sidebar-link-active-side;
-              border-left-color: variables.$body-bg;
-              box-shadow: 3px 1px 2px rgb(0 0 0 / .1);
-            }
-          }
-        }
-      }
-    }
-
-    &.queries {
-      > li {
-        position: relative;
-
-        > a.query {
-          padding-right: variables.$sidebar-padding-horizontal * 1.5;
-        }
-
-        > a.icon-only {
-          position: absolute;
-          top: variables.$sidebar-padding-vertical;
-          right: variables.$sidebar-padding-horizontal * .5;
-          line-height: variables.$line-height-computed;
-
-          &::before {
-            line-height: inherit;
-          }
-        }
-      }
-    }
-
-    &.pages-hierarchy {
-      .pages-hierarchy {
-        margin-left: variables.$sidebar-padding-horizontal + 3px;
-        border-left: 2px solid variables.$gray-400;
-
-        @if variables.$sidebar-position == "right" {
-          margin-left: 3px;
-        } @else {
-          margin-right: 0;
-        }
-
-        li {
-          > a:not(.icon-only) {
-            padding-right: variables.$sidebar-padding-horizontal * .5;
-            padding-left: variables.$sidebar-padding-horizontal * .5;
-
-            @if variables.$sidebar-position == "right" {
-              margin-left: 0;
-            }
-          }
-
-          .pages-hierarchy {
-            margin-left: variables.$sidebar-padding-horizontal * .5 + 3px;
-          }
-        }
-      }
-    }
-  }
-
   // Special treatment for anchor tags directly under sidebar tag
   > a {
-    margin: variables.$sidebar-padding-vertical variables.$sidebar-padding-horizontal;
+    margin: variables.$sidebar-padding-vertical
+      variables.$sidebar-padding-horizontal;
 
     @if variables.$sidebar-position == "left" {
       margin-left: variables.$sidebar-padding-horizontal + 3px;

@@ -101,7 +101,9 @@ table.list {
       padding-right: variables.$table-cell-padding;
       padding-left: variables.$table-cell-padding;
 
-      @if parse-length.parse-length(variables.$table-list-item-border, right) == 0 {
+      @if parse-length.parse-length(variables.$table-list-item-border, right) ==
+        0
+      {
         &:first-child {
           padding-right: 0;
         }
@@ -169,7 +171,7 @@ table.list {
   }
 
   caption {
-    padding: .5em .5em .5em 0;
+    padding: 0.5em 0.5em 0.5em 0;
     text-align: left;
   }
 }
@@ -276,7 +278,7 @@ tr.issue {
 
     > span {
       display: block;
-      margin-bottom: variables.$line-height-computed * .25;
+      margin-bottom: variables.$line-height-computed * 0.25;
       padding: variables.$table-cell-padding;
       font-weight: variables.$font-weight-bold;
     }
@@ -314,7 +316,7 @@ td.last_updated_by {
 }
 
 .sample-data {
-  margin: variables.$line-height-computed * .5;
+  margin: variables.$line-height-computed * 0.5;
   margin-bottom: variables.$line-height-computed;
   border: 1px solid variables.$table-border-color;
 
@@ -395,13 +397,15 @@ tr.entry {
     @if variables.$color-priorities {
       @each $priority-id, $priority-color in variables.$priority-color-map {
         &.priority-#{$priority-id} {
-          background-color: color.adjust(map.get($priority-color, background), $alpha: variables.$table-color-hover-factor);
+          background-color: color.adjust(
+            map.get($priority-color, background),
+            $alpha: variables.$table-color-hover-factor
+          );
         }
       }
     }
   }
 }
-
 
 // Priorities
 
@@ -453,12 +457,18 @@ tr.entry {
   a.issue,
   .relations > span > a.issue,
   .parent > a.issue {
-    border-radius: variables.$border-radius-small (variables.$border-radius-small * 3) (variables.$border-radius-small * 3) variables.$border-radius-small;
+    border-radius: variables.$border-radius-small
+      (variables.$border-radius-small * 3)
+      (variables.$border-radius-small * 3)
+      variables.$border-radius-small;
     background-color: variables.$tracker-default-bg;
     color: variables.$tracker-default-text;
 
     &:hover {
-      background-color: color.adjust(variables.$tracker-default-bg, $lightness: -10%);
+      background-color: color.adjust(
+        variables.$tracker-default-bg,
+        $lightness: -10%
+      );
       color: variables.$tracker-default-text;
       text-decoration: none;
     }
@@ -476,7 +486,11 @@ tr.entry {
 
     &.closed {
       position: relative;
-      color: color.mix(variables.$tracker-default-text, variables.$tracker-default-bg, 75%);
+      color: color.mix(
+        variables.$tracker-default-text,
+        variables.$tracker-default-bg,
+        75%
+      );
       text-decoration: none;
 
       &::after {
@@ -486,14 +500,19 @@ tr.entry {
         right: 5px;
         bottom: 0;
         left: 5px;
-        height: calc(50% - 2px * .5);
+        height: calc(50% - 2px * 0.5);
         transform: rotate(-4deg);
         transition: border-color variables.$transition-time;
-        border-top: 2px solid color.adjust(variables.$tracker-default-text, $alpha: -.05);
+        border-top: 2px
+          solid
+          color.adjust(variables.$tracker-default-text, $alpha: -0.05);
       }
 
       &:hover::after {
-        border-top-color: color.adjust(variables.$tracker-default-text, $alpha: -.75);
+        border-top-color: color.adjust(
+          variables.$tracker-default-text,
+          $alpha: -0.75
+        );
       }
     }
   }
@@ -505,7 +524,11 @@ tr.entry {
 
     &::before {
       content: "#";
-      color: color.mix(variables.$tracker-default-text, variables.$tracker-default-bg, 50%);
+      color: color.mix(
+        variables.$tracker-default-text,
+        variables.$tracker-default-bg,
+        50%
+      );
     }
   }
 
@@ -522,7 +545,6 @@ tr.entry {
     );
   }
 }
-
 
 // List groups
 
@@ -551,7 +573,6 @@ tr.group {
 .toggle-all:hover {
   text-decoration: none;
 }
-
 
 // Time entry in report
 
@@ -587,7 +608,7 @@ tr.time-entry {
     white-space: nowrap;
 
     .hours-dec {
-      font-size: .9em;
+      font-size: 0.9em;
     }
   }
 }
@@ -636,7 +657,6 @@ tr.version {
   }
 }
 
-
 // Users list
 
 tr.user {
@@ -664,7 +684,6 @@ tr.user {
   }
 }
 
-
 // Plugins list
 
 table.plugins {
@@ -673,7 +692,7 @@ table.plugins {
   }
 
   span.name {
-    margin-bottom: .5em;
+    margin-bottom: 0.5em;
     font-size: variables.$font-size-large;
     font-weight: variables.$font-weight-bold;
   }
@@ -683,7 +702,6 @@ table.plugins {
     display: block;
   }
 }
-
 
 // Files list
 
@@ -703,7 +721,6 @@ table.files {
     }
   }
 }
-
 
 // Admin lists
 
@@ -731,7 +748,6 @@ table.list.enumerations {
   }
 }
 
-
 // Totals
 
 .query-totals {
@@ -739,7 +755,8 @@ table.list.enumerations {
     margin-top: 0;
 
     @media screen and (min-width: variables.$redmine-responsive-min) {
-      margin-top: -(variables.$line-height-computed * 2 + variables.$btn-padding-vertical);
+      margin-top: -(variables.$line-height-computed * 2 +
+            variables.$btn-padding-vertical);
       text-align: right;
     }
   }
@@ -757,7 +774,6 @@ table.list.enumerations {
   }
 }
 
-
 // Definition lists
 
 #list-definition {
@@ -765,17 +781,17 @@ table.list.enumerations {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-
+    gap: 0 8px;
     .query-columns label {
       display: block;
     }
 
     .field {
-      width: 4.85rem;
+      width: 180px;
+      flex-shrink: 0;
     }
   }
 }
-
 
 // Activity and search results list
 
@@ -789,13 +805,13 @@ table.list.enumerations {
   dt {
     svg,
     span {
-      margin-right: .4em;
+      margin-right: 0.4em;
     }
   }
 
   dd {
     margin-bottom: variables.$line-height-computed;
-    padding-top: .1em;
+    padding-top: 0.1em;
   }
 
   span.project::after {
@@ -815,13 +831,15 @@ table.list.enumerations {
   $activity-indent: 20px;
 
   @if variables.$use-gravatars {
-    $activity-indent: $activity-indent + $activity-avatar + $activity-avatar-space;
+    $activity-indent: $activity-indent +
+      $activity-avatar +
+      $activity-avatar-space;
   }
 
   h3,
   h4 {
     margin: 0 0 variables.$line-height-computed;
-    padding-bottom: .2em;
+    padding-bottom: 0.2em;
     border-bottom: 1px dotted variables.$gray-600;
     font-size: variables.$font-size-h4;
     font-weight: variables.$font-weight-normal;
@@ -874,26 +892,45 @@ table.list.enumerations {
   }
 }
 
-
 // Search results highlight
 
 .highlight {
-  background-color: color.adjust(variables.shade(variables.$yellow, 100), $saturation: 25%);
-  color: color.adjust(variables.shade(variables.$yellow, 800), $saturation: 25%);
+  background-color: color.adjust(
+    variables.shade(variables.$yellow, 100),
+    $saturation: 25%
+  );
+  color: color.adjust(
+    variables.shade(variables.$yellow, 800),
+    $saturation: 25%
+  );
 
   &.token-1 {
-    background-color: color.adjust(variables.shade(variables.$red, 100), $saturation: 25%);
+    background-color: color.adjust(
+      variables.shade(variables.$red, 100),
+      $saturation: 25%
+    );
     color: color.adjust(variables.shade(variables.$red, 800), $saturation: 25%);
   }
 
   &.token-2 {
-    background-color: color.adjust(variables.shade(variables.$green, 100), $saturation: 25%);
-    color: color.adjust(variables.shade(variables.$green, 800), $saturation: 25%);
+    background-color: color.adjust(
+      variables.shade(variables.$green, 100),
+      $saturation: 25%
+    );
+    color: color.adjust(
+      variables.shade(variables.$green, 800),
+      $saturation: 25%
+    );
   }
 
   &.token-3 {
-    background-color: color.adjust(variables.shade(variables.$blue, 100), $saturation: 25%);
-    color: color.adjust(variables.shade(variables.$blue, 800), $saturation: 25%);
+    background-color: color.adjust(
+      variables.shade(variables.$blue, 100),
+      $saturation: 25%
+    );
+    color: color.adjust(
+      variables.shade(variables.$blue, 800),
+      $saturation: 25%
+    );
   }
 }
-
