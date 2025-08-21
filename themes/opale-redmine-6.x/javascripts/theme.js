@@ -7,9 +7,11 @@ $(document).ready(function () {
     $("#top-menu").empty();
     $("#topmenu-nav").appendTo("#top-menu");
 
-    $("#topmenu-nav").after($("#header"));
+    $("#topmenu-nav").prepend($("#header h1"));
 
-    $("#quick-search").appendTo("#top-menu");
+    $("#quick-search").appendTo("#topmenu-nav");
+    $("#quick-search #project-jump").appendTo($("#topmenu-nav h1"));
+
     const ele = $("#quick-search label a");
     $("#quick-search label").empty();
     $(ele).appendTo("#quick-search label");
@@ -18,7 +20,7 @@ $(document).ready(function () {
     $("#project-jump .drdn-trigger").prop("title", "Jump to project");
     $("#userprofile").prop("title", "User profile");
     $("#loggedas").prependTo("#account");
-    $("#account").appendTo("#top-menu");
+    $("#account").appendTo("#topmenu-nav");
     $("#project-jump .drdn-trigger").html(projIcon);
 
     //Add header after topmenu nav
