@@ -920,3 +920,115 @@ fieldset#options {
     }
   }
 }
+
+#topmenu-nav {
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  &::before {
+    background: url("../images/pms_image.png") no-repeat center center;
+    background-size: contain;
+    width: 24px;
+    height: 24px;
+    display: block;
+    content: "";
+    margin-right: 8px;
+  }
+  h1 {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    line-height: 26px;
+  }
+
+  h1 + ul {
+    background-color: $gray20;
+    padding: 5px;
+    border-radius: 6px;
+    list-style: none;
+    margin: 0;
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    li {
+      a {
+        display: flex;
+        font-size: 14px;
+        line-height: 20px;
+        color: $gray;
+        padding: 4px 8px;
+        border-radius: 6px;
+        &.selected {
+          background-color: $white;
+          color: $text;
+          font-weight: bold;
+          box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.08);
+        }
+      }
+    }
+  }
+
+  #quick-search {
+    margin-left: 16px;
+    label {
+      display: none;
+    }
+    .expandSearch {
+      position: relative;
+      &:after {
+        content: "\e960";
+        font-family: "icomoon";
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+        position: absolute;
+        left: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: $disabled;
+      }
+      input {
+        padding-left: 30px;
+      }
+    }
+  }
+
+  #project-jump {
+    .drdn-trigger {
+      width: 28px;
+      height: 28px;
+      font-size: 0;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: initial;
+      margin-left: 4px;
+      &:hover {
+        background-color: $whiteHover;
+      }
+      &:after {
+        content: "\ea15";
+        font-family: "icomoon";
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+      }
+    }
+    &.expanded {
+      .drdn-trigger {
+        background-color: $whiteHover;
+        &:after {
+          content: "\ea12";
+        }
+      }
+    }
+  }
+  .drdn-content {
+    right: auto;
+    left: 0;
+  }
+}

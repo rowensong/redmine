@@ -29,6 +29,16 @@ module.exports = function (grunt) {
           },
         ],
       },
+      images: {
+        files: [
+          {
+            expand: true,
+            cwd: "<%= src %>images",
+            src: ["**/*"],
+            dest: "images/",
+          },
+        ],
+      },
     },
 
     // BrowserSync는 제거(포트 3000에서 rack-livereload 사용)
@@ -71,5 +81,5 @@ module.exports = function (grunt) {
 
   grunt.registerTask("css", ["sass", "postcss"]);
 
-  grunt.registerTask("default", ["css", "copy:js"]);
+  grunt.registerTask("default", ["css", "copy:js", "copy:images"]);
 };
