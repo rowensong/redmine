@@ -31,8 +31,30 @@ $(document).ready(function () {
       $("#account ul").prepend("<li></li>");
       $("#account ul li").first().html(loggedasEle[1]);
     }
-    var account =
-      ' <div id="userprofile"><div class="profileicon account"></div>';
+    // Get current user avatar if available
+    var userAvatar = "";
+    if ($("#loggedas").length > 0) {
+      // Try to get avatar from the page if it exists
+      var avatarImg = $("img.gravatar").first();
+      if (avatarImg.length > 0) {
+        // Clone the avatar image and adjust size for profile icon
+        var clonedAvatar = avatarImg.clone();
+        clonedAvatar.css({
+          width: "32px",
+          height: "32px",
+          "border-radius": "50%",
+          "object-fit": "cover",
+        });
+        userAvatar = clonedAvatar.prop("outerHTML");
+      }
+    }
+
+    var account = '<div id="userprofile">';
+    if (userAvatar) {
+      account += '<div class="profileicon account">' + userAvatar + "</div>";
+    } else {
+      account += '<div class="profileicon account"></div>';
+    }
     account += '<div id="profilemenu" style="display: none;"></div></div>';
     $("#quick-search").append(account);
     $("#account ul").prop("id", "profilelist").appendTo("#profilemenu");

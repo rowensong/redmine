@@ -186,18 +186,13 @@ body {
     }
   }
 
-  .floating:has(input[type="checkbox"]) {
-    display: flex;
-    margin: 0;
-    padding: 0;
+  label:has(input[type="checkbox"]) {
+    display: inline-flex;
     align-items: center;
-    margin-right: 8px;
+    position: relative;
+    line-height: initial;
     cursor: pointer;
-    input[type="checkbox"] {
-      display: none;
-    }
-
-    &:after {
+    &:before {
       cursor: pointer;
       width: 16px;
       height: 16px;
@@ -210,16 +205,42 @@ body {
       margin-right: 6px;
       box-sizing: border-box;
       background-color: $white;
-      order: -1;
     }
-    &:has(input:checked)::after {
-      content: "\e96e";
-      font-family: "icomoon";
-      font-size: 14px;
-      line-height: 14px;
-      border-color: transparent;
-      color: $white;
-      background-color: $black;
+    &:has(input:checked) {
+      &:before {
+        content: "\e96e";
+        font-family: "icomoon";
+        font-size: 14px;
+        line-height: 14px;
+        border-color: transparent;
+        color: $white;
+        background-color: $black;
+      }
+    }
+  }
+
+  #options-content {
+    p {
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 8px;
+    }
+  }
+
+  #search-input {
+    > p {
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 8px;
+    }
+  }
+
+  #search-types {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 8px;
+    label {
+      padding-left: 0;
     }
   }
 
@@ -584,7 +605,7 @@ body {
   }
 }
 
-.contextual {
+.contextual:not(.next-prev-links) {
   a {
     min-height: 36px;
     box-sizing: border-box;
@@ -632,6 +653,34 @@ body {
         font-size: 0;
         margin-left: 0;
       }
+    }
+
+    .icon-copy-link {
+      svg {
+        display: none;
+      }
+    }
+  }
+
+  .journal-actions {
+    .drdn-trigger {
+      .icon-only.icon-actions {
+        svg {
+          display: none;
+        }
+        &:before {
+          content: "\e973";
+          font-family: "icomoon";
+          font-size: 16px;
+          line-height: 16px;
+        }
+      }
+      .icon-label {
+        font-size: 0;
+      }
+    }
+    .drdn-content {
+      top: 22px;
     }
   }
 
@@ -686,6 +735,48 @@ body {
           font-size: 14px;
           line-height: 20px;
         }
+
+        &.icon-copy-link {
+          svg {
+            display: none;
+          }
+          &:before {
+            content: "\e9cd";
+            font-family: "icomoon";
+            font-size: 16px;
+            line-height: 16px;
+            display: flex;
+            margin-right: 4px;
+          }
+        }
+      }
+    }
+  }
+}
+
+#content {
+  #issue_tree,
+  #relations {
+    .contextual {
+      a {
+        min-height: auto;
+        border: 0;
+      }
+    }
+  }
+
+  .contextual.next-prev-links a {
+    border: 0;
+  }
+  .note {
+    .contextual {
+      margin-right: 16px;
+      padding: 0;
+      font-size: 13px;
+      line-height: 18px;
+      a {
+        min-height: auto;
+        border: 0;
       }
     }
   }
@@ -1137,15 +1228,25 @@ fieldset#options {
   }
 
   .profileicon {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    border-radius: 6px;
     background-color: $gray20;
     display: flex;
     align-items: center;
     justify-content: center;
     margin-left: 8px;
     cursor: pointer;
+    &:after {
+      content: "\e949";
+      font-family: "icomoon";
+      font-size: 20px;
+      line-height: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: $gray;
+    }
   }
 
   #profilemenu {
@@ -1347,7 +1448,6 @@ fieldset#options {
 }
 
 .tabs-buttons {
-  display: none !important;
 }
 
 .controller-calendars {
@@ -1377,9 +1477,9 @@ fieldset#options {
       font-size: 13px;
       line-height: 18px;
       font-weight: bold;
+      background-color: $white;
       &:before {
         color: $gray;
-        margin-right: 4px;
         font-size: 16px;
       }
       &.icon-edit {
@@ -1387,9 +1487,194 @@ fieldset#options {
           content: "\e96b";
         }
       }
+      &.icon-del {
+        &:before {
+          content: "\e966";
+        }
+      }
       .icon-label {
         margin-left: 0;
+        color: $text;
       }
     }
   }
+}
+
+.controller-search {
+  #search-form {
+    input,
+    select {
+      margin-bottom: 0;
+    }
+    .box {
+      > p {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+    }
+  }
+}
+
+table.list {
+  .buttons {
+    span:not(.icon-only) {
+      svg {
+        display: none;
+      }
+    }
+
+    a {
+      font-size: 14px;
+      line-height: 20px;
+      display: inline-flex;
+      align-items: center;
+      svg {
+        display: none;
+      }
+
+      &:before {
+        font-size: 16px;
+        line-height: 16px;
+        color: $gray;
+      }
+      &.icon-copy {
+        &:before {
+          content: "\e9cd";
+        }
+      }
+      &.icon-download {
+        &:before {
+          content: "\e91e";
+        }
+      }
+      &.icon-del {
+        &:before {
+          content: "\e966";
+        }
+      }
+
+      &:hover {
+        &:before {
+          color: $text;
+        }
+        &.icon-del {
+          &:before {
+            color: $warning;
+          }
+        }
+      }
+    }
+  }
+}
+
+.controller-issues {
+  .autoscroll {
+    border-radius: 10px;
+    table {
+      thead {
+        th {
+          background-color: $gray20;
+          font-size: 12px;
+          line-height: 18px;
+          font-weight: bold;
+          text-align: left;
+          padding: 11px 8px;
+          svg {
+            display: none;
+          }
+          .icon-label {
+            margin-left: 0;
+          }
+        }
+      }
+      tbody {
+        td {
+          padding: 15px 8px;
+        }
+      }
+      input[type="checkbox"] {
+        display: block;
+      }
+      .checkbox {
+        &:before {
+          cursor: pointer;
+          width: 16px;
+          height: 16px;
+          border-radius: 4px;
+          border: 1px solid $border;
+          content: "";
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-right: 6px;
+          box-sizing: border-box;
+          background-color: $white;
+        }
+        &:has(input:checked) {
+          &:before {
+            content: "\e96e";
+            font-family: "icomoon";
+            font-size: 14px;
+            line-height: 14px;
+            border-color: transparent;
+            color: $white;
+            background-color: $black;
+          }
+        }
+      }
+      .icon-sorted-asc {
+        .icon-label {
+          display: none;
+        }
+        &:after {
+          content: "\e9f9";
+          font-family: "icomoon";
+          font-size: 16px;
+          line-height: 16px;
+          display: block;
+          margin: 0 auto;
+        }
+      }
+      .js-contextmenu {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 28px;
+        height: 28px;
+        margin: 0 auto;
+        border-radius: 6px;
+        .icon-label {
+          display: none;
+        }
+        &:before {
+          content: "\e933";
+          font-family: "icomoon";
+          font-size: 16px;
+          line-height: 16px;
+          font-weight: normal;
+          color: $gray;
+        }
+        &:hover {
+          background-color: $white;
+
+          &:before {
+            color: $text;
+          }
+        }
+      }
+    }
+  }
+}
+
+#wrapper #context-menu ul {
+  padding: 8px;
+}
+
+#footer {
+  padding: 20px 60px;
+  font-size: 12px;
+  line-height: 16px;
+  color: $placeholder;
+  border-top: 1px solid $border;
 }

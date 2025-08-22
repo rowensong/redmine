@@ -28,44 +28,11 @@ table.list {
   }
 
   th,
-  .table-list-header {
-    padding: variables.$table-cell-padding;
-    border: 2px solid variables.$table-border-color;
-    border-width: variables.$table-list-header-border;
-    background-color: variables.$table-list-header-bg;
-    color: variables.$gray-700;
-    vertical-align: bottom;
-
-    @if variables.$table-list-header-bg == variables.$body-bg {
-      @at-root .box & {
-        background-color: variables.$panel-bg;
-      }
-    }
-
-    a {
-      color: variables.$gray-900;
-    }
-
-    .icon-svg {
-      display: none;
-    }
-
-    .icon-label {
-      margin-left: 0;
-    }
-  }
-
   tr.ui-sortable-helper {
     background-color: variables.$highlight-bg;
   }
 
   td {
-    padding: variables.$table-cell-padding;
-    border: 1px solid variables.$table-border-color;
-    border-width: variables.$table-list-item-border;
-    text-align: center;
-    vertical-align: top;
-
     &.icon {
       padding-left: variables.$table-cell-padding + variables.$icon-width;
     }

@@ -123,18 +123,3 @@
     }
   }
 }
-
-.journal-actions {
-  .drdn-trigger {
-    color: map.get(map.get(variables.$icon-color-map, default), normal);
-  }
-
-  .drdn-trigger:hover,
-  .drdn.expanded .drdn-trigger {
-    color: map.get(map.get(variables.$icon-color-map, default), hover);
-  }
-
-  .drdn-content {
-    top: variables.$input-height-base;
-  }
-}
