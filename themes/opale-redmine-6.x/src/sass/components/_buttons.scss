@@ -39,11 +39,14 @@ form {
     margin-right: 2px;
 
     + input {
-      @include variants.button-variant(
-        variables.$btn-success-color,
-        variables.$btn-success-bg,
-        variables.$btn-success-border
-      );
+      border-radius: 6px;
+      border: 1px solid #dcdfe5;
+      background-color: #fff;
+      color: #333;
+
+      &:hover {
+        background-color: #f6f6f6;
+      }
     }
 
     ~ a {
@@ -90,12 +93,6 @@ p.buttons,
   > a {
     padding: 8px 10px;
     border-radius: 6px;
-  }
-
-  > span:not(.drdn) {
-    border-color: variables.$pagination-inactive-border;
-    background-color: variables.$pagination-inactive-bg;
-    color: variables.$pagination-inactive-color;
   }
 
   svg {

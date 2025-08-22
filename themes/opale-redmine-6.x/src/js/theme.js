@@ -32,35 +32,30 @@ $(document).ready(function () {
       $("#account ul li").first().html(loggedasEle[1]);
     }
     var account =
-      ' <div id="userprofile"><div class="profileicon account">logout</div>';
+      ' <div id="userprofile"><div class="profileicon account"></div>';
     account += '<div id="profilemenu" style="display: none;"></div></div>';
     $("#quick-search").append(account);
     $("#account ul").prop("id", "profilelist").appendTo("#profilemenu");
     $("#account").remove();
     $("#userprofile").appendTo("#quick-search");
 
-
     // For user profile popup setup
-    $(".account").click(function() {
-        var X = this.id;
-        if(X == 1) {
-          $("#profilemenu").hide();
-          $(this).prop('id', '0');
-        }
-        else {
-          $("#profilemenu").show();
-          $(this).prop('id', '1');
-        }
-      });
-      $("#profilemenu, .account").mouseup(function() {
-        return false
-      });
-      $(document).mouseup(function() {
+    $(".account").click(function () {
+      var X = this.id;
+      if (X == 1) {
         $("#profilemenu").hide();
-        $(".account").prop('id', '');
-      });
-
-
-
+        $(this).prop("id", "0");
+      } else {
+        $("#profilemenu").show();
+        $(this).prop("id", "1");
+      }
+    });
+    $("#profilemenu, .account").mouseup(function () {
+      return false;
+    });
+    $(document).mouseup(function () {
+      $("#profilemenu").hide();
+      $(".account").prop("id", "");
+    });
   }
 });
