@@ -27,15 +27,13 @@ $(document).ready(function () {
     // For user profile Setup
     if ($("#loggedas").length > 0) {
       var loggedasEle = $.parseHTML($("#loggedas").html());
-      $("#loggedas").remove();
-      $("#account ul").prepend("<li></li>");
-      $("#account ul li").first().html(loggedasEle[1]);
     }
     // Get current user avatar if available
     var userAvatar = "";
     if ($("#loggedas").length > 0) {
       // Try to get avatar from the page if it exists
       var avatarImg = $("img.gravatar").first();
+      console.log(avatarImg);
       if (avatarImg.length > 0) {
         // Clone the avatar image and adjust size for profile icon
         var clonedAvatar = avatarImg.clone();
