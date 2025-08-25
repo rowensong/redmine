@@ -5,7 +5,8 @@
 
 // Tabs
 
-$tabs-height: variables.$line-height-computed + variables.$tab-padding-vertical * 2 + 1px + 1px;
+$tabs-height: variables.$line-height-computed + variables.$tab-padding-vertical *
+  2 + 1px + 1px;
 
 .tabs {
   $tabs-buttons-width: 40px;
@@ -46,9 +47,11 @@ $tabs-height: variables.$line-height-computed + variables.$tab-padding-vertical 
         min-width: 3em;
         height: $tabs-height;
         margin-right: 2px;
-        padding: variables.$tab-padding-vertical variables.$tab-padding-horizontal;
+        padding: variables.$tab-padding-vertical
+          variables.$tab-padding-horizontal;
         border: 1px solid transparent;
-        border-radius: variables.$border-radius-base variables.$border-radius-base 0 0;
+        border-radius: variables.$border-radius-base
+          variables.$border-radius-base 0 0;
         text-align: center;
         white-space: nowrap;
       }
@@ -91,7 +94,7 @@ $tabs-height: variables.$line-height-computed + variables.$tab-padding-vertical 
       }
 
       &.disabled {
-        opacity: variables.$icon-opacity * .5;
+        opacity: variables.$icon-opacity * 0.5;
         color: variables.$pagination-inactive-color;
       }
     }
@@ -109,44 +112,6 @@ $tabs-height: variables.$line-height-computed + variables.$tab-padding-vertical 
 
       &::before {
         @include variants.ti-icon-variant(tabler-icons.$ti-icon-chevron-right);
-      }
-    }
-  }
-}
-
-div.tabs:not(#main-menu) {
-  height: $tabs-height;
-  margin-bottom: variables.$line-height-computed;
-
-  > ul {
-    margin: 0;
-    padding: 0;
-    border-bottom: 1px solid variables.$tab-border;
-
-    > li {
-      margin: 0 0 -1px;
-      background: transparent;
-
-      > a {
-        padding: variables.$tab-padding-vertical variables.$tab-padding-horizontal;
-        border-color: transparent;
-        background: transparent;
-        color: variables.$link-color;
-        font: inherit;
-
-        &:hover,
-        &:focus {
-          border-color: variables.$tab-hover-border variables.$tab-hover-border variables.$tab-border;
-          background-color: variables.$tab-hover-bg;
-          color: variables.$tab-hover-text;
-          text-decoration: none;
-        }
-
-        &.selected {
-          border-color: variables.$tab-active-border variables.$tab-active-border variables.$tab-active-bg;
-          background: variables.$tab-active-bg;
-          color: variables.$tab-active-text;
-        }
       }
     }
   }

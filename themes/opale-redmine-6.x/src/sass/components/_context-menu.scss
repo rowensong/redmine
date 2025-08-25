@@ -7,8 +7,13 @@
   .context-menu-selection {
     &,
     > td {
-      background-color: variables.$brand-primary !important; // stylelint-disable-line declaration-no-important
-      color: variables.$brand-text !important; // stylelint-disable-line declaration-no-important
+      background-color: #f6f6f6 !important;
+      color: #333 !important;
+      &.subject {
+        a {
+          color: #333 !important;
+        }
+      }
     }
   }
 

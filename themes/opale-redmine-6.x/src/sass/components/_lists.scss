@@ -29,7 +29,7 @@ table.list {
 
   th,
   tr.ui-sortable-helper {
-    background-color: variables.$highlight-bg;
+    background-color: #f6f6f6;
   }
 
   td {
@@ -125,10 +125,6 @@ table.list {
 
       a {
         margin-right: variables.$padding-small-vertical;
-
-        &.icon-only {
-          margin-right: 0;
-        }
       }
 
       img {

@@ -31,12 +31,18 @@ $(document).ready(function () {
       $("#account ul").prepend("<li></li>");
       $("#account ul li").first().html(loggedasEle[1]);
     }
+
     // Get current user avatar if available
     var userAvatar = "";
     if ($("#loggedas").length > 0) {
       // Try to get avatar from the page if it exists
       var avatarImg = $("img.gravatar").first();
+      console.log("=== Gravatar Debug Info ===");
+      console.log("Found gravatar images:", $("img.gravatar").length);
+      console.log("Gravatar src:", avatarImg.attr("src"));
+
       if (avatarImg.length > 0) {
+        console.log("Gravatar found - processing...");
         // Clone the avatar image and adjust size for profile icon
         var clonedAvatar = avatarImg.clone();
         clonedAvatar.css({
@@ -46,19 +52,25 @@ $(document).ready(function () {
           "object-fit": "cover",
         });
         userAvatar = clonedAvatar.prop("outerHTML");
+        console.log("Processed userAvatar:", userAvatar);
+      } else {
+        console.log("No gravatar image found on page");
       }
     }
 
     var account = '<div id="userprofile">';
     if (userAvatar) {
       account += '<div class="profileicon account">' + userAvatar + "</div>";
+      console.log("Profile icon created with avatar");
     } else {
       account += '<div class="profileicon account"></div>';
+      console.log("Profile icon created without avatar");
     }
     account += '<div id="profilemenu" style="display: none;"></div></div>';
     $("#quick-search").append(account);
     $("#account ul").prop("id", "profilelist").appendTo("#profilemenu");
     $("#account").remove();
+    $("#topmenu-nav > ul").appendTo($("#quick-search"));
     $("#userprofile").appendTo("#quick-search");
 
     // For user profile popup setup

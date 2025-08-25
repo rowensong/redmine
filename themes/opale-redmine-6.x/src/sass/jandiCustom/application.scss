@@ -73,6 +73,7 @@ body {
       align-items: center;
       position: relative;
       line-height: initial;
+      flex-wrap: wrap;
       &:before {
         cursor: pointer;
         width: 16px;
@@ -136,12 +137,12 @@ body {
       + label {
         &:after {
           position: absolute;
-          left: 3px;
+          left: 4px;
           top: 50%;
           transform: translateY(-50%);
           content: "";
-          width: 10px;
-          height: 10px;
+          width: 8px;
+          height: 8px;
           border-radius: 50%;
           background-color: $text;
         }
@@ -217,6 +218,61 @@ body {
         background-color: $black;
       }
     }
+    &:only-child {
+      input {
+        display: none;
+      }
+    }
+  }
+
+  .action-account {
+    .tabular {
+      p:has(input[type="hidden"]) {
+        display: flex;
+        align-items: center;
+        position: relative;
+        line-height: initial;
+        cursor: pointer;
+        padding-left: 0;
+        label {
+          display: flex;
+          align-items: center;
+          margin-left: 0;
+          justify-content: flex-end;
+          margin-right: 0;
+          width: 185px;
+          &:after {
+            cursor: pointer;
+            width: 16px;
+            height: 16px;
+            border-radius: 4px;
+            border: 1px solid $border;
+            content: "";
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            margin-left: 6px;
+            box-sizing: border-box;
+            background-color: $white;
+          }
+        }
+
+        &:has(input:checked) {
+          label {
+            &:after {
+              content: "\e96e";
+              font-family: "icomoon";
+              font-size: 14px;
+              line-height: 14px;
+              border-color: transparent;
+              color: $white;
+              background-color: $black;
+            }
+          }
+        }
+      }
+    }
   }
 
   #options-content {
@@ -286,6 +342,7 @@ body {
 
   #content {
     padding-left: 60px;
+    padding-right: 60px;
   }
 
   #sidebar {
@@ -596,14 +653,6 @@ body {
 }
 
 // 레프트 메뉴가 없는경우 main에 nosidebar 클래스가 붙나 싶음
-
-#main {
-  &.nosidebar {
-    #content {
-      padding-left: 20px;
-    }
-  }
-}
 
 .contextual:not(.next-prev-links) {
   a {
@@ -1003,6 +1052,21 @@ fieldset#options {
       margin-right: 8px;
     }
   }
+  .query-columns {
+    flex-direction: column;
+    label {
+      font-size: 13px;
+      line-height: 20px;
+      color: $gray;
+      margin-bottom: 8px;
+      display: block;
+      width: 100%;
+      font-weight: bold;
+    }
+  }
+  .inline {
+    padding-left: 0;
+  }
 }
 
 .pagination .items {
@@ -1138,35 +1202,8 @@ fieldset#options {
     line-height: 26px;
   }
 
-  h1 + ul {
-    background-color: $gray20;
-    padding: 5px;
-    border-radius: 6px;
-    list-style: none;
-    margin: 0;
-    margin-left: auto;
-    display: flex;
-    align-items: center;
-    li {
-      a {
-        display: flex;
-        font-size: 14px;
-        line-height: 20px;
-        color: $gray;
-        padding: 4px 8px;
-        border-radius: 6px;
-        &.selected {
-          background-color: $white;
-          color: $text;
-          font-weight: bold;
-          box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.08);
-        }
-      }
-    }
-  }
-
   #quick-search {
-    margin-left: 16px;
+    margin-left: auto;
     display: flex;
     align-items: center;
     position: relative;
@@ -1190,6 +1227,29 @@ fieldset#options {
       }
       input {
         padding-left: 30px;
+      }
+    }
+
+    > ul {
+      padding: 0;
+      border-radius: 6px;
+      list-style: none;
+      margin: 0;
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      margin-left: 16px;
+      > li {
+        &:last-child {
+          display: none;
+        }
+        > a {
+          display: flex;
+          font-size: 14px;
+          line-height: 22px;
+          color: $gray;
+          padding: 5px 10px;
+        }
       }
     }
   }
@@ -1310,6 +1370,7 @@ fieldset#options {
       &.projects {
         margin-top: 4px;
         overflow: auto;
+        overflow-x: hidden;
         max-height: 200px;
       }
 
@@ -1447,9 +1508,6 @@ fieldset#options {
   }
 }
 
-.tabs-buttons {
-}
-
 .controller-calendars {
   .pagination {
     float: none;
@@ -1571,6 +1629,7 @@ table.list {
 .controller-issues {
   .autoscroll {
     border-radius: 10px;
+    border: 1px solid $border;
     table {
       thead {
         th {
@@ -1589,8 +1648,11 @@ table.list {
         }
       }
       tbody {
+        border-radius: 10px;
         td {
           padding: 15px 8px;
+          text-align: left;
+          background-color: $white;
         }
       }
       input[type="checkbox"] {
@@ -1663,12 +1725,69 @@ table.list {
           }
         }
       }
+      .icon-only {
+        margin-right: auto;
+      }
+    }
+  }
+}
+
+.controller-timelog {
+  #query_form {
+    .tabs {
+      margin-bottom: 16px;
+      height: auto;
+    }
+    ul {
+      height: auto;
+      a {
+        height: auto;
+        padding: 7px 13px;
+        border-radius: 48px;
+        font-size: 15px;
+        line-height: 22px;
+        color: $gray;
+        &.selected {
+          border: 1px solid $text;
+          color: $text;
+          font-weight: bold;
+        }
+      }
     }
   }
 }
 
 #wrapper #context-menu ul {
   padding: 8px;
+  li {
+    &:hover {
+      background-color: initial;
+    }
+    a {
+      font-size: 14px;
+      line-height: 20px;
+      padding: 8px;
+      border-radius: 6px;
+      color: $text;
+      &:hover {
+        background-color: $whiteHover;
+      }
+      svg {
+        display: none;
+      }
+      &:before {
+        font-family: "icomoon";
+        font-size: 16px;
+        line-height: 16px;
+        color: $gray;
+      }
+      &.icon-edit {
+        &:before {
+          content: "\e9a6";
+        }
+      }
+    }
+  }
 }
 
 #footer {
@@ -1677,4 +1796,249 @@ table.list {
   line-height: 16px;
   color: $placeholder;
   border-top: 1px solid $border;
+}
+
+.controller-my,
+.controller-welcome {
+  #main {
+    &.nosidebar {
+      #content {
+        padding-left: 48px;
+        padding-right: 48px;
+      }
+    }
+  }
+}
+
+// 작업 내역
+.controller-activities {
+  #content {
+    .subtitle {
+      font-style: normal;
+      margin-top: 16px;
+      margin-bottom: 16px;
+      font-size: 14px;
+      line-height: 20px;
+      color: $text;
+      font-weight: normal;
+    }
+  }
+  #activity {
+    h3 {
+      font-size: 16px;
+      line-height: 24px;
+      font-weight: bold;
+      color: $gray;
+      padding-bottom: 16px;
+      margin-bottom: 16px;
+      border-bottom: 1px solid $border;
+    }
+    dl {
+      margin: 0;
+      dt {
+        margin: 0 0 8px;
+
+        &.icon {
+          color: $gray;
+          font-family: "icomoon";
+          font-size: 16px;
+          line-height: 16px;
+          display: flex;
+          svg {
+            display: none;
+          }
+
+          &:before {
+            margin-right: 4px;
+          }
+
+          &.icon-issue {
+            &:before {
+              content: "\ea23";
+            }
+          }
+
+          &.icon-issue-note {
+            &:before {
+              content: "\e965";
+            }
+          }
+
+          &.icon-attachment {
+            &:before {
+              content: "\e956";
+            }
+          }
+
+          &.icon-issue-edit {
+            &:before {
+              content: "\e96b";
+            }
+          }
+
+          &.icon-news {
+            &:before {
+              content: "\ea25";
+            }
+          }
+
+          &.icon-document {
+            &:before {
+              content: "\e9a5";
+            }
+          }
+
+          &.grouped {
+            margin-left: 0;
+            padding-left: 24px;
+            border-left: 2px solid $border;
+            margin-bottom: 0;
+            padding-bottom: 16px;
+            &:not(:has(~ dd.grouped)) {
+              padding-bottom: 0;
+              margin-bottom: 24px;
+            }
+          }
+        }
+        .time {
+          font-size: 14px;
+          line-height: 20px;
+          color: $gray;
+          font-weight: normal;
+          margin-left: 0;
+          border-bottom: 0;
+        }
+
+        .project {
+          font-size: 14px;
+          line-height: 20px;
+          color: $text;
+        }
+
+        > img {
+          width: 32px;
+          height: 32px;
+          border-radius: 50%;
+          margin-right: 8px;
+          object-fit: cover;
+        }
+
+        a {
+          color: $link;
+          font-size: 14px;
+          line-height: 20px;
+        }
+      }
+      dd {
+        margin: 0;
+        font-size: 14px;
+        line-height: 20px;
+        color: $text;
+        font-weight: normal;
+        margin-bottom: 16px;
+      }
+      + h3 {
+        margin-top: 32px;
+      }
+
+      .grouped {
+        padding-left: 24px;
+        border-left: 2px solid $border;
+      }
+
+      .description {
+        font-size: 14px;
+        line-height: 20px;
+        color: $text;
+        font-weight: normal;
+        font-style: normal;
+        + .author {
+          margin-top: 8px;
+        }
+        &:empty {
+          display: none;
+          + .author {
+            margin-top: 0;
+          }
+        }
+      }
+      .author {
+        font-size: 14px;
+        line-height: 20px;
+        color: $text;
+        font-weight: bold;
+        display: block;
+      }
+    }
+  }
+}
+
+.controller-issues {
+  .gravatar-with-child {
+    position: absolute;
+  }
+}
+
+div.wiki p,
+div.wiki ul,
+div.wiki ol {
+  word-break: break-word;
+}
+
+#list-definition .buttons,
+.query-columns .buttons {
+  margin-top: 28px;
+}
+
+select[multiple] {
+  background: none;
+  &#available_c,
+  &#selected_c {
+    padding: 5px;
+    max-height: 216px;
+    option {
+      border-bottom: 0;
+      padding: 4px 8px;
+      font-size: 14px;
+      line-height: 20px;
+      border-radius: 6px;
+      margin-bottom: 4px;
+      height: 28px;
+      display: flex;
+      align-items: center;
+    }
+  }
+}
+
+#list-definition .buttons input[type="button"],
+.query-columns .buttons input[type="button"] {
+  width: 36px;
+  height: 36px;
+  border: 0;
+  background-color: $gray20;
+  box-shadow: none;
+  &:hover {
+    box-shadow: none;
+    background: $gray20hover;
+  }
+
+  &:after {
+    font-family: "icomoon";
+    font-size: 16px;
+    line-height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &.move-right {
+    &:after {
+      content: "\ea13";
+    }
+  }
+  &.move-left {
+    &:after {
+      content: "\ea14";
+    }
+  }
 }
