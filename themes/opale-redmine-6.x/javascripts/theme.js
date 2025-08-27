@@ -90,5 +90,17 @@ $(document).ready(function () {
       $("#profilemenu").hide();
       $(".account").prop("id", "");
     });
+
+    if ($('label[for="settings_app_title"]').length > 0) {
+      $('label[for="settings_app_title"]').parent().hide();
+    } else {
+      return;
+    }
+
+    if ($('label[for="settings_ui_theme"]').length > 0) {
+      $('label[for="settings_ui_theme"]').parent().hide();
+    } else {
+      return;
+    }
   }
 });

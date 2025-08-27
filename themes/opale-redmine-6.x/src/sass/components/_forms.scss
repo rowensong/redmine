@@ -86,10 +86,11 @@ input[type="text"],
 input[type="password"] {
   border-radius: 6px;
   border: 1px solid #dcdfe5;
-  padding: 8px;
+  padding: 7px 8px;
   font-size: 14px;
   line-height: 20px;
   color: #333;
+  outline: none;
 
   &[disabled],
   &[readonly],

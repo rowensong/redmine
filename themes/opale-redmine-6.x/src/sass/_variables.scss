@@ -365,32 +365,32 @@ $tracker-default-text: $white !default;
 
 $tracker-default-colors-map: (
   1: (
+    background: rgba(22, 97, 209, 0.2),
+    color: rgba(22, 97, 209, 1),
+  ),
+  2: (
+    background: rgba(192, 116, 238, 0.2),
+    color: rgba(192, 116, 238, 1),
+  ),
+  3: (
+    background: rgba(245, 101, 95, 0.2),
+    color: rgba(245, 101, 95, 1),
+  ),
+  4: (
     background: rgba(255, 117, 53, 0.2),
     color: rgba(255, 117, 53, 1),
   ),
-  2: (
-    background: $blue,
-    color: $white,
-  ),
-  3: (
-    background: $green,
-    color: $white,
-  ),
-  4: (
-    background: $purple,
-    color: $white,
-  ),
   5: (
-    background: $orange,
-    color: $white,
+    background: rgba(83, 89, 142, 0.2),
+    color: rgba(83, 89, 142, 1),
   ),
   6: (
-    background: $teal,
-    color: $white,
+    background: rgba(70, 199, 143, 0.2),
+    color: rgba(70, 199, 143, 1),
   ),
   7: (
-    background: $indigo,
-    color: $white,
+    background: rgba(180, 79, 22, 0.2),
+    color: rgba(180, 79, 22, 1),
   ),
 ) !default;
 $tracker-custom-colors-map: () !default;
