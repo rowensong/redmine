@@ -9,6 +9,7 @@
     > td {
       background-color: #f6f6f6 !important;
       color: #333 !important;
+      &.user,
       &.subject {
         a {
           color: #333 !important;
@@ -20,7 +21,7 @@
   #context-menu {
     > ul,
     > ul > li > ul {
-      @include shadows.nice-shadow(2);
+      // @include shadows.nice-shadow(2);
 
       border: 0 none !important; // stylelint-disable-line declaration-no-important
     }

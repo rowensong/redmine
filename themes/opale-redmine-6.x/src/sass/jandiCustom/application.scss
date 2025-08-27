@@ -1,6 +1,28 @@
 @use "jniuiColorSet" as *;
 @use "font-icon" as *;
 
+@mixin profileImage {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  margin-right: 4px;
+  display: inline-flex;
+}
+
+@mixin profileImageSmall {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  margin-right: 4px;
+  display: inline-flex;
+}
+
+@mixin defaultFontFamily {
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell,
+    Noto Sans, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol", "Noto Color Emoji" !important;
+}
+
 a {
   color: initial;
   &:hover {
@@ -501,7 +523,8 @@ body {
         margin: 0;
         padding: 0;
         li {
-          display: block;
+          display: flex;
+          align-items: center;
           font-size: 14px;
           line-height: 20px;
           color: $text;
@@ -510,6 +533,7 @@ body {
           margin-bottom: 0;
         }
         .delete {
+          margin-left: auto;
           .icon-label {
             display: none;
           }
@@ -778,6 +802,12 @@ body {
         }
         &:before {
           display: none;
+          font-family: "icomoon";
+          font-size: 16px;
+          line-height: 16px;
+          display: flex;
+          margin-right: 4px;
+          color: $gray;
         }
         .icon-label {
           color: $text;
@@ -791,11 +821,12 @@ body {
           }
           &:before {
             content: "\e9cd";
-            font-family: "icomoon";
-            font-size: 16px;
-            line-height: 16px;
-            display: flex;
-            margin-right: 4px;
+          }
+        }
+
+        &.icon-del {
+          &:before {
+            content: "\e966";
           }
         }
       }
@@ -957,6 +988,7 @@ fieldset#options {
 
 #query_form {
   .buttons {
+    margin-top: 0;
     .icon-label {
       margin-left: 0;
       font-size: 14px;
@@ -997,6 +1029,102 @@ fieldset#options {
     .icon-reload {
       &:before {
         content: "\e9fa";
+      }
+    }
+    .icon-save {
+      &:before {
+        content: "\ea0b";
+      }
+    }
+  }
+
+  #query_form_with_buttons {
+    display: flex;
+    width: 100%;
+    min-width: 0;
+    flex-direction: column;
+
+    .contextual {
+      order: 100;
+      float: none;
+      margin-bottom: 0;
+      justify-content: flex-end;
+      > span {
+        display: flex;
+        align-items: center;
+        &:last-child {
+          gap: 8px;
+          a {
+            min-height: initial;
+          }
+        }
+        &:first-child {
+          a {
+            &:before {
+              color: $gray;
+            }
+            &:hover {
+              background-color: $whiteHover;
+            }
+          }
+        }
+        a {
+          color: $text;
+          &:before {
+            color: $text;
+          }
+        }
+        span {
+          color: $disabled;
+          &:before {
+            color: $disabled;
+          }
+        }
+      }
+      .icon-zoom-in {
+        width: 28px;
+        height: 28px;
+        border-radius: 6px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: initial;
+        .icon-label {
+          display: none;
+        }
+        &:before {
+          content: "\e969";
+          font-family: "icomoon";
+          font-size: 16px;
+          line-height: 16px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-weight: normal;
+        }
+      }
+      .icon-zoom-out {
+        width: 28px;
+        height: 28px;
+        min-height: initial;
+        border-radius: 6px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: initial;
+        .icon-label {
+          display: none;
+        }
+        &:before {
+          content: "\e9fd";
+          font-family: "icomoon";
+          font-size: 16px;
+          line-height: 16px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-weight: normal;
+        }
       }
     }
   }
@@ -1307,6 +1435,17 @@ fieldset#options {
       justify-content: center;
       color: $gray;
     }
+    img {
+      width: 36px !important;
+      height: 36px !important;
+      top: 0;
+    }
+    &.hasImage {
+      background-color: transparent;
+      &:after {
+        display: none;
+      }
+    }
   }
 
   #profilemenu {
@@ -1438,6 +1577,7 @@ fieldset#options {
       color: $gray;
       font-size: 14px;
       line-height: 20px;
+      margin-bottom: 0;
       &:hover {
         color: $text;
       }
@@ -1626,97 +1766,114 @@ table.list {
   }
 }
 
-.controller-issues {
-  .autoscroll {
-    border-radius: 10px;
-    border: 1px solid $border;
-    table {
-      thead {
-        th {
-          background-color: $gray20;
-          font-size: 12px;
-          line-height: 18px;
-          font-weight: bold;
-          text-align: left;
-          padding: 11px 8px;
-          svg {
-            display: none;
-          }
-          .icon-label {
-            margin-left: 0;
-          }
-        }
-      }
-      tbody {
-        border-radius: 10px;
-        td {
-          padding: 15px 8px;
-          text-align: left;
-          background-color: $white;
-        }
-      }
-      input[type="checkbox"] {
-        display: block;
-      }
-      .checkbox {
-        &:before {
-          cursor: pointer;
-          width: 16px;
-          height: 16px;
-          border-radius: 4px;
-          border: 1px solid $border;
-          content: "";
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          margin-right: 6px;
-          box-sizing: border-box;
-          background-color: $white;
-        }
-        &:has(input:checked) {
-          &:before {
-            content: "\e96e";
-            font-family: "icomoon";
-            font-size: 14px;
-            line-height: 14px;
-            border-color: transparent;
-            color: $white;
-            background-color: $black;
-          }
-        }
-      }
-      .icon-sorted-asc {
-        .icon-label {
+.autoscroll {
+  border-radius: 10px;
+  border: 1px solid $border;
+  table {
+    thead {
+      th {
+        background-color: $gray20;
+        font-size: 12px;
+        line-height: 18px;
+        font-weight: bold;
+        text-align: left;
+        padding: 11px 8px;
+        svg {
           display: none;
         }
-        &:after {
-          content: "\e9f9";
-          font-family: "icomoon";
-          font-size: 16px;
-          line-height: 16px;
-          display: block;
-          margin: 0 auto;
+        .icon-label {
+          margin-left: 0;
+        }
+        &.id {
+          text-align: center;
         }
       }
-      .js-contextmenu {
+    }
+    tbody {
+      border-radius: 10px;
+      tr {
+        &:hover {
+          background-color: $whiteHover;
+        }
+      }
+      td {
+        padding: 15px 8px;
+        text-align: left;
+      }
+    }
+    input[type="checkbox"] {
+      display: block;
+    }
+    .checkbox {
+      &:before {
+        cursor: pointer;
+        width: 16px;
+        height: 16px;
+        border-radius: 4px;
+        border: 1px solid $border;
+        content: "";
         display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 6px;
+        box-sizing: border-box;
+        background-color: $white;
+      }
+      &:has(input:checked) {
+        &:before {
+          content: "\e96e";
+          font-family: "icomoon";
+          font-size: 14px;
+          line-height: 14px;
+          border-color: transparent;
+          color: $white;
+          background-color: $black;
+        }
+      }
+    }
+    .icon-sorted-asc {
+      .icon-label {
+        display: none;
+      }
+      &:after {
+        content: "\e9f9" !important;
+        font-family: "icomoon" !important;
+        font-size: 16px;
+        line-height: 16px;
+        display: block;
+        margin: 0 auto;
+      }
+    }
+    .buttons {
+      > a {
+        display: inline-flex;
         align-items: center;
         justify-content: center;
         width: 28px;
         height: 28px;
-        margin: 0 auto;
+        margin: 0;
         border-radius: 6px;
         .icon-label {
           display: none;
         }
         &:before {
-          content: "\e933";
           font-family: "icomoon";
           font-size: 16px;
           line-height: 16px;
           font-weight: normal;
           color: $gray;
         }
+        &.icon-actions {
+          &:before {
+            content: "\e933";
+          }
+        }
+        &.icon-edit {
+          &:before {
+            content: "\e96b";
+          }
+        }
+
         &:hover {
           background-color: $white;
 
@@ -1725,9 +1882,28 @@ table.list {
           }
         }
       }
-      .icon-only {
-        margin-right: auto;
-      }
+    }
+
+    .icon-only {
+      margin-right: auto;
+    }
+  }
+  .sort {
+    font-size: 14px;
+    line-height: 20px;
+    color: $text;
+    &:before {
+      font-family: "icomoon";
+      font-size: 16px;
+      line-height: 16px;
+      color: $text;
+      margin-right: 4px;
+    }
+    &.asc:before {
+      content: "\e9f9";
+    }
+    .icon-label {
+      display: none;
     }
   }
 }
@@ -1758,22 +1934,35 @@ table.list {
 }
 
 #wrapper #context-menu ul {
-  padding: 8px;
+  padding: 8px 0;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.08);
+  border-radius: 6px;
+  border: 1px solid $border;
   li {
+    padding: 0 8px;
     &:hover {
       background-color: initial;
     }
+
     a {
       font-size: 14px;
       line-height: 20px;
-      padding: 8px;
+      padding: 6px 8px;
       border-radius: 6px;
       color: $text;
+      display: flex;
+      align-items: center;
+      gap: 8px;
       &:hover {
         background-color: $whiteHover;
       }
       svg {
         display: none;
+      }
+      > span {
+        display: block;
+        font-size: 14px;
+        line-height: 20px;
       }
       &:before {
         font-family: "icomoon";
@@ -1781,9 +1970,74 @@ table.list {
         line-height: 16px;
         color: $gray;
       }
-      &.icon-edit {
+    }
+
+    .icon-label {
+      margin-left: 0;
+    }
+
+    &.folder {
+      .icon-only {
+        display: none;
+      }
+      > a {
+        &:after {
+          content: "\ea13";
+          font-family: "icomoon";
+          font-size: 16px;
+          line-height: 16px;
+          color: $gray;
+          margin-left: auto;
+        }
+      }
+      &:not(:has(~ li.folder)) {
+        padding-bottom: 6px;
+        margin-bottom: 6px;
+        border-bottom: 1px solid $border;
+      }
+    }
+
+    .icon {
+      &:before {
+        font-family: "icomoon";
+        font-size: 16px;
+        line-height: 16px;
+        color: $gray;
+      }
+      &.icon-fav,
+      &.icon-fav-off {
         &:before {
-          content: "\e9a6";
+          content: "\e992";
+        }
+      }
+
+      &.icon-time-add {
+        &:before {
+          content: "\e9df";
+        }
+      }
+
+      &.icon-add {
+        &:before {
+          content: "\e969";
+        }
+      }
+
+      &.icon-copy-link {
+        &:before {
+          content: "\e9ec";
+        }
+      }
+
+      &.icon-copy {
+        &:before {
+          content: "\e9cd";
+        }
+      }
+
+      &.icon-del {
+        &:before {
+          content: "\e966";
         }
       }
     }
@@ -1850,6 +2104,7 @@ table.list {
 
           &:before {
             margin-right: 4px;
+            order: 2;
           }
 
           &.icon-issue {
@@ -1907,12 +2162,14 @@ table.list {
           font-weight: normal;
           margin-left: 0;
           border-bottom: 0;
+          order: 3;
         }
 
         .project {
           font-size: 14px;
           line-height: 20px;
           color: $text;
+          order: 4;
         }
 
         > img {
@@ -1921,12 +2178,14 @@ table.list {
           border-radius: 50%;
           margin-right: 8px;
           object-fit: cover;
+          order: 1;
         }
 
         a {
           color: $link;
           font-size: 14px;
           line-height: 20px;
+          order: 5;
         }
       }
       dd {
@@ -1936,6 +2195,8 @@ table.list {
         color: $text;
         font-weight: normal;
         margin-bottom: 16px;
+        display: flex;
+        flex-direction: column;
       }
       + h3 {
         margin-top: 32px;
@@ -1952,8 +2213,9 @@ table.list {
         color: $text;
         font-weight: normal;
         font-style: normal;
+        order: 2;
         + .author {
-          margin-top: 8px;
+          margin-bottom: 8px;
         }
         &:empty {
           display: none;
@@ -1968,14 +2230,110 @@ table.list {
         color: $text;
         font-weight: bold;
         display: block;
+        order: 1;
       }
     }
   }
 }
 
 .controller-issues {
-  .gravatar-with-child {
-    position: absolute;
+}
+
+.controller-gantts {
+  #query_form_content {
+    label {
+      margin-top: 8px;
+      &[for="draw_relations"] {
+        span {
+          width: 12px;
+          height: 12px;
+          border-radius: 50%;
+          margin-right: 4px;
+        }
+        font-size: 14px;
+        line-height: 20px;
+        color: $text;
+        font-weight: bold;
+      }
+    }
+    #options {
+      fieldset {
+        + fieldset {
+          margin-top: 16px;
+        }
+      }
+    }
+  }
+
+  .gantt_subjects {
+    .icon-gravatar {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+    }
+    .icon-projects {
+      svg {
+        display: none;
+      }
+    }
+    .icon-issue {
+      svg {
+        display: none;
+      }
+      &:before {
+        content: "\ea23";
+        font-family: "icomoon";
+        font-size: 16px;
+        line-height: 16px;
+        color: $gray;
+        margin-right: 4px;
+      }
+    }
+    .issue-subject,
+    .project-name {
+      .icon-collapsed {
+        cursor: pointer;
+        svg {
+          display: none;
+        }
+        &:before {
+          content: "\ea15";
+          font-family: "icomoon";
+          font-size: 16px;
+          line-height: 16px;
+          color: $gray;
+        }
+      }
+      &.open {
+        .icon-collapsed {
+          &:before {
+            content: "\ea12";
+          }
+        }
+      }
+    }
+
+    .icon-expanded {
+      svg {
+        display: none;
+      }
+      &:before {
+        content: "\ea15";
+        font-family: "icomoon";
+        font-size: 16px;
+        line-height: 16px;
+        color: $gray;
+      }
+      &.expander {
+        &:before {
+          content: "\ea12";
+        }
+      }
+    }
+  }
+
+  .gantt_subjects_container .gantt_subjects * {
+    vertical-align: top;
   }
 }
 
@@ -2039,6 +2397,334 @@ select[multiple] {
   &.move-left {
     &:after {
       content: "\ea14";
+    }
+  }
+}
+
+.attachments {
+  table {
+    a {
+      box-sizing: border-box;
+      &.icon {
+        svg {
+          display: none;
+        }
+        &:before {
+          font-family: "icomoon";
+          font-size: 16px;
+          line-height: 16px;
+          color: $gray;
+        }
+      }
+
+      &.icon-attachment {
+        &:before {
+          content: "\e956";
+        }
+      }
+
+      &.icon-download {
+        &:before {
+          content: "\e9cd";
+        }
+      }
+    }
+
+    .icon-del {
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      &:hover {
+        background-color: $whiteHover;
+      }
+      &:before {
+        content: "\e966";
+      }
+      .icon-label {
+        display: none;
+      }
+    }
+  }
+  a {
+    padding: 0 8px;
+    svg {
+      display: none;
+    }
+  }
+}
+.watchers li {
+  img {
+    @include profileImageSmall;
+  }
+}
+.note-header,
+.gravatar-with-child {
+  > img {
+    @include profileImage;
+  }
+}
+
+.news-article {
+  h3 {
+    img {
+      @include profileImage;
+    }
+  }
+}
+
+#attach_files_link {
+  padding: 8px;
+  border-radius: 6px;
+  font-size: 14px;
+  line-height: 20px;
+  display: inline-flex;
+  align-items: center;
+  &:hover {
+    background-color: $whiteHover;
+  }
+  &:before {
+    content: "\e969";
+    font-family: "icomoon";
+    font-size: 16px;
+    line-height: 16px;
+    color: $gray;
+    margin-right: 4px;
+  }
+}
+
+#upper_filters {
+  td:has(input[type="checkbox"]) {
+    input[type="checkbox"] {
+      display: none;
+      + label {
+        display: inline-flex;
+        align-items: center;
+        position: relative;
+        line-height: initial;
+        flex-wrap: wrap;
+        vertical-align: middle;
+        margin-left: 6px;
+        &:before {
+          cursor: pointer;
+          width: 16px;
+          height: 16px;
+          border-radius: 4px;
+          border: 1px solid $border;
+          content: "";
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-right: 6px;
+          box-sizing: border-box;
+          background-color: $white;
+        }
+        a {
+          display: block;
+        }
+      }
+      &:checked {
+        + label {
+          &:before {
+            content: "\e96e";
+            font-family: "icomoon";
+            font-size: 14px;
+            line-height: 14px;
+            border-color: transparent;
+            color: $white;
+            background-color: $black;
+          }
+        }
+      }
+    }
+  }
+
+  td:last-child {
+    input[type="checkbox"] {
+      display: block !important;
+      width: 16px;
+      height: 16px;
+      &:checked {
+        &:before {
+          content: "\e96e";
+          font-family: "icomoon";
+          font-size: 14px;
+          line-height: 14px;
+          border-color: transparent;
+          color: $white;
+          background-color: $black;
+          width: 16px;
+          height: 16px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 4px;
+        }
+      }
+    }
+  }
+}
+
+#lower_filters {
+  td:has(input[type="checkbox"]) {
+    div {
+      display: flex;
+      align-items: center;
+      input[type="checkbox"] {
+        display: block;
+        width: 16px;
+        height: 16px;
+        &:checked {
+          &:before {
+            content: "\e96e";
+            font-family: "icomoon";
+            font-size: 14px;
+            line-height: 14px;
+            border-color: transparent;
+            color: $white;
+            background-color: $black;
+            width: 16px;
+            height: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 4px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.controller-kanban {
+  color: $text;
+  #content {
+    overflow: initial;
+  }
+  .floatThead-container {
+    position: sticky !important;
+    transform: none !important;
+    table {
+      width: 100% !important;
+    }
+  }
+  #kanban_table {
+    thead {
+      display: none;
+    }
+  }
+
+  legend {
+    color: $darkGray;
+    &:before {
+      color: $text;
+    }
+  }
+
+  .buttons {
+    margin-top: 0;
+    .icon-label {
+      margin-left: 0;
+      font-size: 14px;
+      line-height: 20px;
+    }
+    .icon {
+      border: 1px solid $border;
+      padding-top: 7px;
+      padding-bottom: 7px;
+      &:hover {
+        background-color: $whiteHover;
+      }
+      &:before {
+        content: "";
+        font-family: "icomoon";
+        font-size: 16px;
+        line-height: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: normal;
+        margin-right: 4px;
+        color: $gray;
+      }
+    }
+    .icon-checked {
+      background-color: $text;
+      color: $white;
+      border-color: transparent;
+      &:hover {
+        background-color: $textHover;
+      }
+      &:before {
+        content: "\e96e";
+        color: $white;
+      }
+    }
+    .icon-reload {
+      &:before {
+        content: "\e9fa";
+      }
+    }
+    .icon-save {
+      &:before {
+        content: "\ea0b";
+      }
+    }
+  }
+}
+
+.controller-projects {
+  .icon-add {
+    background-color: $text;
+    color: $white;
+    border-color: $text;
+  }
+  #projects-index {
+    ul.projects {
+      li.root {
+        padding: 16px;
+        border-radius: 16px;
+        border: 1px solid $gray30;
+        background-color: $gray10;
+        overflow: hidden;
+        svg {
+          display: none;
+        }
+        .project {
+          font-size: 16px;
+          @include defaultFontFamily;
+          margin-bottom: 16px;
+
+          &:after,
+          &:before {
+            font-family: "icomoon";
+            font-size: 16px;
+            line-height: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+          &.icon-user {
+            &:before {
+              content: "\e949";
+              order: 2;
+              justify-self: end;
+            }
+          }
+          &.my-projects {
+            &:after {
+              content: "\e936";
+              order: 3;
+              justify-self: end;
+            }
+          }
+        }
+      }
+      ul.projects {
+        border-left: 3px solid $border;
+      }
     }
   }
 }

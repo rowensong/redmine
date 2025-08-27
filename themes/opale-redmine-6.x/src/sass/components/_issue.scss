@@ -336,14 +336,6 @@ div.attachments:not(.box) {
     vertical-align: middle;
   }
 
-  .delete {
-    opacity: variables.$icon-opacity;
-
-    &:hover {
-      opacity: variables.$icon-hover-opacity;
-    }
-  }
-
   span.author {
     color: variables.$gray-700;
     font-size: variables.$font-size-small;

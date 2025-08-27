@@ -5,7 +5,6 @@ $(document).ready(function () {
     $("#top-menu").after('<div id="topmenu-nav"></div>');
     $("#topmenu-nav").append($("#top-menu").html());
     $("#top-menu").empty();
-    $("#topmenu-nav").appendTo("#top-menu");
 
     $("#topmenu-nav").prepend($("#header h1"));
 
@@ -24,15 +23,7 @@ $(document).ready(function () {
 
     //Add header after topmenu nav
 
-    // For user profile Setup
-    if ($("#loggedas").length > 0) {
-      var loggedasEle = $.parseHTML($("#loggedas").html());
-      $("#loggedas").remove();
-      $("#account ul").prepend("<li></li>");
-      $("#account ul li").first().html(loggedasEle[1]);
-    }
-
-    // Get current user avatar if available
+    // Get current user avatar if available (BEFORE removing #loggedas)
     var userAvatar = "";
     if ($("#loggedas").length > 0) {
       // Try to get avatar from the page if it exists
@@ -58,9 +49,17 @@ $(document).ready(function () {
       }
     }
 
+    // For user profile Setup (AFTER getting avatar)
+    if ($("#loggedas").length > 0) {
+      var loggedasEle = $.parseHTML($("#loggedas").html());
+      $("#loggedas").remove();
+      $("#account ul").prepend("<li></li>");
+      $("#account ul li").first().html(loggedasEle[1]);
+    }
+
     var account = '<div id="userprofile">';
     if (userAvatar) {
-      account += '<div class="profileicon account">' + userAvatar + "</div>";
+      account += '<div class="profileicon account"></div>';
       console.log("Profile icon created with avatar");
     } else {
       account += '<div class="profileicon account"></div>';

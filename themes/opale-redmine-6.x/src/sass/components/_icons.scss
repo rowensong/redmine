@@ -142,10 +142,6 @@ a.icon:empty {
     margin-left: 0.2em;
   }
 
-  &.asc::after {
-    @include variants.ti-icon-variant(tabler-icons.$ti-icon-sort-ascending);
-  }
-
   &.desc::after {
     @include variants.ti-icon-variant(tabler-icons.$ti-icon-sort-descending);
   }

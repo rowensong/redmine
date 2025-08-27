@@ -123,10 +123,6 @@ table.list {
       text-align: right;
       white-space: nowrap;
 
-      a {
-        margin-right: variables.$padding-small-vertical;
-      }
-
       img {
         vertical-align: middle;
       }
@@ -335,41 +331,6 @@ tr.entry {
   }
 }
 
-@if variables.$table-list-color-odd-rows {
-  table.list:not(.odd-even) tbody tr:nth-child(odd):not(.ui-sortable-helper),
-  .odd {
-    > td {
-      background-color: variables.$table-bg-accent;
-    }
-  }
-}
-
-@if variables.$table-list-color-even-rows {
-  table.list:not(.odd-even) tbody tr:nth-child(even):not(.ui-sortable-helper),
-  .even {
-    > td {
-      background-color: variables.$table-bg-accent;
-    }
-  }
-}
-
-@if variables.$table-list-highlight-rows {
-  table.list > tbody > tr:nth-child(n):hover:not(.ui-sortable-helper) {
-    background-color: variables.$table-bg-hover;
-
-    @if variables.$color-priorities {
-      @each $priority-id, $priority-color in variables.$priority-color-map {
-        &.priority-#{$priority-id} {
-          background-color: color.adjust(
-            map.get($priority-color, background),
-            $alpha: variables.$table-color-hover-factor
-          );
-        }
-      }
-    }
-  }
-}
-
 // Priorities
 
 @if variables.$priority-icon {
@@ -420,10 +381,7 @@ tr.entry {
   a.issue,
   .relations > span > a.issue,
   .parent > a.issue {
-    border-radius: variables.$border-radius-small
-      (variables.$border-radius-small * 3)
-      (variables.$border-radius-small * 3)
-      variables.$border-radius-small;
+    border-radius: 6px;
     background-color: variables.$tracker-default-bg;
     color: variables.$tracker-default-text;
 
@@ -557,10 +515,6 @@ tr.time-entry {
     text-align: left;
     white-space: normal;
   }
-
-  td.hours {
-    font-weight: variables.$font-weight-bold;
-  }
 }
 
 .time-entries,
@@ -675,7 +629,6 @@ table.files {
 
   tr.file td {
     &.filename {
-      padding-left: variables.$icon-width + variables.$table-cell-padding;
       text-align: left;
     }
 
@@ -717,11 +670,8 @@ table.list.enumerations {
   #content & {
     margin-top: 0;
 
-    @media screen and (min-width: variables.$redmine-responsive-min) {
-      margin-top: -(variables.$line-height-computed * 2 +
-            variables.$btn-padding-vertical);
-      text-align: right;
-    }
+    padding: 0 16px;
+    text-align: right;
   }
 
   > span {
