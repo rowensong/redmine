@@ -17,7 +17,8 @@ table {
 table.list {
   width: 100%;
   margin-bottom: variables.$line-height-computed;
-  font-size: variables.$font-size-list;
+  font-size: 14px;
+  background-color: #fff;
 
   .autoscroll & {
     margin-bottom: 0;

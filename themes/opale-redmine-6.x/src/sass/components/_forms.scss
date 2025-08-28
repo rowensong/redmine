@@ -580,11 +580,6 @@ label[for="closed"] {
 
 #users_for_watcher,
 #watchers_inputs {
-  display: block;
-  max-height: variables.$check-list-max-height;
-  margin-bottom: variables.$line-height-computed * 0.5;
-  overflow: auto;
-
   label {
     @include forms.check-list;
   }

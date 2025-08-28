@@ -30,6 +30,10 @@ a {
   }
 }
 
+svg {
+  display: none;
+}
+
 input[type="button"],
 input[type="submit"],
 input[type="reset"],
@@ -67,6 +71,78 @@ input.autocomplete {
   padding-right: 0;
   padding-left: 30px;
   background-position: 10px center;
+}
+
+.jstEditor {
+  textarea {
+    border-radius: 0;
+  }
+}
+
+// input checkbox
+input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  appearance: none;
+  border-radius: 4px;
+  border: 1px solid $border;
+  background-color: $white;
+  cursor: pointer;
+  margin: 0;
+  &:checked {
+    background-color: $black;
+    border-color: transparent;
+    &:before {
+      content: "\e96e";
+      font-family: "icomoon";
+      font-size: 14px;
+      line-height: 14px;
+      border-color: transparent;
+      color: $white;
+      background-color: $black;
+      width: 16px;
+      height: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 4px;
+      margin-top: -1px;
+      margin-left: -1px;
+    }
+  }
+  &:disabled {
+    opacity: 0.5;
+  }
+}
+
+hr {
+  border-color: $border;
+}
+
+.icon-sort-handle {
+  svg {
+    display: none;
+  }
+  width: 24px;
+  height: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  &:before {
+    content: "\e9f8";
+    font-family: "icomoon";
+    font-size: 16px;
+    line-height: 16px;
+    color: $placeholder;
+  }
+  &:hover {
+    &:before {
+      color: $gray;
+    }
+  }
+  .icon-label {
+    display: none;
+  }
 }
 
 body {
@@ -434,41 +510,6 @@ body {
 }
 
 #content {
-  // input checkbox
-  input[type="checkbox"] {
-    width: 16px;
-    height: 16px;
-    appearance: none;
-    border-radius: 4px;
-    border: 1px solid $border;
-    background-color: $white;
-    cursor: pointer;
-    &:checked {
-      background-color: $black;
-      border-color: transparent;
-      &:before {
-        content: "\e96e";
-        font-family: "icomoon";
-        font-size: 14px;
-        line-height: 14px;
-        border-color: transparent;
-        color: $white;
-        background-color: $black;
-        width: 16px;
-        height: 16px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 4px;
-        margin-top: -1px;
-        margin-left: -1px;
-      }
-    }
-    &:disabled {
-      opacity: 0.5;
-    }
-  }
-
   input[type="radio"] {
     display: none;
     + label {
@@ -539,6 +580,12 @@ body {
         margin-top: 12px;
         display: block;
       }
+      input[type="checkbox"] {
+        width: 16px;
+        display: inline-block;
+        margin-top: 0;
+        vertical-align: middle;
+      }
     }
 
     ul {
@@ -547,7 +594,7 @@ body {
       padding: 18px 0 8px;
       border-top: 1px solid $border;
       li {
-        padding: 8px 0;
+        padding: 0;
         a {
           font-size: 14px;
           line-height: 20px;
@@ -702,10 +749,6 @@ body {
     }
   }
 
-  .icon-time-add {
-    border: 1px solid $border;
-  }
-
   .drdn-content {
     .drdn-items {
       a {
@@ -717,11 +760,11 @@ body {
         line-height: 20px;
         color: $text;
         border-radius: 6px;
+        background-color: $white;
         &:hover {
           background-color: $whiteHover;
         }
         &:before {
-          display: none;
           font-family: "icomoon";
           font-size: 16px;
           line-height: 16px;
@@ -733,6 +776,12 @@ body {
           color: $text;
           font-size: 14px;
           line-height: 20px;
+        }
+
+        &.icon-del {
+          &::before {
+            display: none;
+          }
         }
 
         &.icon-copy-link {
@@ -762,6 +811,50 @@ body {
         min-height: auto;
         border: 0;
       }
+    }
+  }
+
+  .icon-time-add {
+    border: 1px solid $border;
+    &:before {
+      content: "\e9df";
+      font-family: "icomoon";
+      font-size: 16px;
+      line-height: 16px;
+    }
+    .icon-label {
+      margin-left: 4px !important;
+    }
+  }
+
+  .icon-fav {
+    &:before {
+      content: "\e9e8";
+      font-family: "icomoon";
+      font-size: 16px;
+      line-height: 16px;
+    }
+    .icon-label {
+      margin-left: 4px !important;
+    }
+  }
+
+  .icon-fav-off {
+    &:before {
+      content: "\e9e9";
+      font-family: "icomoon";
+      font-size: 16px;
+      line-height: 16px;
+    }
+    .icon-label {
+      margin-left: 4px !important;
+    }
+  }
+
+  .icon-copy {
+    &:before {
+      content: "\e9cd";
+      font-family: "icomoon";
     }
   }
 
@@ -1703,8 +1796,8 @@ table.list {
     thead {
       th {
         background-color: $gray20;
-        font-size: 12px;
-        line-height: 18px;
+        font-size: 14px;
+        line-height: 20px;
         font-weight: bold;
         text-align: left;
         padding: 11px 8px;
@@ -1721,13 +1814,14 @@ table.list {
     }
     tbody {
       border-radius: 10px;
+      background-color: $white;
       tr {
         &:hover {
           background-color: $whiteHover;
         }
       }
       td {
-        padding: 15px 8px;
+        padding: 11px 8px;
         text-align: left;
       }
     }
@@ -1818,8 +1912,10 @@ table.list {
 .controller-timelog {
   #query_form {
     .tabs {
-      margin-bottom: 16px;
       height: auto;
+      + p {
+        margin-top: 16px;
+      }
     }
     ul {
       height: auto;
@@ -1835,6 +1931,28 @@ table.list {
           color: $text;
           font-weight: bold;
         }
+      }
+    }
+  }
+
+  #content {
+    .icon {
+      .icon-label {
+        margin-left: 4px;
+      }
+    }
+  }
+
+  #new_time_entry {
+    > a {
+      padding: 7px 8px;
+      border-radius: 6px;
+      font-size: 14px;
+      line-height: 20px;
+      color: $text;
+      border: 1px solid $border;
+      &:hover {
+        background-color: $whiteHover;
       }
     }
   }
@@ -1860,8 +1978,12 @@ table.list {
       display: flex;
       align-items: center;
       gap: 8px;
+      border: 0;
       &:hover {
         background-color: $whiteHover;
+      }
+      &:before {
+        display: none;
       }
       svg {
         display: none;
@@ -2378,7 +2500,7 @@ select[multiple] {
 }
 .note-header {
   > img {
-    @include profileImage;
+    border-radius: 50%;
   }
 }
 .gravatar-with-child {
@@ -2498,78 +2620,6 @@ select[multiple] {
     margin-bottom: 16px;
   }
 
-  #upper_filters {
-    td:has(input[type="checkbox"]) {
-      input[type="checkbox"] {
-        display: none;
-        + label {
-          display: inline-flex;
-          align-items: center;
-          position: relative;
-          line-height: initial;
-          flex-wrap: wrap;
-          vertical-align: middle;
-          margin-left: 6px;
-          &:before {
-            cursor: pointer;
-            width: 16px;
-            height: 16px;
-            border-radius: 4px;
-            border: 1px solid $border;
-            content: "";
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 6px;
-            box-sizing: border-box;
-            background-color: $white;
-          }
-          a {
-            display: block;
-          }
-        }
-        &:checked {
-          + label {
-            &:before {
-              content: "\e96e";
-              font-family: "icomoon";
-              font-size: 14px;
-              line-height: 14px;
-              border-color: transparent;
-              color: $white;
-              background-color: $black;
-            }
-          }
-        }
-      }
-    }
-
-    td:last-child {
-      input[type="checkbox"] {
-        display: block !important;
-        width: 16px;
-        height: 16px;
-        &:checked {
-          &:before {
-            content: "\e96e";
-            font-family: "icomoon";
-            font-size: 14px;
-            line-height: 14px;
-            border-color: transparent;
-            color: $white;
-            background-color: $black;
-            width: 16px;
-            height: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 4px;
-          }
-        }
-      }
-    }
-  }
-
   #lower_filters {
     margin-top: 32px;
     position: relative;
@@ -2581,35 +2631,6 @@ select[multiple] {
       top: -52px;
       left: 0;
       width: 100%;
-    }
-    td:has(input[type="checkbox"]) {
-      div {
-        display: flex;
-        align-items: center;
-        input[type="checkbox"] {
-          display: block;
-          width: 16px;
-          height: 16px;
-          margin: 0 4px 0 0;
-          &:checked {
-            &:before {
-              content: "\e96e";
-              font-family: "icomoon";
-              font-size: 14px;
-              line-height: 14px;
-              border-color: transparent;
-              color: $white;
-              background-color: $black;
-              width: 16px;
-              height: 16px;
-              display: flex;
-              align-items: center;
-              justify-content: center;
-              border-radius: 4px;
-            }
-          }
-        }
-      }
     }
   }
 }
@@ -2828,6 +2849,588 @@ select[multiple] {
   }
 }
 
+.controller-issues {
+  // 새 일감 만들기
+  &.action-new {
+    .tabular {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      padding: 16px;
+      #all_attributes {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+      }
+      p {
+        padding-left: 0;
+        display: flex;
+        min-width: 0;
+        box-sizing: border-box;
+      }
+      label {
+        flex-shrink: 0;
+        margin-left: 0;
+        float: none;
+        width: 170px;
+        margin-right: 8px;
+      }
+      #issue_description_and_toolbar {
+        width: 100%;
+      }
+      select {
+        width: auto;
+      }
+      .autocomplete {
+        margin-top: 0;
+      }
+    }
+    #issue_is_private_wrap {
+      margin-left: auto;
+      align-items: center;
+      position: absolute;
+      right: 0;
+      margin: 0;
+      label {
+        width: auto;
+        margin-left: 4px;
+      }
+    }
+  }
+
+  &.action-show,
+  &.action-edit {
+    #history {
+      .tabs {
+        margin-bottom: 16px;
+        height: auto;
+        ul {
+          height: auto;
+          a {
+            height: auto;
+            padding: 7px 13px;
+            border-radius: 48px;
+            font-size: 15px;
+            line-height: 22px;
+            color: $gray;
+            &.selected {
+              border: 1px solid $text;
+              color: $text;
+              font-weight: bold;
+            }
+          }
+        }
+      }
+    }
+
+    #content {
+      > .contextual {
+        .icon {
+          .icon-label {
+            margin-left: 4px;
+          }
+        }
+      }
+    }
+
+    .attachments {
+      .icon-download {
+        &:before {
+          content: "\e91e";
+          font-family: "icomoon";
+          font-size: 16px;
+          line-height: 16px;
+          color: $gray;
+          margin-right: 4px;
+        }
+      }
+      .icon-del {
+        box-sizing: border-box;
+        &:before {
+          content: "\e966";
+          font-family: "icomoon";
+          font-size: 16px;
+          line-height: 16px;
+          color: $gray;
+          margin-right: 0;
+        }
+      }
+      .contextual {
+        .icon-label {
+          margin-left: 4px;
+        }
+      }
+    }
+
+    .description {
+      .icon-comment {
+        padding-left: 8px;
+        padding-right: 8px;
+        svg {
+          display: none;
+        }
+        &:before {
+          content: "\e965";
+          font-family: "icomoon";
+          font-size: 16px;
+          line-height: 16px;
+          color: $gray;
+          margin-right: 4px;
+        }
+      }
+    }
+
+    .tab-content {
+      .contextual {
+        margin-top: 6px;
+      }
+      .journal-actions {
+        display: flex;
+        align-items: center;
+        gap: 0 4px;
+        svg {
+          display: none;
+        }
+        .icon-label {
+          display: none;
+        }
+        > .icon-only,
+        > .icon {
+          width: 20px;
+          height: 20px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 4px;
+          color: $gray;
+
+          &:hover {
+            background-color: $whiteHover;
+          }
+          &:before {
+            content: "";
+            font-family: "icomoon";
+            font-size: 16px;
+            line-height: 16px;
+          }
+          &.icon-comment {
+            &:before {
+              content: "\e965";
+            }
+          }
+          &.icon-edit {
+            &:before {
+              content: "\e96b";
+            }
+          }
+          &.icon-delete {
+            &:before {
+              content: "\e966";
+            }
+          }
+        }
+        .drdn-trigger {
+          min-height: auto;
+          .icon-actions {
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 4px;
+            color: $gray;
+            &:hover {
+              background-color: $whiteHover;
+            }
+
+            .drdn-items {
+              .icon-label {
+                display: inline-block;
+              }
+              svg {
+                display: none;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    #issue_is_private_wrap {
+      display: flex;
+      align-items: center;
+      margin-top: 4px;
+      label {
+        margin-left: 4px;
+      }
+    }
+
+    #relation_issue_to_id {
+      margin-bottom: 8px;
+    }
+
+    #update {
+      legend {
+        margin-bottom: 12px;
+        font-weight: bold;
+        color: $text;
+      }
+      .icon-edit {
+        svg {
+          display: none;
+        }
+        &:before {
+          content: "\e96b";
+          font-family: "icomoon";
+          font-size: 16px;
+          line-height: 16px;
+          color: $gray;
+          margin-right: 4px;
+        }
+      }
+      #add_attachments {
+        margin-top: 12px;
+      }
+    }
+
+    #all_attributes {
+      .icon-edit {
+        svg {
+          display: none;
+        }
+        .icon-label {
+          margin-left: 0;
+        }
+      }
+    }
+
+    .existing-attachment {
+      svg {
+        display: none;
+      }
+      input[type="checkbox"] {
+        width: 16px;
+      }
+    }
+
+    #add_attachments {
+      .contextual {
+        a {
+          padding-left: 8px;
+          padding-right: 8px;
+          display: flex;
+          align-items: center;
+          &:before {
+            content: "\e9a6";
+            font-family: "icomoon";
+            font-size: 16px;
+            line-height: 16px;
+            color: $gray;
+            margin-right: 4px;
+          }
+        }
+      }
+    }
+
+    .icon-link-break {
+      margin-right: 4px;
+      svg,
+      .icon-label {
+        display: none;
+      }
+      &:before {
+        content: "\e966";
+        font-family: "icomoon";
+        font-size: 16px;
+        line-height: 16px;
+        color: $gray;
+      }
+      &:hover {
+        &:before {
+          color: $warning;
+        }
+      }
+    }
+
+    .icon-actions {
+      svg,
+      .icon-label {
+        display: none;
+      }
+      &:before {
+        content: "\e933";
+        font-family: "icomoon";
+        font-size: 16px;
+        line-height: 16px;
+        color: $gray;
+      }
+    }
+    .attributes {
+      .icon-warning {
+        background-color: rgba(242, 170, 60, 0.9);
+        &:before {
+          content: "\e9ba";
+          font-family: "icomoon";
+          font-size: 20px;
+          line-height: 20px;
+          color: $white;
+          margin-right: 4px;
+        }
+      }
+    }
+  }
+}
+
+.controller-settings {
+  #content {
+    .tabs {
+      margin-bottom: 16px;
+      height: auto;
+      ul {
+        height: auto;
+        a {
+          height: auto;
+          padding: 7px 13px;
+          border-radius: 48px;
+          font-size: 15px;
+          line-height: 22px;
+          color: $gray;
+          &.selected {
+            border: 1px solid $text;
+            color: $text;
+            font-weight: bold;
+          }
+        }
+      }
+    }
+  }
+}
+
+#watchers_form {
+  flex-wrap: wrap;
+  label {
+    padding-left: 0;
+  }
+  #watchers_inputs {
+    flex-grow: 1;
+  }
+  input[type="checkbox"] {
+    position: static;
+    margin: 0;
+    width: 16px;
+  }
+
+  label {
+    input[type="checkbox"] {
+      position: static;
+      margin: 0;
+      width: 16px;
+    }
+  }
+
+  .search_for_watchers {
+    margin-left: 180px;
+    .icon-add-bullet {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid $border;
+      padding: 7px 8px;
+      border-radius: 6px;
+      background-color: $white;
+      color: $text;
+      &:hover {
+        background-color: $whiteHover;
+      }
+      svg {
+        display: none;
+      }
+      &:before {
+        content: "\e969";
+        font-family: "icomoon";
+        font-size: 16px;
+        line-height: 16px;
+        color: $gray;
+        margin-right: 4px;
+      }
+    }
+  }
+}
+
+.mypage-box {
+  .contextual {
+    margin-top: -8px;
+    a {
+      padding-left: 8px;
+      padding-right: 8px;
+      &.icon-close {
+        svg {
+          display: none;
+        }
+        &:before {
+          content: "\e966";
+          font-family: "icomoon";
+          font-size: 16px;
+          line-height: 16px;
+          margin-right: 4px;
+        }
+      }
+    }
+  }
+}
+
+#api-access-key {
+  margin: 8px 0 0;
+  background-color: $white;
+  padding: 8px;
+}
+
+#admin-menu {
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 4px;
+    li {
+      padding: 6px;
+      border-radius: 6px;
+      box-sizing: border-box;
+    }
+  }
+}
+
+.controller-news {
+  #content {
+    .attachments {
+      margin-top: 16px;
+      border: 1px solid $border;
+      border-radius: 6px;
+      padding: 8px 10px;
+      background-color: $gray20;
+      .contextual {
+        margin-left: 8px;
+        margin-top: -4px;
+        a {
+          border: 0;
+          background-color: transparent;
+          padding: 0 8px;
+
+          &:hover {
+            background-color: $gray20hover;
+          }
+        }
+        .icon-label {
+          margin-left: 4px;
+        }
+      }
+      table {
+        td {
+          padding: 0;
+          &:empty {
+            display: none;
+          }
+        }
+      }
+
+      .icon-only {
+        &::before {
+          color: $gray;
+          font-size: 16px;
+          line-height: 16px;
+        }
+      }
+    }
+  }
+
+  #comments {
+    h3 {
+      font-size: 16px;
+      line-height: 24px;
+      color: $gray;
+    }
+    .contextual {
+      a {
+        padding: 0 8px;
+        min-height: initial;
+        width: 24px;
+        height: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 4px;
+        border: 0;
+        &:hover {
+          background-color: $whiteHover;
+          &:before {
+            color: $warning;
+          }
+        }
+      }
+      .icon-label {
+        display: none;
+      }
+    }
+    > p {
+      a {
+        font-size: 13px;
+        line-height: 20px;
+        padding: 6px 8px;
+        border: 1px solid $border;
+        border-radius: 6px;
+        color: $text;
+        display: inline-flex;
+        align-items: center;
+        &:hover {
+          background-color: $whiteHover;
+        }
+        &:before {
+          content: "\e965";
+          font-family: "icomoon";
+          font-size: 16px;
+          line-height: 16px;
+          color: $gray;
+          margin-right: 4px;
+        }
+      }
+    }
+
+    .wiki {
+      border-bottom: 1px solid $border;
+      padding-bottom: 16px;
+      margin-bottom: 16px;
+      &:last-child {
+        border-bottom: 0;
+        padding-bottom: 0;
+        border: 0;
+      }
+    }
+
+    + p {
+      a {
+        font-size: 13px;
+        line-height: 20px;
+        padding: 6px 8px;
+        border: 1px solid $border;
+        border-radius: 6px;
+        color: $text;
+        display: inline-flex;
+        align-items: center;
+        &:hover {
+          background-color: $whiteHover;
+        }
+        &:before {
+          content: "\e965";
+          font-family: "icomoon";
+          font-size: 16px;
+          line-height: 16px;
+          color: $gray;
+          margin-right: 4px;
+        }
+      }
+    }
+  }
+}
+
 // toast
 
 #errorExplanation,
@@ -2844,6 +3447,27 @@ div.flash,
   font-style: normal;
   display: flex;
   margin-bottom: 16px;
+  a {
+    color: $link;
+  }
+}
+
+#errorExplanation {
+  background-color: rgba(242, 170, 60, 0.9);
+
+  &:before {
+    content: "\e9ba";
+    font-family: "icomoon";
+    font-size: 20px;
+    line-height: 20px;
+    color: $white;
+    margin-right: 8px;
+  }
+  ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
 }
 
 .warning {
