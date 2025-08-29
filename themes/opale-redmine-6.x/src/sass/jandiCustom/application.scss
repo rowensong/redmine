@@ -115,6 +115,36 @@ input[type="checkbox"] {
   }
 }
 
+input[type="radio"] {
+  width: 16px;
+  height: 16px;
+  appearance: none;
+  border-radius: 50%;
+  border: 1px solid $border;
+  background-color: $white;
+  cursor: pointer;
+  margin: 0;
+  &:checked {
+    border-color: $text;
+    &:before {
+      content: "";
+      color: $white;
+      background-color: $black;
+      width: 8px;
+      height: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      margin-top: 3px;
+      margin-left: 3px;
+    }
+  }
+  &:disabled {
+    opacity: 0.5;
+  }
+}
+
 hr {
   border-color: $border;
 }
@@ -142,6 +172,56 @@ hr {
   }
   .icon-label {
     display: none;
+  }
+}
+
+.tabs {
+  .tabs-buttons {
+    display: flex;
+    width: 48px;
+    top: 8px;
+    align-items: center;
+    background-color: $white;
+    > button {
+      float: none;
+      background-color: $white;
+      color: $gray;
+      &:hover {
+        color: $text;
+      }
+      &.disabled {
+        color: $disabled;
+        &:hover {
+          background-color: $disabled;
+        }
+      }
+      &.tab-left {
+        &:before {
+          content: "\ea14";
+          font-family: "icomoon";
+          font-size: 16px;
+          line-height: 16px;
+          margin: 0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 100%;
+        }
+      }
+      &.tab-right {
+        &:before {
+          content: "\ea13";
+          font-family: "icomoon";
+          font-size: 16px;
+          line-height: 16px;
+          margin: 0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 100%;
+        }
+      }
+    }
   }
 }
 
@@ -509,50 +589,36 @@ body {
   }
 }
 
-#content {
-  input[type="radio"] {
-    display: none;
-    + label {
-      display: flex;
-      align-items: center;
-      position: relative;
-      line-height: initial;
-      cursor: pointer;
-      &:before {
-        cursor: pointer;
-        width: 16px;
-        height: 16px;
-        border-radius: 50%;
-        border: 1px solid $border;
-        content: "";
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-right: 6px;
-        box-sizing: border-box;
-        background-color: $white;
-      }
-      a {
-        display: block;
-      }
-    }
-    &:checked {
-      + label {
-        &:after {
-          position: absolute;
-          left: 4px;
-          top: 50%;
-          transform: translateY(-50%);
-          content: "";
-          width: 8px;
-          height: 8px;
+.modal {
+  #principals_for_new_member {
+    #principals {
+      label {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        max-width: 100%;
+        font-size: 14px;
+        line-height: 20px;
+        color: $text;
+        padding-left: 0;
+        input[type="checkbox"] {
+          position: static;
+          margin: 0;
+          margin-right: 4px;
+        }
+        img {
           border-radius: 50%;
-          background-color: $text;
+          margin-right: 4px;
+          display: inline-block;
         }
       }
     }
+    .pagination {
+      margin-top: 16px;
+    }
   }
 }
+
 // 작업내역
 .controller-activities {
   #activity_scope_form {
@@ -778,12 +844,6 @@ body {
           line-height: 20px;
         }
 
-        &.icon-del {
-          &::before {
-            display: none;
-          }
-        }
-
         &.icon-copy-link {
           svg {
             display: none;
@@ -892,7 +952,7 @@ body {
     cursor: pointer;
     margin-bottom: 16px;
     &::before {
-      content: "\ea15";
+      content: "\ea12";
       font-family: "icomoon";
       font-size: 16px;
       line-height: 16px;
@@ -904,7 +964,7 @@ body {
     }
     &.icon-collapsed {
       &::before {
-        content: "\ea12";
+        content: "\ea15";
       }
     }
   }
@@ -1676,6 +1736,14 @@ fieldset#options {
     }
   }
 
+  #content {
+    .cal {
+      svg {
+        display: inline-block;
+      }
+    }
+  }
+
   #query_form_with_buttons {
     .buttons {
       margin-top: 16px;
@@ -1793,6 +1861,7 @@ table.list {
   width: 100%;
 
   table {
+    border: 0;
     thead {
       th {
         background-color: $gray20;
@@ -1825,7 +1894,9 @@ table.list {
         text-align: left;
       }
     }
-
+    a {
+      color: #333;
+    }
     .icon-sorted-asc {
       .icon-label {
         display: none;
@@ -1885,6 +1956,18 @@ table.list {
         }
       }
     }
+    .subject {
+      a {
+        display: -webkit-box;
+        line-clamp: 2;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        max-width: 200px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        word-wrap: break-word;
+      }
+    }
     .icon-only {
       margin-right: auto;
     }
@@ -1941,6 +2024,11 @@ table.list {
         margin-left: 4px;
       }
     }
+    .icon-settings {
+      .icon-label {
+        margin-left: 0;
+      }
+    }
   }
 
   #new_time_entry {
@@ -1982,9 +2070,7 @@ table.list {
       &:hover {
         background-color: $whiteHover;
       }
-      &:before {
-        display: none;
-      }
+
       svg {
         display: none;
       }
@@ -2032,15 +2118,22 @@ table.list {
         font-size: 16px;
         line-height: 16px;
         color: $gray;
+        display: flex;
       }
       &.icon-fav,
       &.icon-fav-off {
+        .icon-label {
+          margin-left: 0 !important;
+        }
         &:before {
           content: "\e992";
         }
       }
 
       &.icon-time-add {
+        .icon-label {
+          margin-left: 0 !important;
+        }
         &:before {
           content: "\e9df";
         }
@@ -2106,6 +2199,166 @@ table.list {
       font-weight: normal;
     }
   }
+  #activity {
+    h3 {
+      font-size: 16px;
+      line-height: 24px;
+      font-weight: bold;
+      color: $gray;
+      padding-bottom: 16px;
+      margin-bottom: 16px;
+      border-bottom: 1px solid $border;
+    }
+    dl {
+      margin: 0;
+      dt {
+        margin: 0 0 8px;
+
+        &.icon {
+          color: $gray;
+          font-family: "icomoon";
+          font-size: 16px;
+          line-height: 16px;
+          display: flex;
+          svg {
+            display: none;
+          }
+
+          &:before {
+            margin-right: 4px;
+            order: 2;
+          }
+
+          &.icon-issue {
+            &:before {
+              content: "\ea23";
+            }
+          }
+
+          &.icon-issue-note {
+            &:before {
+              content: "\e965";
+            }
+          }
+
+          &.icon-attachment {
+            &:before {
+              content: "\e956";
+            }
+          }
+
+          &.icon-issue-edit {
+            &:before {
+              content: "\e96b";
+            }
+          }
+
+          &.icon-news {
+            &:before {
+              content: "\ea25";
+            }
+          }
+
+          &.icon-document {
+            &:before {
+              content: "\e9a5";
+            }
+          }
+
+          &.grouped {
+            margin-left: 0;
+            padding-left: 24px;
+            border-left: 2px solid $border;
+            margin-bottom: 0;
+            padding-bottom: 16px;
+            &:not(:has(~ dd.grouped)) {
+              padding-bottom: 0;
+              margin-bottom: 24px;
+            }
+          }
+        }
+        .time {
+          font-size: 14px;
+          line-height: 20px;
+          color: $gray;
+          font-weight: normal;
+          margin-left: 0;
+          border-bottom: 0;
+          order: 3;
+        }
+
+        .project {
+          font-size: 14px;
+          line-height: 20px;
+          color: $text;
+          order: 4;
+        }
+
+        > img {
+          width: 32px;
+          height: 32px;
+          border-radius: 50%;
+          margin-right: 8px;
+          object-fit: cover;
+          order: 1;
+        }
+
+        a {
+          color: $link;
+          font-size: 14px;
+          line-height: 20px;
+          order: 5;
+        }
+      }
+      dd {
+        margin: 0;
+        font-size: 14px;
+        line-height: 20px;
+        color: $text;
+        font-weight: normal;
+        margin-bottom: 16px;
+        display: flex;
+        flex-direction: column;
+      }
+      + h3 {
+        margin-top: 32px;
+      }
+
+      .grouped {
+        padding-left: 24px;
+        border-left: 2px solid $border;
+      }
+
+      .description {
+        font-size: 14px;
+        line-height: 20px;
+        color: $text;
+        font-weight: normal;
+        font-style: normal;
+        order: 2;
+        + .author {
+          margin-bottom: 8px;
+        }
+        &:empty {
+          display: none;
+          + .author {
+            margin-top: 0;
+          }
+        }
+      }
+      .author {
+        font-size: 14px;
+        line-height: 20px;
+        color: $text;
+        font-weight: bold;
+        display: block;
+        order: 1;
+      }
+    }
+  }
+}
+
+.controller-users {
   #activity {
     h3 {
       font-size: 16px;
@@ -2387,23 +2640,37 @@ div.wiki ol {
 }
 
 select[multiple] {
-  background: none;
-  &#available_c,
-  &#selected_c {
-    padding: 5px;
-    max-height: 216px;
-    option {
-      border-bottom: 0;
-      padding: 4px 8px;
-      font-size: 14px;
-      line-height: 20px;
-      border-radius: 6px;
-      margin-bottom: 4px;
-      height: 28px;
-      display: flex;
-      align-items: center;
-    }
+  background-image: none;
+  background-color: $white;
+  padding: 5px;
+  max-height: 216px;
+  option {
+    border-bottom: 0;
+    padding: 4px 8px;
+    font-size: 14px;
+    line-height: 20px;
+    border-radius: 6px;
+    margin-bottom: 4px;
+    height: 28px;
+    display: flex;
+    align-items: center;
   }
+  // &#available_c,
+  // &#selected_c {
+  //   padding: 5px;
+  //   max-height: 216px;
+  //   option {
+  //     border-bottom: 0;
+  //     padding: 4px 8px;
+  //     font-size: 14px;
+  //     line-height: 20px;
+  //     border-radius: 6px;
+  //     margin-bottom: 4px;
+  //     height: 28px;
+  //     display: flex;
+  //     align-items: center;
+  //   }
+  // }
 }
 
 #list-definition .buttons input[type="button"],
@@ -2553,6 +2820,82 @@ select[multiple] {
     thead {
       display: none;
     }
+    table {
+      border: 0;
+      td {
+        border-bottom: 0;
+      }
+    }
+
+    .hascontextmenu {
+      border: 1px solid $border;
+      border-radius: 6px;
+      padding: 0;
+      &.priority {
+        &:before {
+          display: none;
+        }
+      }
+      > div {
+        font-size: 11px;
+        line-height: 16px;
+        text-align: left;
+        float: none;
+        font-weight: normal;
+        font-style: normal;
+        padding: 8px 10px;
+
+        &:first-child {
+          margin-bottom: 12px;
+          border-bottom: 1px solid $border;
+          color: $link;
+          font-weight: bold;
+        }
+      }
+
+      > p {
+        padding: 8px 10px;
+        &:has(input[type="checkbox"]) {
+          display: flex;
+          align-items: center;
+          flex-wrap: wrap;
+          gap: 4px;
+        }
+        a {
+          font-size: 13px;
+          line-height: 20px;
+          color: $text;
+          display: inline-block;
+          margin-top: 8px;
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+      > .ancestor {
+        margin-top: 12px;
+        padding-left: 10px;
+        border-left: 2px solid $border;
+      }
+      hr {
+        display: none;
+      }
+      p[id^="user_name"] {
+        padding: 8px 10px;
+        border-top: 1px solid $border;
+        font-size: 11px;
+        line-height: 16px;
+        color: $text;
+      }
+    }
+
+    .my-issue-card-low-priority {
+      background-color: $white;
+    }
+
+    .my-issue-card-high-priority {
+      background-color: rgba(255, 92, 72, 0.08);
+    }
   }
 
   legend {
@@ -2636,10 +2979,31 @@ select[multiple] {
 }
 
 .controller-projects {
-  .icon-add {
-    background-color: $text;
-    color: $white;
-    border-color: $text;
+  #content {
+    .icon.bookmark,
+    .icon-add {
+      background-color: $text;
+      color: $white;
+      border-color: $text;
+      .icon-label {
+        color: $white;
+      }
+      &:before {
+        color: $white;
+      }
+    }
+    .icon.bookmark {
+      &:before {
+        content: "\e936";
+        margin-right: 4px;
+      }
+    }
+    .icon-add {
+      &:before {
+        content: "\e969";
+        margin-right: 4px;
+      }
+    }
   }
   #projects-index {
     ul.projects {
@@ -2686,6 +3050,9 @@ select[multiple] {
       }
       ul.projects {
         border-left: 3px solid $border;
+      }
+      .description {
+        margin-top: 10px;
       }
     }
   }
@@ -2817,6 +3184,399 @@ select[multiple] {
       font-weight: normal;
       margin-right: 4px;
       color: $gray;
+    }
+  }
+
+  .icon-add {
+    .icon-label {
+      &:before {
+        display: none;
+      }
+    }
+  }
+
+  .news {
+    &.box {
+      position: relative;
+      border: 1px solid $gray30;
+      border-radius: 6px;
+      padding: 16px;
+      background-color: $gray10;
+      h3 {
+        font-size: 16px;
+        line-height: 24px;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        padding: 2px 0;
+        &:before {
+          content: "\ea25";
+          font-family: "icomoon";
+          font-size: 16px;
+          line-height: 16px;
+          color: $placeholder;
+          margin-right: 8px;
+          font-weight: normal;
+        }
+      }
+      .icon-label {
+        margin-left: 0;
+      }
+
+      > p {
+        font-size: 0;
+        line-height: 0;
+        margin-bottom: 16px;
+        padding-bottom: 16px;
+        border-bottom: 1px solid $border;
+        &:last-of-type {
+          margin-bottom: 0;
+          padding-bottom: 0;
+          border-bottom: none;
+        }
+        > * {
+          font-size: 14px;
+          line-height: 20px;
+        }
+        > a {
+          display: block;
+          &:first-child {
+            font-weight: bold;
+            display: inline-block;
+          }
+        }
+        a {
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+
+      > a {
+        position: absolute;
+        right: 16px;
+        top: 16px;
+        padding: 8px;
+        font-size: 13px;
+        line-height: 14px;
+        border-radius: 6px;
+        &:hover {
+          background-color: $gray10hover;
+        }
+      }
+
+      .summary {
+        margin-top: 8px;
+        padding: 3px 3px 3px 16px;
+        border-left: 3px solid $border;
+        font-style: normal;
+      }
+
+      .comments {
+        display: inline;
+        margin-left: 8px;
+        font-size: 12px;
+        line-height: 18px;
+        color: $gray;
+
+        &:before {
+          content: "\e965";
+          font-family: "icomoon";
+          font-size: 16px;
+          line-height: 16px;
+          margin-right: 4px;
+          vertical-align: middle;
+        }
+      }
+
+      .author {
+        margin-top: 12px;
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  .issues {
+    &.box {
+      position: relative;
+      border: 1px solid $gray30;
+      border-radius: 6px;
+      padding: 16px;
+      background-color: $gray10;
+      h3 {
+        font-size: 16px;
+        line-height: 24px;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        padding: 2px 0;
+        &:before {
+          content: "\e95a";
+          font-family: "icomoon";
+          font-size: 16px;
+          line-height: 16px;
+          color: $placeholder;
+          margin-right: 8px;
+          font-weight: normal;
+        }
+        a {
+          padding: 8px;
+          font-size: 13px;
+          line-height: 14px;
+          margin-left: auto;
+        }
+      }
+      .icon-label {
+        margin-left: 0;
+      }
+      > p {
+        text-align: right;
+        color: $border;
+        a {
+          font-size: 13px;
+          line-height: 14px;
+          color: $text;
+          padding: 8px;
+          border-radius: 6px;
+          &:hover {
+            background-color: $gray10hover;
+          }
+        }
+      }
+    }
+  }
+
+  .spent_time {
+    position: relative;
+    border: 1px solid $gray30;
+    border-radius: 6px;
+    padding: 16px;
+    background-color: $gray10;
+    h3 {
+      font-size: 16px;
+      line-height: 24px;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      padding: 2px 0;
+      &:before {
+        content: "\e95a";
+        font-family: "icomoon";
+        font-size: 16px;
+        line-height: 16px;
+        color: $placeholder;
+        margin-right: 8px;
+        font-weight: normal;
+      }
+      a {
+        padding: 8px;
+        font-size: 13px;
+        line-height: 14px;
+        margin-left: auto;
+      }
+    }
+    .icon-label {
+      margin-left: 0;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    > p {
+      text-align: right;
+      color: $border;
+      a {
+        font-size: 13px;
+        line-height: 14px;
+        color: $text;
+        padding: 8px;
+        border-radius: 6px;
+        &:hover {
+          background-color: $gray10hover;
+        }
+      }
+    }
+  }
+
+  .members {
+    &.box {
+      position: relative;
+      border: 1px solid $gray30;
+      border-radius: 6px;
+      padding: 16px;
+      background-color: $gray10;
+      h3 {
+        font-size: 16px;
+        line-height: 24px;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        padding: 2px 0;
+        &:before {
+          content: "\e947";
+          font-family: "icomoon";
+          font-size: 16px;
+          line-height: 16px;
+          color: $placeholder;
+          margin-right: 8px;
+          font-weight: normal;
+        }
+      }
+      .icon-label {
+        margin-left: 0;
+      }
+      p {
+        .label {
+          display: inline-block;
+          color: $darkGray;
+          font-weight: bold;
+          font-size: 14px;
+          line-height: 20px;
+        }
+      }
+    }
+  }
+
+  .projects {
+    &.box {
+      position: relative;
+      border: 1px solid $gray30;
+      border-radius: 6px;
+      padding: 16px;
+      background-color: $gray10;
+      h3 {
+        font-size: 16px;
+        line-height: 24px;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        padding: 2px 0;
+        &:before {
+          content: "\ea23";
+          font-family: "icomoon";
+          font-size: 16px;
+          line-height: 16px;
+          color: $placeholder;
+          margin-right: 8px;
+          font-weight: normal;
+        }
+      }
+      .icon-label {
+        margin-left: 0;
+      }
+    }
+    ul {
+      li {
+        a {
+          font-size: 13px;
+          line-height: 20px;
+          color: $text;
+        }
+      }
+    }
+  }
+}
+
+.controller-welcome {
+  .news {
+    &.box {
+      position: relative;
+      border: 1px solid $gray30;
+      border-radius: 6px;
+      padding: 16px;
+      background-color: $gray10;
+      h3 {
+        font-size: 16px;
+        line-height: 24px;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        padding: 2px 0;
+        &:before {
+          content: "\ea25";
+          font-family: "icomoon";
+          font-size: 16px;
+          line-height: 16px;
+          color: $placeholder;
+          margin-right: 8px;
+          font-weight: normal;
+        }
+      }
+      .icon-label {
+        margin-left: 0;
+      }
+
+      > p {
+        font-size: 0;
+        line-height: 0;
+        margin-bottom: 16px;
+        padding-bottom: 16px;
+        border-bottom: 1px solid $border;
+        &:last-of-type {
+          margin-bottom: 0;
+          padding-bottom: 0;
+          border-bottom: none;
+        }
+        > * {
+          font-size: 14px;
+          line-height: 20px;
+        }
+        > a {
+          display: block;
+          &:first-child {
+            font-weight: bold;
+            display: inline-block;
+          }
+        }
+        a {
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+
+      > a {
+        position: absolute;
+        right: 16px;
+        top: 16px;
+        padding: 8px;
+        font-size: 13px;
+        line-height: 14px;
+        border-radius: 6px;
+        &:hover {
+          background-color: $gray10hover;
+        }
+      }
+
+      .summary {
+        margin-top: 8px;
+        padding: 3px 3px 3px 16px;
+        border-left: 3px solid $border;
+        font-style: normal;
+      }
+
+      .comments {
+        display: inline;
+        margin-left: 8px;
+        font-size: 12px;
+        line-height: 18px;
+        color: $gray;
+
+        &:before {
+          content: "\e965";
+          font-family: "icomoon";
+          font-size: 16px;
+          line-height: 16px;
+          margin-right: 4px;
+          vertical-align: middle;
+        }
+      }
+
+      .author {
+        margin-top: 12px;
+        margin-bottom: 0;
+      }
     }
   }
 }
@@ -2991,9 +3751,6 @@ select[multiple] {
         svg {
           display: none;
         }
-        .icon-label {
-          display: none;
-        }
         > .icon-only,
         > .icon {
           width: 20px;
@@ -3003,7 +3760,9 @@ select[multiple] {
           justify-content: center;
           border-radius: 4px;
           color: $gray;
-
+          .icon-label {
+            display: none;
+          }
           &:hover {
             background-color: $whiteHover;
           }
@@ -3183,7 +3942,7 @@ select[multiple] {
 
 .controller-settings {
   #content {
-    .tabs {
+    > .tabs {
       margin-bottom: 16px;
       height: auto;
       ul {
@@ -3200,6 +3959,61 @@ select[multiple] {
             color: $text;
             font-weight: bold;
           }
+        }
+      }
+    }
+  }
+}
+
+.controller-reports {
+  h3 {
+    font-size: 16px;
+    line-height: 24px;
+    color: $text;
+    font-weight: normal;
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    width: 100%;
+    .icon-zoom-in {
+      margin-left: auto;
+    }
+    .icon-label {
+      display: flex;
+      align-items: center;
+      font-size: 14px;
+      line-height: 20px;
+      color: $text;
+      font-weight: normal;
+      &:before {
+        content: "\e960";
+        font-family: "icomoon";
+        font-size: 16px;
+        line-height: 16px;
+        color: $gray;
+        margin-right: 2px;
+      }
+    }
+  }
+  &.action-issue_report_details {
+    #content {
+      > a {
+        padding: 6px 8px;
+        border: 1px solid $border;
+        border-radius: 6px;
+        color: $text;
+        display: inline-flex;
+        align-items: center;
+        &:hover {
+          background-color: $whiteHover;
+        }
+        &:before {
+          content: "\e9b4";
+          font-family: "icomoon";
+          font-size: 16px;
+          line-height: 16px;
+          color: $gray;
+          margin-right: 4px;
         }
       }
     }
@@ -3295,6 +4109,11 @@ select[multiple] {
       padding: 6px;
       border-radius: 6px;
       box-sizing: border-box;
+      &:nth-last-child(1),
+      &:nth-last-child(2),
+      &:nth-last-child(3) {
+        display: none;
+      }
     }
   }
 }
@@ -3425,6 +4244,159 @@ select[multiple] {
           line-height: 16px;
           color: $gray;
           margin-right: 4px;
+        }
+      }
+    }
+  }
+}
+
+.controller-documents {
+  #content {
+    .icon-add {
+      background-color: $text;
+      color: $white;
+      border-color: $text;
+      .icon-label {
+        color: $white;
+      }
+      &:before {
+        color: $white;
+      }
+    }
+
+    h2 {
+      font-size: 20px;
+      line-height: 28px;
+    }
+
+    .group-name {
+      font-size: 16px;
+      line-height: 24px;
+      padding-bottom: 16px;
+      margin-bottom: 16px;
+      border-bottom: 1px solid $border;
+    }
+    .document-item {
+      margin-bottom: 16px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid $border;
+      &:last-child {
+        margin-bottom: 0;
+        padding-bottom: 0;
+        border-bottom: 0;
+      }
+      .title {
+        font-size: 16px;
+        line-height: 24px;
+        color: $text;
+      }
+      .updated_on {
+        font-size: 14px;
+        line-height: 20px;
+        color: $gray;
+        margin-top: 8px;
+        em {
+          font-style: normal;
+        }
+      }
+
+      .wiki {
+        margin-top: 8px;
+        h1 {
+          border: 0;
+        }
+      }
+    }
+    .attachments {
+      margin-top: 16px;
+      border: 1px solid $border;
+      border-radius: 6px;
+      padding: 8px 10px;
+      background-color: $gray20;
+      .contextual {
+        margin-left: 8px;
+        margin-top: -4px;
+        a {
+          border: 0;
+          background-color: transparent;
+          padding: 0 8px;
+
+          &:hover {
+            background-color: $gray20hover;
+          }
+        }
+        .icon-label {
+          margin-left: 4px;
+        }
+      }
+      table {
+        td {
+          padding: 0;
+          &:empty {
+            display: none;
+          }
+        }
+      }
+
+      .icon-only {
+        &::before {
+          color: $gray;
+          font-size: 16px;
+          line-height: 16px;
+        }
+      }
+    }
+  }
+}
+
+.controller-wiki {
+  #content {
+    > h3 {
+      font-size: 16px;
+      line-height: 24px;
+      font-weight: bold;
+      margin-bottom: 16px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid $border;
+      color: $gray;
+    }
+    .attachments {
+      margin-top: 0px;
+      border: 1px solid $border;
+      border-radius: 6px;
+      padding: 8px 10px;
+      background-color: $gray20;
+      margin-bottom: 16px;
+      .contextual {
+        margin-left: 8px;
+        margin-top: -4px;
+        a {
+          border: 0;
+          background-color: transparent;
+          padding: 0 8px;
+
+          &:hover {
+            background-color: $gray20hover;
+          }
+        }
+        .icon-label {
+          margin-left: 4px;
+        }
+      }
+      table {
+        td {
+          padding: 0;
+          &:empty {
+            display: none;
+          }
+        }
+      }
+
+      .icon-only {
+        &::before {
+          color: $gray;
+          font-size: 16px;
+          line-height: 16px;
         }
       }
     }

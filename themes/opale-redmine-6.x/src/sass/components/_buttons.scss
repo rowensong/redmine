@@ -30,8 +30,8 @@ form {
   button,
   select {
     ~ a {
-      margin-left: math.ceil(variables.$btn-padding-horizontal-small * 0.5);
-      line-height: variables.$input-height-base;
+      // margin-left: math.ceil(variables.$btn-padding-horizontal-small * 0.5);
+      // line-height: variables.$input-height-base;
     }
   }
 

@@ -72,6 +72,9 @@ if [ -d "$THEME_DIR" ] && command -v npm >/dev/null 2>&1; then
     echo "[Theme] npm install (ci fallback)"
     npm ci --silent || npm install --silent
     export LIVERELOAD_PORT=${LIVERELOAD_PORT:-35731}
+    export NODE_OPTIONS="--max-old-space-size=32768"
+    echo "[Theme] initial build with increased memory"
+    npx grunt build --silent || npx grunt --silent
     nohup npx grunt watch --verbose >> "$LOG_DIR/theme-watch.log" 2>&1 & echo $! > "$PID_DIR/theme_watch.pid"
   )
   echo "[Theme] watcher started (logs: $LOG_DIR/theme-watch.log)"

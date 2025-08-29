@@ -690,12 +690,11 @@ label.no-css {
 // Search form
 
 #search-form {
-  margin-bottom: variables.$line-height-computed;
+  // margin-bottom: variables.$line-height-computed;
 
   input,
   select {
-    margin-right: 5px;
-    margin-bottom: variables.$line-height-computed * 0.5;
+    margin-right: 4px;
   }
 
   label {

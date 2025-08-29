@@ -887,7 +887,6 @@ div.table-list.boards {
   p > a:not(:last-child) {
     display: inline-block;
     margin-bottom: math.floor(variables.$line-height-computed * 0.25);
-    font-size: variables.$font-size-h4;
   }
 
   .summary,

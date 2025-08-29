@@ -75,14 +75,16 @@ body {
           line-height: variables.$responsive-header-height;
 
           &::before {
-            @include variants.ti-icon-variant(tabler-icons.$ti-icon-chevron-down);
+            @include variants.ti-icon-variant(
+              tabler-icons.$ti-icon-chevron-down
+            );
 
             position: relative;
-            top: -.1em;
-            width: variables.$responsive-header-height * .75;
+            top: -0.1em;
+            width: variables.$responsive-header-height * 0.75;
             padding: 0;
             transform: none;
-            font-size: .8em;
+            font-size: 0.8em;
             text-align: center;
           }
 
@@ -135,13 +137,14 @@ body {
 
       &__search {
         height: variables.$responsive-header-height;
-        padding: (variables.$padding-side * .5);
+        padding: (variables.$padding-side * 0.5);
         line-height: normal;
 
         input[type="text"] {
           height: variables.$responsive-header-height - variables.$padding-side;
           padding-left: 8px;
-          line-height: variables.$responsive-header-height - variables.$padding-side;
+          line-height: variables.$responsive-header-height -
+            variables.$padding-side;
         }
       }
 
@@ -153,7 +156,8 @@ body {
       }
 
       .contextual {
-        padding: variables.$padding-large-vertical variables.$padding-large-horizontal;
+        padding: variables.$padding-large-vertical
+          variables.$padding-large-horizontal;
         text-align: right;
       }
 
@@ -203,7 +207,9 @@ body {
           @include variants.ti-icon-style;
 
           &::before {
-            @include variants.ti-icon-variant(tabler-icons.$ti-icon-user-square-rounded);
+            @include variants.ti-icon-variant(
+              tabler-icons.$ti-icon-user-square-rounded
+            );
 
             margin-right: 6px;
           }
@@ -218,14 +224,14 @@ body {
             margin-right: 6px;
           }
         }
-
       }
 
       ul {
         li:nth-child(n) {
           a:not(.icon-only) {
             height: auto;
-            padding: variables.$padding-large-vertical variables.$padding-large-horizontal;
+            padding: variables.$padding-large-vertical
+              variables.$padding-large-horizontal;
             line-height: variables.$line-height-base;
           }
         }
@@ -279,7 +285,8 @@ body {
       h4 {
         height: auto;
         margin: 0;
-        padding: variables.$padding-base-vertical variables.$padding-base-horizontal;
+        padding: variables.$padding-base-vertical
+          variables.$padding-base-horizontal;
         border-top: 1px solid variables.$flyout-menu-header-border;
         border-bottom: 1px solid variables.$flyout-menu-header-border;
         background-color: variables.$flyout-menu-header-bg;
@@ -312,7 +319,8 @@ body {
             label {
               a {
                 display: block;
-                padding: variables.$padding-base-vertical variables.$padding-base-horizontal;
+                padding: variables.$padding-base-vertical
+                  variables.$padding-base-horizontal;
               }
             }
           }
@@ -343,14 +351,14 @@ body {
         }
 
         h3 {
-          margin:0;
+          margin: 0;
         }
 
         .watchers {
           margin-left: variables.$padding-large-horizontal;
 
           li {
-            margin: (variables.$line-height-computed * .5) 0 0;
+            margin: (variables.$line-height-computed * 0.5) 0 0;
             padding: 0;
 
             img.gravatar {
@@ -412,13 +420,15 @@ body {
     #content > .contextual > span,
     #query_form > .contextual,
     #query_form_with_buttons > .contextual {
-      margin-bottom: variables.$line-height-computed - variables.$padding-small-horizontal;
+      margin-bottom: variables.$line-height-computed -
+        variables.$padding-small-horizontal;
       padding: 0;
       float: none;
       text-align: left;
 
       a {
-        padding: variables.$btn-padding-vertical variables.$btn-padding-horizontal-small;
+        padding: variables.$btn-padding-vertical
+          variables.$btn-padding-horizontal-small;
         border: 1px solid variables.$pagination-border;
         border-radius: variables.$border-radius-base;
         background-color: variables.$pagination-bg;
@@ -473,7 +483,8 @@ body {
       border: 0;
 
       .drdn-trigger {
-        padding: variables.$btn-padding-vertical variables.$btn-padding-horizontal;
+        padding: variables.$btn-padding-vertical
+          variables.$btn-padding-horizontal;
       }
 
       .drdn-items {
@@ -566,7 +577,7 @@ body {
     .query-columns {
       span {
         display: block;
-        margin-bottom: variables.$line-height-computed * .5;
+        margin-bottom: variables.$line-height-computed * 0.5;
       }
 
       .buttons {

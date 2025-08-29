@@ -63,40 +63,16 @@ $tabs-height: variables.$line-height-computed + variables.$tab-padding-vertical 
     z-index: 2;
     top: 0;
     right: 0;
-    width: $tabs-buttons-width;
-    border-bottom: 1px solid variables.$tab-border;
-    background-color: variables.$body-bg;
+    width: 48px;
 
     > button {
-      width: 50%;
-      height: $tabs-height - 1px;
+      width: 24px;
+      height: 24px;
       margin: 0;
       padding: 0;
       float: left;
-      transition: opacity variables.$transition-time;
       border: 0 none;
       border-radius: 0;
-      opacity: variables.$icon-opacity;
-      background-color: variables.$body-bg;
-      background-repeat: no-repeat;
-      background-position: center center;
-      box-shadow: none;
-      color: variables.$legend-color;
-
-      &:hover,
-      &:active {
-        opacity: variables.$icon-hover-opacity;
-        color: variables.$pagination-color;
-      }
-
-      &:active {
-        background-color: variables.$tab-hover-bg;
-      }
-
-      &.disabled {
-        opacity: variables.$icon-opacity * 0.5;
-        color: variables.$pagination-inactive-color;
-      }
     }
 
     .tab-left {

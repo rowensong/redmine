@@ -19,6 +19,7 @@ table.list {
   margin-bottom: variables.$line-height-computed;
   font-size: 14px;
   background-color: #fff;
+  border: 1px solid rgba(236, 238, 241, 1);
 
   .autoscroll & {
     margin-bottom: 0;
@@ -30,7 +31,7 @@ table.list {
 
   th,
   tr.ui-sortable-helper {
-    background-color: #f6f6f6;
+    background-color: rgba(242, 244, 248, 1);
   }
 
   td {
@@ -64,6 +65,16 @@ table.list {
 
   th,
   td {
+    padding: 9px 16px;
+    font-size: 14px;
+    line-height: 20px;
+    text-align: left;
+    &:first-child {
+      color: #333;
+      a {
+        color: #333;
+      }
+    }
     &.checkbox {
       width: 15px;
       padding-right: variables.$table-cell-padding;
@@ -115,6 +126,13 @@ table.list {
     &.spent_hours,
     &.story_points {
       text-align: right;
+    }
+  }
+
+  td {
+    color: rgba(117, 117, 117, 1);
+    a {
+      color: rgba(117, 117, 117, 1);
     }
   }
 
@@ -271,7 +289,7 @@ td.last_updated_by {
 }
 
 .issue-report-graph {
-  width: 75%;
+  width: 100%;
   margin: variables.$line-height-computed auto;
 }
 

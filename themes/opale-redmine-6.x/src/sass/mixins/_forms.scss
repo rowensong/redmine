@@ -33,19 +33,11 @@
 @mixin check() {
   @include clearfix.clearfix;
 
-  position: relative;
-  padding-left: variables.$check-input-gutter;
-  font-weight: variables.$font-weight-normal;
-  line-height: variables.$line-height-base;
-  text-align: left;
-
-  input[type="checkbox"],
-  input[type="radio"] {
-    position: absolute;
-    width: auto;
-    margin-top: variables.$check-input-margin-vertical;
-    margin-left: -(variables.$check-input-gutter);
-  }
+  // position: relative;
+  // padding-left: variables.$check-input-gutter;
+  // font-weight: variables.$font-weight-normal;
+  // line-height: variables.$line-height-base;
+  // text-align: left;
 }
 
 @mixin check-inline() {
