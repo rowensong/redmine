@@ -123,7 +123,7 @@ input[type="radio"] {
   border: 1px solid $border;
   background-color: $white;
   cursor: pointer;
-  margin: 0;
+  margin: 0 4px 0 0;
   &:checked {
     border-color: $text;
     &:before {
@@ -2186,19 +2186,7 @@ table.list {
   }
 }
 
-// 작업 내역
-.controller-activities {
-  #content {
-    .subtitle {
-      font-style: normal;
-      margin-top: 16px;
-      margin-bottom: 16px;
-      font-size: 14px;
-      line-height: 20px;
-      color: $text;
-      font-weight: normal;
-    }
-  }
+.controller-my {
   #activity {
     h3 {
       font-size: 16px;
@@ -2301,6 +2289,296 @@ table.list {
           margin-right: 8px;
           object-fit: cover;
           order: 1;
+        }
+
+        a {
+          color: $link;
+          font-size: 14px;
+          line-height: 20px;
+          order: 5;
+        }
+      }
+      dd {
+        margin: 0;
+        font-size: 14px;
+        line-height: 20px;
+        color: $text;
+        font-weight: normal;
+        margin-bottom: 16px;
+        display: flex;
+        flex-direction: column;
+      }
+      + h3 {
+        margin-top: 32px;
+      }
+
+      .grouped {
+        padding-left: 24px;
+        border-left: 2px solid $border;
+      }
+
+      .description {
+        font-size: 14px;
+        line-height: 20px;
+        color: $text;
+        font-weight: normal;
+        font-style: normal;
+        order: 2;
+        + .author {
+          margin-bottom: 8px;
+        }
+        &:empty {
+          display: none;
+          + .author {
+            margin-top: 0;
+          }
+        }
+      }
+      .author {
+        font-size: 14px;
+        line-height: 20px;
+        color: $text;
+        font-weight: bold;
+        display: block;
+        order: 1;
+      }
+    }
+  }
+
+  #block-documents {
+    .document-item {
+      margin-bottom: 16px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid $border;
+      &:last-child {
+        margin-bottom: 0;
+        padding-bottom: 0;
+        border-bottom: 0;
+      }
+      .title {
+        font-size: 16px;
+        line-height: 24px;
+        color: $text;
+      }
+      .updated_on {
+        font-size: 14px;
+        line-height: 20px;
+        color: $gray;
+        margin-top: 8px;
+        em {
+          font-style: normal;
+        }
+      }
+
+      .wiki {
+        margin-top: 8px;
+        h1 {
+          border: 0;
+        }
+      }
+    }
+  }
+
+  #block-news {
+    h3 {
+      font-size: 16px;
+      line-height: 24px;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      padding: 2px 0;
+      &:before {
+        content: "\ea25";
+        font-family: "icomoon";
+        font-size: 16px;
+        line-height: 16px;
+        color: $placeholder;
+        margin-right: 8px;
+        font-weight: normal;
+      }
+    }
+    > p {
+      font-size: 0;
+      line-height: 0;
+      margin-bottom: 16px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid $border;
+      &:last-of-type {
+        margin-bottom: 0;
+        padding-bottom: 0;
+        border-bottom: none;
+      }
+      > * {
+        font-size: 14px;
+        line-height: 20px;
+      }
+      > a {
+        display: block;
+        &:first-child {
+          font-weight: bold;
+          margin-bottom: 5px;
+        }
+        &:last-of-type {
+          display: inline-block;
+        }
+      }
+      a {
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+
+    .summary {
+      margin-top: 8px;
+      padding: 3px 3px 3px 16px;
+      border-left: 3px solid $border;
+      font-style: normal;
+      display: block;
+    }
+
+    .comments {
+      display: inline;
+      margin-left: 8px;
+      font-size: 12px;
+      line-height: 18px;
+      color: $gray;
+
+      &:before {
+        content: "\e965";
+        font-family: "icomoon";
+        font-size: 16px;
+        line-height: 16px;
+        margin-right: 4px;
+        vertical-align: middle;
+      }
+    }
+
+    .author {
+      margin-top: 12px;
+      margin-bottom: 0;
+      display: block;
+    }
+  }
+}
+
+// 작업 내역
+.controller-activities {
+  #content {
+    .subtitle {
+      font-style: normal;
+      margin-top: 16px;
+      margin-bottom: 16px;
+      font-size: 14px;
+      line-height: 20px;
+      color: $text;
+      font-weight: normal;
+    }
+  }
+  #activity {
+    h3 {
+      font-size: 16px;
+      line-height: 24px;
+      font-weight: bold;
+      color: $gray;
+      padding-bottom: 16px;
+      margin-bottom: 16px;
+      border-bottom: 1px solid $border;
+    }
+    dl {
+      margin: 0;
+      dt {
+        margin: 0 0 8px;
+
+        &.icon {
+          color: $gray;
+          font-family: "icomoon";
+          font-size: 16px;
+          line-height: 16px;
+          display: flex;
+          svg {
+            display: none;
+          }
+
+          &:before {
+            margin-right: 4px;
+            order: 2;
+          }
+
+          &.icon-issue {
+            &:before {
+              content: "\ea23";
+            }
+          }
+
+          &.icon-issue-note {
+            &:before {
+              content: "\e965";
+            }
+          }
+
+          &.icon-attachment {
+            &:before {
+              content: "\e956";
+            }
+          }
+
+          &.icon-issue-edit {
+            &:before {
+              content: "\e96b";
+            }
+          }
+
+          &.icon-news {
+            &:before {
+              content: "\ea25";
+            }
+          }
+
+          &.icon-document {
+            &:before {
+              content: "\e9a5";
+            }
+          }
+
+          &.grouped {
+            margin-left: 0;
+            padding-left: 24px;
+            border-left: 2px solid $border;
+            margin-bottom: 0;
+            padding-bottom: 16px;
+            &:not(:has(~ dd.grouped)) {
+              padding-bottom: 0;
+              margin-bottom: 24px;
+            }
+          }
+        }
+        .time {
+          font-size: 14px;
+          line-height: 20px;
+          color: $gray;
+          font-weight: normal;
+          margin-left: 0;
+          border-bottom: 0;
+          order: 3;
+          flex-shrink: 0;
+        }
+
+        .project {
+          font-size: 14px;
+          line-height: 20px;
+          color: $text;
+          order: 4;
+        }
+
+        > img {
+          width: 32px;
+          height: 32px;
+          border-radius: 50%;
+          margin-right: 8px;
+          object-fit: cover;
+          order: 1;
+          flex-shrink: 0;
         }
 
         a {
@@ -2840,13 +3118,13 @@ select[multiple] {
         font-size: 11px;
         line-height: 16px;
         text-align: left;
-        float: none;
+        float: none !important;
         font-weight: normal;
         font-style: normal;
         padding: 8px 10px;
 
         &:first-child {
-          margin-bottom: 12px;
+          margin-bottom: 8px;
           border-bottom: 1px solid $border;
           color: $link;
           font-weight: bold;
@@ -2854,7 +3132,7 @@ select[multiple] {
       }
 
       > p {
-        padding: 8px 10px;
+        padding: 3px 10px;
         &:has(input[type="checkbox"]) {
           display: flex;
           align-items: center;
@@ -2866,15 +3144,15 @@ select[multiple] {
           line-height: 20px;
           color: $text;
           display: inline-block;
-          margin-top: 8px;
           &:hover {
             text-decoration: underline;
           }
         }
       }
       > .ancestor {
-        margin-top: 12px;
+        margin-top: 4px;
         padding-left: 10px;
+        margin-left: 10px;
         border-left: 2px solid $border;
       }
       hr {
@@ -2998,12 +3276,6 @@ select[multiple] {
         margin-right: 4px;
       }
     }
-    .icon-add {
-      &:before {
-        content: "\e969";
-        margin-right: 4px;
-      }
-    }
   }
   #projects-index {
     ul.projects {
@@ -3019,8 +3291,8 @@ select[multiple] {
         .project {
           font-size: 16px;
           @include defaultFontFamily;
-          margin-bottom: 16px;
-
+          margin-bottom: 8px;
+          display: inline-flex;
           &:after,
           &:before {
             font-family: "icomoon";
@@ -3526,6 +3798,8 @@ select[multiple] {
           display: block;
           &:first-child {
             font-weight: bold;
+          }
+          &:last-of-type {
             display: inline-block;
           }
         }

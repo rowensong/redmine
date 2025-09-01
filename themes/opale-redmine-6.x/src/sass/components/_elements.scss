@@ -287,12 +287,11 @@ a.close-icon:not(:has(svg)) {
         .block-text,
         .block-text_async
       ) {
-      padding: variables.$panel-body-padding;
-      border: 1px solid variables.$panel-border;
-      border-radius: variables.$border-radius-base;
-      background-color: variables.$panel-bg;
-      color: variables.$panel-color;
-      font-size: 0.92em;
+      padding: 16px;
+      border: 1px solid #dcdfe5;
+      border-radius: 6px;
+      background-color: #fafbfc;
+
       word-wrap: break-word;
 
       > h3 {
@@ -469,6 +468,7 @@ ul.projects {
 
     &.child {
       font-weight: variables.$font-weight-normal;
+      margin-bottom: 0 !important;
     }
   }
 }
