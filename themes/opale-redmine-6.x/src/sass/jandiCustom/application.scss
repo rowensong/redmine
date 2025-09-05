@@ -222,6 +222,9 @@ hr {
         }
       }
     }
+    ul {
+      gap: 0 4px;
+    }
   }
 }
 
@@ -866,6 +869,9 @@ body {
 #content {
   #issue_tree,
   #relations {
+    margin-top: 24px;
+    padding-top: 24px;
+    border-top: 1px solid $border;
     .contextual {
       a {
         min-height: auto;
@@ -1778,6 +1784,9 @@ fieldset#options {
         margin-left: 0;
         color: $text;
       }
+      &:hover {
+        background-color: $whiteHover;
+      }
     }
   }
 }
@@ -2019,11 +2028,6 @@ table.list {
   }
 
   #content {
-    .icon {
-      .icon-label {
-        margin-left: 4px;
-      }
-    }
     .icon-settings {
       .icon-label {
         margin-left: 0;
@@ -2109,6 +2113,11 @@ table.list {
         padding-bottom: 6px;
         margin-bottom: 6px;
         border-bottom: 1px solid $border;
+        a {
+          &:before {
+            display: none;
+          }
+        }
       }
     }
 
@@ -2127,6 +2136,15 @@ table.list {
         }
         &:before {
           content: "\e992";
+        }
+      }
+
+      &.icon-edit {
+        .icon-label {
+          margin-left: 0 !important;
+        }
+        &:before {
+          content: "\e9a6";
         }
       }
 
@@ -2280,6 +2298,7 @@ table.list {
           line-height: 20px;
           color: $text;
           order: 4;
+          flex-shrink: 0;
         }
 
         > img {
@@ -2458,6 +2477,26 @@ table.list {
       margin-top: 12px;
       margin-bottom: 0;
       display: block;
+    }
+  }
+
+  #content {
+    > .contextual {
+      .icon-email-add,
+      .icon-passwd {
+        display: none;
+      }
+    }
+    .splitcontentright {
+      .box:has(#user_mail_notification) {
+        display: none;
+      }
+    }
+  }
+
+  #sidebar-wrapper {
+    p:has(.icon-del) {
+      display: none;
     }
   }
 }
@@ -2723,6 +2762,7 @@ table.list {
           margin-left: 0;
           border-bottom: 0;
           order: 3;
+          flex-shrink: 0;
         }
 
         .project {
@@ -2730,6 +2770,7 @@ table.list {
           line-height: 20px;
           color: $text;
           order: 4;
+          flex-shrink: 0;
         }
 
         > img {
@@ -2739,6 +2780,7 @@ table.list {
           margin-right: 8px;
           object-fit: cover;
           order: 1;
+          flex-shrink: 0;
         }
 
         a {
@@ -2792,6 +2834,39 @@ table.list {
         display: block;
         order: 1;
       }
+    }
+  }
+
+  #content {
+    > .contextual {
+      .icon-add,
+      .drdn,
+      .icon-email-add,
+      .icon-del {
+        display: none;
+      }
+    }
+    .box.tabular {
+      &:has(#password_fields) {
+        display: none;
+      }
+    }
+    .splitcontentright {
+      .box:has(#notified-projects) {
+        display: none;
+      }
+    }
+
+    #tab-content-memberships {
+      .icon-add {
+        display: none;
+      }
+    }
+  }
+
+  #context-menu {
+    li:last-child {
+      display: none;
     }
   }
 }
@@ -2903,6 +2978,14 @@ table.list {
 
   .gantt_subjects_container .gantt_subjects * {
     vertical-align: top;
+  }
+}
+
+.controller-groups {
+  #tab-content-memberships {
+    .icon-add {
+      display: none;
+    }
   }
 }
 
@@ -3020,8 +3103,12 @@ select[multiple] {
       display: flex;
       align-items: center;
       justify-content: center;
+      color: $gray;
       &:hover {
         background-color: $whiteHover;
+        &:before {
+          color: $warning;
+        }
       }
       &:before {
         content: "\e966";
@@ -3045,7 +3132,43 @@ select[multiple] {
 }
 .note-header {
   > img {
+    width: 24px;
+    height: 24px;
     border-radius: 50%;
+    object-fit: cover;
+  }
+}
+.journal {
+  h4.note-header {
+    font-size: 14px;
+    line-height: 20px;
+    > img {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      object-fit: cover;
+      top: 0;
+      margin-top: -12px;
+      margin-left: -51px;
+      float: left;
+    }
+  }
+  form {
+    border-bottom: 0;
+    background-color: $gray20;
+  }
+  .wiki {
+    border-top: 0;
+    padding: 8px;
+  }
+  .details {
+    li {
+      margin-bottom: 4px;
+    }
+    i {
+      font-size: 14px;
+      line-height: 20px;
+    }
   }
 }
 .gravatar-with-child {
@@ -3258,7 +3381,28 @@ select[multiple] {
 
 .controller-projects {
   #content {
-    .icon.bookmark,
+    .icon.bookmark {
+      background-color: $text;
+      color: $white;
+      border-color: $text;
+      .icon-label {
+        color: $white;
+      }
+      &:before {
+        color: $white;
+        content: "\e936";
+        margin-right: 4px;
+      }
+    }
+    .drdn-content {
+      .icon-del {
+        &:before {
+          display: none;
+        }
+      }
+    }
+  }
+  #content:not(:has(.drdn-items)) {
     .icon-add {
       background-color: $text;
       color: $white;
@@ -3268,12 +3412,6 @@ select[multiple] {
       }
       &:before {
         color: $white;
-      }
-    }
-    .icon.bookmark {
-      &:before {
-        content: "\e936";
-        margin-right: 4px;
       }
     }
   }
@@ -3952,6 +4090,12 @@ select[multiple] {
               color: $text;
               font-weight: bold;
             }
+            &:not(.selected) {
+              &:hover {
+                background-color: $whiteHover;
+                color: $gray;
+              }
+            }
           }
         }
       }
@@ -4016,7 +4160,8 @@ select[multiple] {
 
     .tab-content {
       .contextual {
-        margin-top: 6px;
+        margin-top: -4px;
+        margin-right: 0 !important;
       }
       .journal-actions {
         display: flex;
@@ -4027,12 +4172,12 @@ select[multiple] {
         }
         > .icon-only,
         > .icon {
-          width: 20px;
-          height: 20px;
+          width: 28px;
+          height: 28px;
           display: flex;
           align-items: center;
           justify-content: center;
-          border-radius: 4px;
+          border-radius: 6px;
           color: $gray;
           .icon-label {
             display: none;
@@ -4062,15 +4207,18 @@ select[multiple] {
             }
           }
         }
+        .drdn-content {
+          top: 32px;
+        }
         .drdn-trigger {
           min-height: auto;
           .icon-actions {
-            width: 20px;
-            height: 20px;
+            width: 28px;
+            height: 28px;
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 4px;
+            border-radius: 6px;
             color: $gray;
             &:hover {
               background-color: $whiteHover;
@@ -4085,6 +4233,9 @@ select[multiple] {
               }
             }
           }
+        }
+        + .journal-link {
+          display: none;
         }
       }
     }
@@ -4201,6 +4352,10 @@ select[multiple] {
     .attributes {
       .icon-warning {
         background-color: rgba(242, 170, 60, 0.9);
+        border-radius: 6px;
+        padding: 8px;
+        border-bottom: 0;
+        margin-top: 8px;
         &:before {
           content: "\e9ba";
           font-family: "icomoon";
@@ -4208,6 +4363,256 @@ select[multiple] {
           line-height: 20px;
           color: $white;
           margin-right: 4px;
+          align-items: flex-start;
+        }
+        .icon-label {
+          @include defaultFontFamily();
+          border-bottom: 0;
+          color: $white;
+        }
+      }
+    }
+  }
+
+  .attachments:not(.box) {
+    margin-top: 16px;
+    border: 1px solid $border;
+    border-radius: 6px;
+    padding: 8px 10px;
+    background-color: $gray20;
+    .contextual {
+      float: none;
+      margin-left: 0;
+      margin-top: 0;
+      justify-content: flex-end;
+      margin-bottom: 12px;
+      a {
+        border: 0;
+        background-color: transparent;
+        padding: 0 8px;
+
+        &:hover {
+          background-color: $gray20hover;
+        }
+      }
+      .icon-label {
+        margin-left: 4px;
+      }
+    }
+    table {
+      width: 100%;
+      td {
+        padding: 0;
+      }
+    }
+
+    .icon-only {
+      &::before {
+        color: $gray;
+        font-size: 16px;
+        line-height: 16px;
+      }
+    }
+  }
+
+  #tab-content-history {
+    .journal {
+      border: 1px solid $border;
+      border-radius: 10px;
+      padding: 12px;
+      .note-header {
+        border-bottom: none;
+        background-color: $white;
+        margin-bottom: 8px;
+        padding: 0;
+        &:before {
+          display: none;
+        }
+      }
+      .details {
+        font-size: 14px;
+        line-height: 20px;
+        border-top: 0;
+      }
+    }
+  }
+}
+
+body[class^="project-"],
+body[class*=" project-"] {
+  &.controller-issues {
+    #content {
+      > h2 {
+        font-size: 16px;
+        line-height: 24px;
+        font-weight: bold;
+        display: inline-flex;
+        align-items: center;
+        margin-top: 8px;
+        + .badge {
+          margin-left: 8px;
+          padding: 2px 4px;
+          border: 1px solid $border;
+          border-radius: 6px;
+          color: $darkGray;
+          font-size: 12px;
+          line-height: 13px;
+        }
+      }
+
+      hr {
+        display: none;
+      }
+
+      .issue.details {
+        position: relative;
+
+        .next-prev-links {
+          margin-bottom: 16px;
+          justify-content: flex-end;
+          .position {
+            a {
+              font-size: 14px;
+              line-height: 20px;
+            }
+            a {
+              color: $gray;
+            }
+          }
+        }
+
+        .author {
+          color: $gray;
+          font-size: 14px;
+          line-height: 20px;
+          a {
+            color: $text;
+          }
+        }
+      }
+
+      .author + .attributes {
+        padding: 12px 16px;
+        border-radius: 10px;
+        background-color: $gray20;
+        margin-top: 16px;
+        margin-bottom: 16px;
+        .label {
+          margin-left: 0;
+          width: 50%;
+          max-width: 160px;
+          color: $darkGray;
+          font-weight: bold;
+          font-size: 13px;
+          line-height: 20px;
+        }
+        .status {
+          .value {
+            margin: 3px 0 0;
+            padding: 2px 4px;
+            border: 1px solid $border;
+            border-radius: 6px;
+            color: $darkGray;
+            font-size: 12px;
+            line-height: 13px;
+            background-color: $white;
+          }
+        }
+
+        .priority {
+          .value {
+            color: $darkGray;
+          }
+        }
+        .attribute {
+          padding-left: 0;
+        }
+        .splitcontentleft {
+          > div {
+            margin-bottom: 8px;
+          }
+        }
+
+        table.progress td {
+          &.closed {
+            background-color: $link !important;
+          }
+        }
+      }
+
+      .description {
+        margin-bottom: 24px;
+        .contextual {
+          a {
+            border: 0;
+          }
+        }
+      }
+
+      #issue_tree,
+      #relations {
+        .contextual {
+          margin-top: -4px;
+          a {
+            font-size: 13px;
+            line-height: 14px;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            min-height: 36px;
+            padding-left: 8px;
+            padding-right: 8px;
+            &:before {
+              content: "\e969";
+              font-family: "icomoon";
+              font-size: 16px;
+              line-height: 16px;
+              color: $gray;
+              margin-right: 4px;
+            }
+          }
+        }
+
+        .issues {
+          margin-top: 16px;
+        }
+        .issues-stat {
+          color: $gray;
+          font-size: 14px;
+          line-height: 20px;
+          .badge {
+            border-radius: 17px;
+            background-color: $gray20;
+            font-size: 12px;
+            line-height: 13px;
+            padding: 2px 4px;
+            border-radius: 1px solid $border;
+            font-weight: bold;
+            a {
+              color: $gray;
+            }
+          }
+          .open {
+            a {
+              color: $gray;
+            }
+          }
+        }
+
+        .icon-link-break {
+          width: 28px;
+          height: 28px;
+          border-radius: 6px;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          &:hover {
+            background-color: $white;
+          }
+        }
+
+        .subject {
+          width: initial;
         }
       }
     }
@@ -4235,6 +4640,10 @@ select[multiple] {
           }
         }
       }
+    }
+    #tab-notifications,
+    #tab-mail_handler {
+      display: none;
     }
   }
 }
@@ -4806,3 +5215,20 @@ div.flash,
     }
   }
 }
+
+// 세팅이 끝난 후 가릴때 쓰는거
+// .controller-custom_fields {
+//   #content {
+//     #tab-UserCustomField {
+//       display: none;
+//     }
+//   }
+// }
+
+// .controller-settings {
+//   #content {
+//     #tab-authentication {
+//       display: none;
+//     }
+//   }
+// }

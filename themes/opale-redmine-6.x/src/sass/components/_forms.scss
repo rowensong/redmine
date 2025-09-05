@@ -374,17 +374,15 @@ em.info {
 
 label.inline {
   display: inline-block;
-  margin-right: variables.$check-input-margin-horizontal;
-  padding-left: variables.$check-input-gutter;
   float: none;
-
+  margin-right: 8px;
   &:last-child {
     margin-right: 0;
   }
 
-  > input {
-    margin-left: -(variables.$check-input-gutter);
-    float: left;
+  input[type="checkbox"],
+  input[type="radio"] {
+    margin-right: 4px;
   }
 
   input + & {

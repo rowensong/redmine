@@ -817,7 +817,7 @@ div.table-list.boards {
         }
       }
 
-      img.gravatar {
+      img {
         margin-top: variables.$line-height-computed -
           variables.$bubble-gravatar-size;
         margin-left: -(
@@ -827,6 +827,9 @@ div.table-list.boards {
               1px
           );
         float: left;
+        max-width: 24px;
+        max-height: 24px;
+        border-radius: 50%;
       }
     }
   }

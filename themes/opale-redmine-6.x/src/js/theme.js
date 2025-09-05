@@ -93,15 +93,31 @@ $(document).ready(function () {
     $(".account").prop("id", "");
   });
 
-  if ($('label[for="settings_app_title"]').length > 0) {
+  if ($('label[for="settings_app_title"]').length) {
     $('label[for="settings_app_title"]').parent().hide();
-  } else {
-    return;
+  }
+  if ($('label[for="settings_ui_theme"]').length) {
+    $('label[for="settings_ui_theme"]').parent().hide();
   }
 
-  if ($('label[for="settings_ui_theme"]').length > 0) {
-    $('label[for="settings_ui_theme"]').parent().hide();
-  } else {
-    return;
+  if ($("body.controller-my").length) {
+    $("#user_firstname, #user_lastname, #user_mail").prop("disabled", true);
+    $('select#block-select option[value="issuequery"]').prop("hidden", true); // 숨기기
+  }
+
+  if ($("body.controller-users").length) {
+    $("#user_mail").prop("disabled", true);
+    $("#user_login").prop("disabled", true);
+    $("#user_firstname").prop("disabled", true);
+    $("#user_lastname").prop("disabled", true);
+  }
+
+  if ($("body.controller-groups").length) {
+    $('label[for="group_twofa_required"]').parent().hide();
+  }
+
+  if ($("body.controller-settings").length) {
+    $('label[for="settings_gravatar_enabled"]').parent().hide();
+    $('label[for="settings_gravatar_default"]').parent().hide();
   }
 });

@@ -169,12 +169,14 @@ td.gantt_selected_column .gantt_hdr,
 }
 
 .task_late {
-  border: 1px solid color.adjust(variables.$progress-bar-danger-bg, $lightness: -10%);
+  border: 1px solid
+    color.adjust(variables.$progress-bar-danger-bg, $lightness: -10%);
   background-color: variables.$progress-bar-danger-bg;
 }
 
 .task_done {
-  border: 1px solid color.adjust(variables.$progress-bar-success-bg, $lightness: -10%);
+  border: 1px solid
+    color.adjust(variables.$progress-bar-success-bg, $lightness: -10%);
   background-color: variables.$progress-bar-success-bg;
 }
 
@@ -198,7 +200,8 @@ td.gantt_selected_column .gantt_hdr,
   }
 
   &.task_todo {
-    border: 1px solid color.adjust(variables.$progress-bar-info-bg, $lightness: -10%);
+    border: 1px solid
+      color.adjust(variables.$progress-bar-info-bg, $lightness: -10%);
     background-color: variables.$progress-bar-info-bg;
   }
 
@@ -214,22 +217,13 @@ td.gantt_selected_column .gantt_hdr,
 .version-behind-schedule,
 .issue-behind-schedule {
   color: variables.$brand-warning;
-
-  .context-menu-selection & {
-    color: variables.$brand-text;
-  }
 }
 
 .version-overdue,
 .issue-overdue,
 .project-overdue {
   color: variables.$brand-danger;
-
-  .context-menu-selection & {
-    color: variables.$brand-text;
-  }
 }
-
 
 // Tooltips
 

@@ -25,7 +25,7 @@
       .gravatar-with-child {
         position: relative;
 
-        > img.gravatar {
+        > img {
           top: 0;
           width: variables.$issue-gravatar-size;
           height: variables.$issue-gravatar-size;
@@ -39,8 +39,9 @@
             left: variables.$issue-gravatar-size * 0.6;
             width: variables.$issue-gravatar-size * 0.5;
             height: variables.$issue-gravatar-size * 0.5;
-            border: 2px solid rgb(255 255 255 / 0.9);
-            border-radius: 20%;
+            background-color: #fff;
+            border: 3px solid #fff;
+            border-radius: 50%;
           }
         }
       }
@@ -267,7 +268,7 @@
     .label {
       box-sizing: border-box;
       float: left;
-      color: variables.$gray-700;
+      color: #757575;
     }
 
     .value {
