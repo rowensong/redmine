@@ -730,53 +730,6 @@ div.table-list.boards {
     margin-bottom: variables.$line-height-computed * 0.5;
   }
 
-  .message {
-    border: 1px solid variables.$bubble-border;
-    border-radius: variables.$panel-border-radius;
-    background: variables.$bubble-bg;
-
-    > h4,
-    > p {
-      margin-bottom: 0;
-      padding: variables.$bubble-padding-vertical
-        variables.$bubble-padding-horizontal;
-      color: variables.$gray-700;
-      font-size: variables.$font-size-list;
-
-      a {
-        color: variables.$gray-900;
-
-        &.user {
-          font-weight: variables.$font-weight-bold;
-        }
-      }
-    }
-
-    .wiki {
-      padding: variables.$panel-body-padding;
-      border-top: 1px solid variables.$bubble-border;
-      border-radius: 0 0 variables.$panel-border-radius
-        variables.$panel-border-radius;
-      background: variables.$body-bg;
-    }
-
-    .contextual {
-      position: relative;
-      z-index: 1;
-      padding: (variables.$bubble-padding-vertical - 1px)
-        variables.$bubble-padding-vertical 0 0;
-
-      a {
-        display: inline-block;
-      }
-    }
-
-    .attachments {
-      padding: variables.$bubble-padding-horizontal;
-      border-top-color: variables.$bubble-border;
-    }
-  }
-
   .reply {
     margin-bottom: variables.$line-height-computed;
   }
@@ -827,8 +780,8 @@ div.table-list.boards {
               1px
           );
         float: left;
-        max-width: 24px;
-        max-height: 24px;
+        width: 24px;
+        height: 24px;
         border-radius: 50%;
       }
     }

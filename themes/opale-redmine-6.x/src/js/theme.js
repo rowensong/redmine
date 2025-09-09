@@ -103,6 +103,11 @@ $(document).ready(function () {
   if ($("body.controller-my").length) {
     $("#user_firstname, #user_lastname, #user_mail").prop("disabled", true);
     $('select#block-select option[value="issuequery"]').prop("hidden", true); // 숨기기
+    $("#password_fields").closest(".box.tabular, .box").hide();
+    $("#notified-projects").closest(".box").hide();
+    $("#user_mail_notification").closest(".box").hide();
+    $("#tab-content-memberships .icon-add").hide();
+    $("#sidebar-wrapper p").has(".icon-del").hide();
   }
 
   if ($("body.controller-users").length) {
@@ -110,7 +115,30 @@ $(document).ready(function () {
     $("#user_login").prop("disabled", true);
     $("#user_firstname").prop("disabled", true);
     $("#user_lastname").prop("disabled", true);
+
+    // Fallback for CSS :has() — hide parent boxes via jQuery on users controller pages
+    $("#password_fields").closest(".box.tabular, .box").hide();
+    $("#notified-projects").closest(".box").hide();
+    $("#user_mail_notification").closest(".box").hide();
+    $("#tab-content-memberships .icon-add").hide();
+    $("#sidebar-wrapper p").has(".icon-del").hide();
   }
+
+  // Swap positions of <p> blocks wrapping #user_firstname and #user_lastname
+  (function () {
+    var firstBlock = $("#user_firstname").closest("p");
+    var lastBlock = $("#user_lastname").closest("p");
+    if (
+      firstBlock.length &&
+      lastBlock.length &&
+      firstBlock[0] !== lastBlock[0]
+    ) {
+      var placeholder = $('<span style="display:none;"></span>');
+      firstBlock.before(placeholder);
+      lastBlock.before(firstBlock);
+      placeholder.replaceWith(lastBlock);
+    }
+  })();
 
   if ($("body.controller-groups").length) {
     $('label[for="group_twofa_required"]').parent().hide();
@@ -120,4 +148,6 @@ $(document).ready(function () {
     $('label[for="settings_gravatar_enabled"]').parent().hide();
     $('label[for="settings_gravatar_default"]').parent().hide();
   }
+
+  // Fallback for CSS :has() — hide paragraphs containing .icon-del in the sidebar
 });

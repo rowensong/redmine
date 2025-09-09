@@ -30,13 +30,13 @@ table.progress {
     border: 0 none;
 
     &:first-child {
-      border-top-left-radius: variables.$progress-height * .5;
-      border-bottom-left-radius: variables.$progress-height * .5;
+      border-top-left-radius: variables.$progress-height * 0.5;
+      border-bottom-left-radius: variables.$progress-height * 0.5;
     }
 
     &:last-child {
-      border-top-right-radius: variables.$progress-height * .5;
-      border-bottom-right-radius: variables.$progress-height * .5;
+      border-top-right-radius: variables.$progress-height * 0.5;
+      border-bottom-right-radius: variables.$progress-height * 0.5;
     }
 
     &.done {
@@ -44,7 +44,7 @@ table.progress {
     }
 
     &.closed {
-      background-color: variables.$progress-bar-success-bg !important; // stylelint-disable-line declaration-no-important
+      background-color: #438fff !important; // stylelint-disable-line declaration-no-important
     }
 
     &.todo {

@@ -44,7 +44,8 @@ button {
   font-size: 13px;
   line-height: 18px;
   color: $white;
-  padding: 7px 8px;
+  padding: 7px 10px;
+  min-width: 26px;
   border: none;
   cursor: pointer;
 
@@ -173,6 +174,13 @@ hr {
   .icon-label {
     display: none;
   }
+}
+
+em.info {
+  font-size: 12px;
+  line-height: 18px;
+  color: $gray;
+  margin-top: 4px;
 }
 
 .tabs {
@@ -365,6 +373,49 @@ body {
   #content {
     padding-left: 60px;
     padding-right: 60px;
+    .jstTabs.tabs {
+      margin-bottom: 8px;
+      ul {
+        display: flex;
+        align-items: center;
+      }
+      li {
+        a {
+          padding: 4px 6px;
+          border-radius: 6px;
+          font-size: 13px;
+          line-height: 20px;
+          height: auto;
+          color: $gray;
+          border: 1px solid transparent;
+          &:not(.selected) {
+            &:hover {
+              background-color: $whiteHover;
+              border-color: transparent;
+            }
+          }
+          &.selected {
+            border-color: $border;
+            color: $text;
+            background-color: $white;
+          }
+        }
+      }
+
+      .tab-elements {
+        align-self: auto;
+        button {
+          margin: 0;
+          width: 24px;
+          height: 24px;
+          padding: 4px;
+          border-radius: 6px;
+          &:hover {
+            background-color: $whiteHover;
+          }
+        }
+      }
+    }
   }
 
   #sidebar {
@@ -859,6 +910,7 @@ body {
         &.icon-del {
           &:before {
             content: "\e966";
+            display: none;
           }
         }
       }
@@ -876,6 +928,16 @@ body {
       a {
         min-height: auto;
         border: 0;
+      }
+    }
+  }
+
+  #relations {
+    #new-relation-form {
+      p {
+        display: flex;
+        align-items: center;
+        gap: 0 8px;
       }
     }
   }
@@ -1563,8 +1625,9 @@ fieldset#options {
     min-width: 200px;
     max-width: 300px;
     width: 100%;
-    padding: 8px;
+    // padding: 8px;
     .quick-search {
+      padding: 8px;
       > svg {
         display: none;
       }
@@ -1582,16 +1645,16 @@ fieldset#options {
     .drdn-items {
       overflow: hidden;
       max-height: initial;
+      padding: 0 8px 8px;
       &.projects {
-        margin-top: 4px;
+        // margin-top: 4px;
         overflow: auto;
         overflow-x: hidden;
         max-height: 200px;
       }
 
       &.all-projects {
-        margin-top: 5px;
-        padding-top: 5px;
+        padding: 8px;
         border-top: 1px solid $border;
       }
 
@@ -1632,6 +1695,12 @@ fieldset#options {
           display: flex;
           width: 100%;
         }
+      }
+      > span {
+        font-size: 13px;
+        line-height: 14px;
+        color: $gray;
+        padding: 0 8px 8px;
       }
     }
   }
@@ -1743,6 +1812,21 @@ fieldset#options {
   }
 
   #content {
+    display: flex;
+    flex-direction: column;
+
+    #query_form + form {
+      order: 2;
+    }
+
+    .legend.cal {
+      order: 1;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 0 8px;
+    }
+
     .cal {
       svg {
         display: inline-block;
@@ -1751,8 +1835,38 @@ fieldset#options {
   }
 
   #query_form_with_buttons {
+    position: relative;
     .buttons {
-      margin-top: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 4px 8px;
+      margin-top: 8px;
+    }
+
+    .buttons > label[for="month"],
+    .buttons > #month,
+    .buttons > label[for="year"],
+    .buttons > #year {
+      order: 1;
+    }
+
+    /* 적용/초기화/Save 등 버튼들 */
+    .buttons > a {
+      order: 3;
+    }
+
+    .buttons::after {
+      content: "";
+      order: 2; /* year 다음에 오도록 */
+      flex-basis: 100%; /* 한 줄 전체 차지 = 줄바꿈 */
+      height: 0; /* 시각적 높이는 없음 */
+    }
+
+    .contextual.pagination {
+      position: absolute;
+      bottom: 10px;
+      right: 0;
     }
   }
 }
@@ -2487,17 +2601,6 @@ table.list {
         display: none;
       }
     }
-    .splitcontentright {
-      .box:has(#user_mail_notification) {
-        display: none;
-      }
-    }
-  }
-
-  #sidebar-wrapper {
-    p:has(.icon-del) {
-      display: none;
-    }
   }
 }
 
@@ -2676,6 +2779,22 @@ table.list {
 }
 
 .controller-users {
+  #content {
+    > h2 {
+      display: flex;
+      align-items: center;
+      gap: 0 4px;
+      img {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-right: 8px;
+        top: 0;
+      }
+    }
+  }
+
   #activity {
     h3 {
       font-size: 16px;
@@ -2846,22 +2965,6 @@ table.list {
         display: none;
       }
     }
-    .box.tabular {
-      &:has(#password_fields) {
-        display: none;
-      }
-    }
-    .splitcontentright {
-      .box:has(#notified-projects) {
-        display: none;
-      }
-    }
-
-    #tab-content-memberships {
-      .icon-add {
-        display: none;
-      }
-    }
   }
 
   #context-menu {
@@ -2876,11 +2979,18 @@ table.list {
     label {
       margin-top: 8px;
       &[for="draw_relations"] {
+        display: flex;
+        align-items: center;
+        gap: 0 4px;
+        input {
+          margin-top: 0;
+        }
         span {
           width: 12px;
           height: 12px;
           border-radius: 50%;
           margin-right: 4px;
+          flex-shrink: 0;
         }
         font-size: 14px;
         line-height: 20px;
@@ -2978,6 +3088,42 @@ table.list {
 
   .gantt_subjects_container .gantt_subjects * {
     vertical-align: top;
+  }
+
+  #query_form_with_buttons {
+    position: relative;
+    .buttons:last-child {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 4px 8px;
+      margin-top: 8px;
+    }
+
+    .buttons > label[for="month"],
+    .buttons > #month,
+    .buttons > label[for="year"],
+    .buttons > #year {
+      order: 1;
+    }
+
+    /* 적용/초기화/Save 등 버튼들 */
+    .buttons > a {
+      order: 3;
+    }
+
+    .buttons::after {
+      content: "";
+      order: 2; /* year 다음에 오도록 */
+      flex-basis: 100%; /* 한 줄 전체 차지 = 줄바꿈 */
+      height: 0; /* 시각적 높이는 없음 */
+    }
+
+    #query_form_content + .contextual {
+      position: absolute;
+      bottom: 10px;
+      right: 0;
+    }
   }
 }
 
@@ -3097,18 +3243,15 @@ select[multiple] {
     }
 
     .icon-del {
-      width: 28px;
-      height: 28px;
+      width: 32px;
+      height: 32px;
       border-radius: 6px;
-      display: flex;
+      display: inline-flex;
       align-items: center;
       justify-content: center;
       color: $gray;
       &:hover {
         background-color: $whiteHover;
-        &:before {
-          color: $warning;
-        }
       }
       &:before {
         content: "\e966";
@@ -3164,6 +3307,23 @@ select[multiple] {
   .details {
     li {
       margin-bottom: 4px;
+      word-break: break-word;
+      a {
+        font-size: 14px;
+        line-height: 20px;
+        &.icon-download {
+          margin-top: 8px;
+          margin-bottom: 8px;
+          &:before {
+            content: "\e91e";
+            font-family: "icomoon";
+            font-size: 16px;
+            line-height: 16px;
+            color: $gray;
+            margin: 4px 4px 4px 0px;
+          }
+        }
+      }
     }
     i {
       font-size: 14px;
@@ -3192,6 +3352,8 @@ select[multiple] {
   line-height: 20px;
   display: inline-flex;
   align-items: center;
+  border: 1px solid $border;
+  margin-top: 12px;
   &:hover {
     background-color: $whiteHover;
   }
@@ -3202,6 +3364,16 @@ select[multiple] {
     line-height: 16px;
     color: $gray;
     margin-right: 4px;
+  }
+}
+
+.attachments_fields {
+  input {
+    &[readonly],
+    &[disabled] {
+      background-color: $gray20hover;
+      color: $disabled;
+    }
   }
 }
 
@@ -3380,6 +3552,61 @@ select[multiple] {
 }
 
 .controller-projects {
+  legend {
+    font-size: 15px;
+    line-height: 22px;
+    font-weight: bold;
+    color: $darkGray;
+    margin-bottom: 16px;
+  }
+  .box {
+    border: 0;
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+    color: $text;
+    border-radius: 0;
+    > fieldset {
+      border-radius: 6px;
+      padding: 16px;
+      background-color: $gray10;
+      margin-bottom: 16px;
+      legend {
+        margin-bottom: 0;
+      }
+    }
+  }
+  .tabular {
+    border-radius: 6px;
+    padding: 16px;
+    background-color: $gray10;
+    margin-bottom: 16px;
+    p {
+      margin-bottom: 16px;
+    }
+    label {
+      text-align: left;
+      font-size: 14px;
+      line-height: 20px;
+      color: $gray;
+      padding-left: 0;
+      &.block {
+        display: inline-block;
+        input {
+          margin-left: 0;
+          margin-right: 4px;
+        }
+        + .block {
+          margin-left: 24px;
+        }
+      }
+
+      &.inline {
+        padding-left: 0;
+        margin-right: 24px;
+      }
+    }
+  }
   #content {
     .icon.bookmark {
       background-color: $text;
@@ -3401,6 +3628,112 @@ select[multiple] {
         }
       }
     }
+
+    #tab-content-members {
+      > .contextual {
+        a {
+          &.icon-settings {
+            min-height: 32px;
+            width: 32px;
+            padding: 6px !important;
+            justify-content: center;
+          }
+        }
+      }
+      > p {
+        padding-right: 36px;
+        text-align: right;
+        .icon-add {
+          background-color: $white;
+          border: 1px solid $border;
+          &:hover {
+            background-color: $whiteHover;
+          }
+          &:before {
+            color: $gray;
+          }
+          .icon-label {
+            color: $text;
+          }
+        }
+      }
+      .members {
+        thead {
+          th {
+            padding: 10px 14px;
+          }
+        }
+        tbody {
+          tr {
+            &:hover {
+              background-color: $whiteHover;
+            }
+            td {
+              padding: 14px;
+            }
+          }
+        }
+
+        .buttons {
+          .icon {
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
+            color: $gray;
+            justify-content: center;
+            &:hover {
+              background-color: $white;
+              color: $text;
+            }
+            &.icon-del {
+              &:hover {
+                color: $warning;
+              }
+            }
+          }
+          .icon-label {
+            display: none;
+          }
+        }
+      }
+    }
+
+    #tab-content-versions {
+      > p {
+        text-align: right;
+        .icon-add {
+          background-color: $white;
+          border: 1px solid $border;
+          &:hover {
+            background-color: $whiteHover;
+          }
+          &:before {
+            color: $gray;
+          }
+          .icon-label {
+            color: $text;
+          }
+        }
+      }
+      fieldset {
+        border-radius: 6px;
+        padding: 16px;
+        background-color: $gray10;
+        margin-bottom: 16px;
+        legend {
+          margin-bottom: 0;
+        }
+      }
+      .icon-reload {
+        background-color: $white;
+        &:hover {
+          background-color: $whiteHover;
+        }
+        .icon-label {
+          margin-left: 0;
+        }
+      }
+    }
   }
   #content:not(:has(.drdn-items)) {
     .icon-add {
@@ -3415,6 +3748,20 @@ select[multiple] {
       }
     }
   }
+
+  #tab-content-issues {
+    legend {
+      margin-bottom: 0;
+    }
+
+    .icon-settings {
+      min-height: 32px;
+      width: 32px;
+      padding: 6px !important;
+      justify-content: center;
+    }
+  }
+
   #projects-index {
     ul.projects {
       li.root {
@@ -3886,6 +4233,128 @@ select[multiple] {
       }
     }
   }
+
+  &.project-pmt-q {
+    legend {
+      font-size: 15px;
+      line-height: 22px;
+      font-weight: bold;
+      color: $darkGray;
+      margin-bottom: 16px;
+    }
+    .box {
+      border: 0;
+      margin: 0;
+      padding: 0;
+      background-color: transparent;
+      color: $text;
+      border-radius: 0;
+      > fieldset {
+        border-radius: 6px;
+        padding: 16px;
+        background-color: $gray10;
+        margin-bottom: 16px;
+        legend {
+          margin-bottom: 0;
+        }
+      }
+    }
+    .tabular {
+      border-radius: 6px;
+      padding: 16px;
+      background-color: $gray10;
+      margin-bottom: 16px;
+      p {
+        margin-bottom: 16px;
+      }
+      label {
+        text-align: left;
+        font-size: 14px;
+        line-height: 20px;
+        color: $gray;
+        padding-left: 0;
+        &.block {
+          display: inline-block;
+          input {
+            margin-left: 0;
+            margin-right: 4px;
+          }
+          + .block {
+            margin-left: 24px;
+          }
+        }
+
+        &.inline {
+          padding-left: 0;
+          margin-right: 24px;
+        }
+      }
+    }
+
+    #project_modules {
+      legend {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+.controller-versions {
+  legend {
+    font-size: 15px;
+    line-height: 22px;
+    font-weight: bold;
+    color: $darkGray;
+    margin-bottom: 16px;
+  }
+  .box {
+    border: 0;
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+    color: $text;
+    border-radius: 0;
+    > fieldset {
+      border-radius: 6px;
+      padding: 16px;
+      background-color: $gray10;
+      margin-bottom: 16px;
+      legend {
+        margin-bottom: 0;
+      }
+    }
+  }
+  .tabular {
+    border-radius: 6px;
+    padding: 16px;
+    background-color: $gray10;
+    margin-bottom: 16px;
+    p {
+      margin-bottom: 16px;
+    }
+    label {
+      text-align: left;
+      font-size: 14px;
+      line-height: 20px;
+      color: $gray;
+      padding-left: 0;
+      &.block {
+        display: inline-block;
+        input {
+          margin-left: 0;
+          margin-right: 4px;
+        }
+        + .block {
+          margin-left: 24px;
+        }
+      }
+
+      &.inline {
+        padding-left: 0;
+        margin-right: 24px;
+      }
+    }
+  }
 }
 
 .controller-welcome {
@@ -4023,49 +4492,148 @@ select[multiple] {
 
 .controller-issues {
   // 새 일감 만들기
-  &.action-new {
-    .tabular {
-      display: flex;
-      flex-direction: column;
-      width: 100%;
-      padding: 16px;
-      #all_attributes {
-        display: flex;
-        flex-direction: column;
-        position: relative;
-      }
-      p {
-        padding-left: 0;
-        display: flex;
-        min-width: 0;
-        box-sizing: border-box;
-      }
-      label {
-        flex-shrink: 0;
-        margin-left: 0;
-        float: none;
-        width: 170px;
-        margin-right: 8px;
-      }
-      #issue_description_and_toolbar {
-        width: 100%;
-      }
-      select {
-        width: auto;
-      }
-      .autocomplete {
-        margin-top: 0;
+  &.action-create,
+  &.action-new,
+  &.action-show,
+  &.action-edit {
+    legend {
+      font-size: 15px;
+      line-height: 22px;
+      font-weight: bold;
+      color: $darkGray;
+      margin-bottom: 16px;
+    }
+    .box {
+      border: 0;
+      margin: 0;
+      padding: 0;
+      background-color: transparent;
+      color: $text;
+      border-radius: 0;
+      > fieldset {
+        border-radius: 6px;
+        padding: 16px;
+        background-color: $gray10;
+        margin-bottom: 16px;
+        legend {
+          margin-bottom: 0;
+        }
       }
     }
-    #issue_is_private_wrap {
-      margin-left: auto;
-      align-items: center;
-      position: absolute;
-      right: 0;
-      margin: 0;
+    .tabular {
+      border-radius: 6px;
+      padding: 16px;
+      background-color: $gray10;
+      margin-bottom: 16px;
+      p {
+        margin-bottom: 16px;
+      }
       label {
-        width: auto;
+        text-align: left;
+        font-size: 14px;
+        line-height: 20px;
+        color: $gray;
+        padding-left: 0;
+        &.block {
+          display: inline-block;
+          input {
+            margin-left: 0;
+            margin-right: 4px;
+          }
+          + .block {
+            margin-left: 24px;
+          }
+        }
+
+        &.inline {
+          padding-left: 0;
+          margin-right: 24px;
+        }
+      }
+    }
+
+    #issue_is_private_wrap {
+      margin-top: 0;
+      float: none;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      label {
         margin-left: 4px;
+      }
+    }
+
+    .assign-to-me-link {
+      margin-left: 4px;
+      padding: 8px 10px;
+      font-size: 14px;
+      line-height: 20px;
+      color: $text;
+      border-radius: 6px;
+      border: 1px solid $border;
+      background-color: $white;
+      font-weight: bold;
+      &:hover {
+        background-color: $whiteHover;
+      }
+    }
+
+    .attachments_fields {
+      span {
+        margin-bottom: 8px;
+      }
+      input {
+        &[readonly],
+        &[disabled] {
+          background-color: $gray20hover;
+          color: $disabled;
+        }
+      }
+    }
+
+    #watchers_inputs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px 8px;
+      label {
+        width: calc(100% / 8);
+        color: $text;
+      }
+    }
+
+    #watchers_form .search_for_watchers {
+      margin-left: 0;
+      margin-top: 16px;
+      display: block;
+    }
+
+    .splitcontentright {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px 32px;
+      > p {
+        padding-left: 0;
+        display: flex;
+        align-items: center;
+        width: calc(50% - 16px);
+        label {
+          margin-left: 0;
+          flex-shrink: 0;
+          width: 80px;
+          align-self: flex-start;
+        }
+        select,
+        input {
+          margin-top: 0;
+          flex-grow: 1;
+          min-width: 0;
+        }
+        #issue_estimated_hours {
+          margin-right: 8px;
+        }
+      }
+      #parent_issue {
+        width: 100%;
       }
     }
   }
@@ -4255,7 +4823,7 @@ select[multiple] {
 
     #update {
       legend {
-        margin-bottom: 12px;
+        margin-bottom: 0;
         font-weight: bold;
         color: $text;
       }
@@ -4274,6 +4842,23 @@ select[multiple] {
       }
       #add_attachments {
         margin-top: 12px;
+      }
+      > form {
+        border-bottom: 0;
+        margin-bottom: 24px;
+        padding-bottom: 0;
+      }
+    }
+
+    #log_time {
+      .splitcontentright {
+        width: 100%;
+        p {
+          width: 100%;
+        }
+      }
+      #time_entry_activity_id {
+        width: 100%;
       }
     }
 
@@ -4323,7 +4908,7 @@ select[multiple] {
         display: none;
       }
       &:before {
-        content: "\e966";
+        content: "\e9c9";
         font-family: "icomoon";
         font-size: 16px;
         line-height: 16px;
@@ -4379,13 +4964,17 @@ select[multiple] {
     border: 1px solid $border;
     border-radius: 6px;
     padding: 8px 10px;
-    background-color: $gray20;
+    background-color: $gray10;
+    position: relative;
     .contextual {
       float: none;
       margin-left: 0;
       margin-top: 0;
       justify-content: flex-end;
       margin-bottom: 12px;
+      position: absolute;
+      top: -49px;
+      right: 0;
       a {
         border: 0;
         background-color: transparent;
@@ -4403,6 +4992,23 @@ select[multiple] {
       width: 100%;
       td {
         padding: 0;
+        text-align: right;
+        &:first-child {
+          width: 60%;
+          text-align: left;
+        }
+        .icon-attachment {
+          display: none;
+          + .size {
+            display: none;
+          }
+        }
+        .author {
+          color: $text;
+        }
+        .icon-label {
+          word-break: break-all;
+        }
       }
     }
 
@@ -4411,6 +5017,34 @@ select[multiple] {
         color: $gray;
         font-size: 16px;
         line-height: 16px;
+      }
+    }
+
+    .thumbnails {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0 8px;
+
+      a {
+        display: inline-flex;
+        margin: 0;
+        border: 0;
+        padding: 0;
+        border-radius: 6px;
+        border: 1px solid $border;
+        background-color: $white;
+        flex-shrink: 0;
+      }
+      img {
+        flex-shrink: 0;
+        position: static;
+        top: 0;
+        margin: 0;
+        border-radius: 6px;
+        width: 72px;
+        height: 72px;
+        object-fit: cover;
       }
     }
   }
@@ -4433,6 +5067,104 @@ select[multiple] {
         font-size: 14px;
         line-height: 20px;
         border-top: 0;
+      }
+    }
+  }
+
+  #update {
+    margin-top: 24px;
+  }
+
+  #existing-attachments {
+    .existing-attachment {
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  #new-relation-form {
+    p {
+      display: flex;
+      gap: 0 8px;
+      align-items: center;
+      #relation_issue_to_id {
+        width: auto;
+        flex-grow: 1;
+      }
+    }
+  }
+  .ui-widget.ui-widget-content {
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid $border;
+    margin-top: 5px;
+    .ui-menu-item-wrapper {
+      font-size: 14px;
+      line-height: 20px;
+      color: $text;
+      padding: 8px;
+      border-radius: 6px;
+      margin: 0;
+      &.ui-state-active {
+        background-color: $whiteHover;
+        border: 0;
+        color: $text;
+      }
+    }
+  }
+}
+
+.controller-imports {
+  legend {
+    font-size: 15px;
+    line-height: 22px;
+    font-weight: bold;
+    color: $darkGray;
+  }
+  .box {
+    border-radius: 6px;
+    padding: 16px;
+    background-color: $gray10;
+    margin-bottom: 16px;
+    color: $text;
+    > fieldset {
+      border-radius: 6px;
+      padding: 16px;
+      background-color: $gray10;
+      margin-bottom: 16px;
+      legend {
+        margin-bottom: 0;
+      }
+    }
+  }
+  .tabular {
+    border-radius: 6px;
+    padding: 16px;
+    background-color: $gray10;
+    margin-bottom: 16px;
+    p {
+      margin-bottom: 16px;
+    }
+    label {
+      text-align: left;
+      font-size: 14px;
+      line-height: 20px;
+      color: $gray;
+      padding-left: 0;
+      &.block {
+        display: inline-block;
+        input {
+          margin-left: 0;
+          margin-right: 4px;
+        }
+        + .block {
+          margin-left: 24px;
+        }
+      }
+
+      &.inline {
+        padding-left: 0;
+        margin-right: 24px;
       }
     }
   }
@@ -4707,6 +5439,8 @@ body[class*=" project-"] {
   flex-wrap: wrap;
   label {
     padding-left: 0;
+    display: flex;
+    word-break: break-all;
   }
   #watchers_inputs {
     flex-grow: 1;
@@ -4715,14 +5449,8 @@ body[class*=" project-"] {
     position: static;
     margin: 0;
     width: 16px;
-  }
-
-  label {
-    input[type="checkbox"] {
-      position: static;
-      margin: 0;
-      width: 16px;
-    }
+    margin-right: 4px;
+    flex-shrink: 0;
   }
 
   .search_for_watchers {
@@ -4803,6 +5531,61 @@ body[class*=" project-"] {
 
 .controller-news {
   #content {
+    legend {
+      font-size: 15px;
+      line-height: 22px;
+      font-weight: bold;
+      color: $darkGray;
+      margin-bottom: 16px;
+    }
+    .box {
+      border: 0;
+      margin: 0;
+      padding: 0;
+      background-color: transparent;
+      color: $text;
+      border-radius: 0;
+      > fieldset {
+        border-radius: 6px;
+        padding: 16px;
+        background-color: $gray10;
+        margin-bottom: 16px;
+        legend {
+          margin-bottom: 0;
+        }
+      }
+    }
+    .tabular {
+      border-radius: 6px;
+      padding: 16px;
+      background-color: $gray10;
+      margin-bottom: 16px;
+      p {
+        margin-bottom: 16px;
+      }
+      label {
+        text-align: left;
+        font-size: 14px;
+        line-height: 20px;
+        color: $gray;
+        padding-left: 0;
+        &.block {
+          display: inline-block;
+          input {
+            margin-left: 0;
+            margin-right: 4px;
+          }
+          + .block {
+            margin-left: 24px;
+          }
+        }
+
+        &.inline {
+          padding-left: 0;
+          margin-right: 24px;
+        }
+      }
+    }
     .attachments {
       margin-top: 16px;
       border: 1px solid $border;
@@ -4945,6 +5728,65 @@ body[class*=" project-"] {
       &:before {
         color: $white;
       }
+      &:hover {
+        background-color: $text;
+      }
+    }
+
+    legend {
+      font-size: 15px;
+      line-height: 22px;
+      font-weight: bold;
+      color: $darkGray;
+      margin-bottom: 16px;
+    }
+    .box {
+      border: 0;
+      margin: 0;
+      padding: 0;
+      background-color: transparent;
+      color: $text;
+      border-radius: 0;
+      > fieldset {
+        border-radius: 6px;
+        padding: 16px;
+        background-color: $gray10;
+        margin-bottom: 16px;
+        legend {
+          margin-bottom: 0;
+        }
+      }
+    }
+    .tabular {
+      border-radius: 6px;
+      padding: 16px;
+      background-color: $gray10;
+      margin-bottom: 16px;
+      p {
+        margin-bottom: 16px;
+      }
+      label {
+        text-align: left;
+        font-size: 14px;
+        line-height: 20px;
+        color: $gray;
+        padding-left: 0;
+        &.block {
+          display: inline-block;
+          input {
+            margin-left: 0;
+            margin-right: 4px;
+          }
+          + .block {
+            margin-left: 24px;
+          }
+        }
+
+        &.inline {
+          padding-left: 0;
+          margin-right: 24px;
+        }
+      }
     }
 
     h2 {
@@ -4990,42 +5832,129 @@ body[class*=" project-"] {
         }
       }
     }
-    .attachments {
-      margin-top: 16px;
-      border: 1px solid $border;
-      border-radius: 6px;
-      padding: 8px 10px;
-      background-color: $gray20;
-      .contextual {
-        margin-left: 8px;
-        margin-top: -4px;
-        a {
-          border: 0;
-          background-color: transparent;
-          padding: 0 8px;
+  }
+  .document-group-category {
+    margin-bottom: 24px;
+  }
 
-          &:hover {
-            background-color: $gray20hover;
-          }
-        }
-        .icon-label {
-          margin-left: 4px;
+  .attachments:not(.box) {
+    margin-top: 16px;
+    border: 1px solid $border;
+    border-radius: 6px;
+    padding: 8px 10px;
+    background-color: $gray10;
+    position: relative;
+    .contextual {
+      float: none;
+      margin-left: 0;
+      margin-top: 0;
+      justify-content: flex-end;
+      margin-bottom: 12px;
+      position: absolute;
+      top: -49px;
+      right: 0;
+      a {
+        border: 0;
+        background-color: transparent;
+        padding: 0 8px;
+
+        &:hover {
+          background-color: $gray20hover;
         }
       }
-      table {
-        td {
-          padding: 0;
-          &:empty {
+      .icon-label {
+        margin-left: 4px;
+      }
+    }
+    table {
+      width: 100%;
+      td {
+        padding: 0;
+        text-align: right;
+        &:first-child {
+          width: 60%;
+          text-align: left;
+        }
+        .icon-attachment {
+          display: none;
+          + .size {
             display: none;
           }
         }
+        .author {
+          color: $text;
+        }
+        .icon-label {
+          word-break: break-all;
+        }
       }
+    }
 
-      .icon-only {
-        &::before {
+    .icon-only {
+      &::before {
+        color: $gray;
+        font-size: 16px;
+        line-height: 16px;
+      }
+    }
+
+    .thumbnails {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0 8px;
+
+      a {
+        display: inline-flex;
+        margin: 0;
+        border: 0;
+        padding: 0;
+        border-radius: 6px;
+        border: 1px solid $border;
+        background-color: $white;
+        flex-shrink: 0;
+      }
+      img {
+        flex-shrink: 0;
+        position: static;
+        top: 0;
+        margin: 0;
+        border-radius: 6px;
+        width: 72px;
+        height: 72px;
+        object-fit: cover;
+      }
+    }
+  }
+}
+
+#add_attachment_form {
+  input[type="submit"] {
+    margin-top: 8px;
+  }
+}
+
+.controller-users,
+.controller-custom_fields,
+.controller-workflows {
+  #content {
+    > .tabs {
+      margin-bottom: 16px;
+      height: auto;
+      ul {
+        height: auto;
+        a {
+          height: auto;
+          padding: 7px 13px;
+          border-radius: 48px;
+          font-size: 15px;
+          line-height: 22px;
           color: $gray;
-          font-size: 16px;
-          line-height: 16px;
+          &.selected {
+            border: 1px solid $text;
+            color: $text;
+            font-weight: bold;
+          }
         }
       }
     }
@@ -5043,21 +5972,76 @@ body[class*=" project-"] {
       border-bottom: 1px solid $border;
       color: $gray;
     }
-    .attachments {
-      margin-top: 0px;
+
+    legend {
+      font-size: 15px;
+      line-height: 22px;
+      font-weight: bold;
+      color: $darkGray;
+    }
+    .box {
+      border: 0;
+      margin: 0;
+      padding: 0;
+      background-color: transparent;
+      color: $text;
+      border-radius: 0;
+      > fieldset {
+        legend {
+          margin-bottom: 0;
+        }
+      }
+    }
+    .tabular {
+      border-radius: 6px;
+      padding: 16px;
+      background-color: $gray10;
+      margin-bottom: 16px;
+      p {
+        margin-bottom: 16px;
+      }
+      label {
+        text-align: left;
+        font-size: 14px;
+        line-height: 20px;
+        color: $gray;
+        padding-left: 0;
+        &.block {
+          display: inline-block;
+          input {
+            margin-left: 0;
+            margin-right: 4px;
+          }
+          + .block {
+            margin-left: 24px;
+          }
+        }
+
+        &.inline {
+          padding-left: 0;
+          margin-right: 24px;
+        }
+      }
+    }
+
+    .attachments:not(.box) {
+      margin-top: 16px;
       border: 1px solid $border;
       border-radius: 6px;
       padding: 8px 10px;
-      background-color: $gray20;
+      background-color: $gray10;
+      position: relative;
       margin-bottom: 16px;
       .contextual {
-        margin-left: 8px;
-        margin-top: -4px;
+        float: none;
+        margin-left: 0;
+        margin-top: 0;
+        justify-content: flex-end;
+        margin-bottom: 12px;
+        position: absolute;
+        top: -49px;
+        right: 0;
         a {
-          border: 0;
-          background-color: transparent;
-          padding: 0 8px;
-
           &:hover {
             background-color: $gray20hover;
           }
@@ -5067,10 +6051,25 @@ body[class*=" project-"] {
         }
       }
       table {
+        width: 100%;
         td {
           padding: 0;
-          &:empty {
+          text-align: right;
+          &:first-child {
+            width: 60%;
+            text-align: left;
+          }
+          .icon-attachment {
             display: none;
+            + .size {
+              display: none;
+            }
+          }
+          .author {
+            color: $text;
+          }
+          .icon-label {
+            word-break: break-all;
           }
         }
       }
@@ -5082,7 +6081,666 @@ body[class*=" project-"] {
           line-height: 16px;
         }
       }
+
+      .thumbnails {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 0 8px;
+
+        a {
+          display: inline-flex;
+          margin: 0;
+          border: 0;
+          padding: 0;
+          border-radius: 6px;
+          border: 1px solid $border;
+          background-color: $white;
+          flex-shrink: 0;
+        }
+        img {
+          flex-shrink: 0;
+          position: static;
+          top: 0;
+          margin: 0;
+          border-radius: 6px;
+          width: 72px;
+          height: 72px;
+          object-fit: cover;
+        }
+      }
     }
+
+    .filedroplistner {
+      .contextual {
+        float: none;
+        margin-bottom: 8px;
+        display: flex;
+        margin-left: auto;
+        width: 100%;
+        justify-content: flex-end;
+        a {
+          height: auto;
+          padding: 6px 8px;
+          font-size: 14px;
+          line-height: 20px;
+          background-color: $white;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          &:before {
+            font-size: 16px;
+            line-height: 16px;
+            font-family: "icomoon";
+            content: "\e96b";
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: $gray;
+            margin-right: 4px;
+          }
+          &:hover {
+            background-color: $whiteHover;
+          }
+        }
+      }
+      label.inline {
+        input {
+          margin-left: 0;
+        }
+      }
+    }
+
+    #existing-attachments {
+    }
+  }
+}
+
+.controller-attachments {
+  #content {
+    .attachments {
+      margin-top: 0px;
+      border: 1px solid $border;
+      border-radius: 6px;
+      padding: 8px;
+      background-color: $gray20;
+      margin-bottom: 16px;
+
+      table {
+        color: $gray;
+        td {
+          padding: 4px 8px;
+          &:empty {
+            display: none;
+          }
+        }
+      }
+
+      .author {
+        color: $gray;
+      }
+
+      .icon-only {
+        &::before {
+          color: $gray;
+          font-size: 16px;
+          line-height: 16px;
+        }
+      }
+    }
+  }
+}
+
+.controller-search {
+  #search-form {
+    margin-bottom: 24px;
+  }
+  #search-results {
+    .icon {
+      display: inline-flex;
+      align-items: center;
+      &:before {
+        content: "";
+        color: $gray;
+        font-size: 16px;
+        line-height: 16px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-family: "icomoon";
+
+        align-self: flex-start;
+        margin-top: 3px;
+        margin-right: 4px;
+      }
+      &.icon-reply {
+        &:before {
+          content: "\e965";
+        }
+      }
+      &.icon-issue {
+        &:before {
+          content: "\ea23";
+        }
+      }
+
+      &.icon-message {
+        &:before {
+          content: "\ea0f";
+        }
+      }
+      &.icon-issue-note {
+        &:before {
+          content: "\e965";
+        }
+      }
+
+      &.icon-attachment {
+        &:before {
+          content: "\e956";
+        }
+      }
+
+      &.icon-issue-edit {
+        &:before {
+          content: "\e96b";
+        }
+      }
+
+      &.icon-news {
+        &:before {
+          content: "\ea25";
+        }
+      }
+      &.icon-wiki-page,
+      &.icon-document {
+        &:before {
+          content: "\e9a5";
+        }
+      }
+      a {
+        color: $link;
+        font-size: 14px;
+        line-height: 20px;
+        display: inline-flex;
+        margin-bottom: 8px;
+      }
+    }
+    dd {
+      margin-bottom: 12px;
+      .description {
+        font-size: 14px;
+        line-height: 20px;
+        color: $gray;
+        font-style: normal;
+      }
+      .author {
+        font-size: 14px;
+        line-height: 20px;
+        color: $text;
+        font-weight: bold;
+        margin-top: 4px;
+        display: block;
+      }
+    }
+  }
+}
+
+.controller-messages {
+  .message {
+    margin-top: 24px;
+    .wiki {
+      margin-top: 24px;
+      font-size: 14px;
+      line-height: 20px;
+      color: $text;
+    }
+
+    &.reply {
+      h4 {
+        &:before {
+          display: none;
+        }
+      }
+      .wiki {
+        margin-top: 8px;
+      }
+      .contextual {
+        a {
+          width: 32px;
+          height: 32px;
+          border-radius: 6px;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          &:hover {
+            background-color: $whiteHover;
+          }
+          &.icon-comment {
+            &:before {
+              content: "\e965";
+              font-family: "icomoon";
+              font-size: 16px;
+              line-height: 16px;
+              color: $gray;
+            }
+          }
+        }
+      }
+
+      .attachments {
+        .contextual {
+          a {
+            width: auto;
+          }
+        }
+      }
+    }
+  }
+
+  #replies {
+    > h3 {
+      font-weight: bold;
+      font-size: 24px;
+      line-height: 32px;
+    }
+  }
+  &.action-show {
+    .contextual {
+      a {
+        display: inline-flex;
+      }
+    }
+  }
+  .attachments:not(.box) {
+    margin-top: 66px;
+    border: 1px solid $border;
+    border-radius: 6px;
+    padding: 8px 10px;
+    background-color: $gray10;
+    position: relative;
+    .contextual {
+      float: none;
+      margin-left: 0;
+      margin-top: 0;
+      justify-content: flex-end;
+      margin-bottom: 12px;
+      position: absolute;
+      top: -49px;
+      right: 0;
+      a {
+        border: 0;
+        background-color: transparent;
+        padding: 0 8px;
+
+        &:hover {
+          background-color: $gray20hover;
+        }
+      }
+      .icon-label {
+        margin-left: 4px;
+      }
+    }
+    table {
+      width: 100%;
+      td {
+        padding: 0;
+        text-align: right;
+        &:first-child {
+          width: 60%;
+          text-align: left;
+        }
+        .icon-attachment {
+          display: none;
+          + .size {
+            display: none;
+          }
+        }
+        .author {
+          color: $text;
+        }
+        .icon-label {
+          word-break: break-all;
+        }
+      }
+    }
+
+    .icon-only {
+      &::before {
+        color: $gray;
+        font-size: 16px;
+        line-height: 16px;
+      }
+    }
+
+    .thumbnails {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0 8px;
+
+      a {
+        display: inline-flex;
+        margin: 0;
+        border: 0;
+        padding: 0;
+        border-radius: 6px;
+        border: 1px solid $border;
+        background-color: $white;
+        flex-shrink: 0;
+      }
+      img {
+        flex-shrink: 0;
+        position: static;
+        top: 0;
+        margin: 0;
+        border-radius: 6px;
+        width: 72px;
+        height: 72px;
+        object-fit: cover;
+      }
+    }
+  }
+  .new_reply {
+    #message_subject {
+      width: 100%;
+    }
+  }
+}
+
+.controller-queries {
+  #content {
+    legend {
+      font-size: 15px;
+      line-height: 22px;
+      font-weight: bold;
+      color: $darkGray;
+      margin-bottom: 16px;
+    }
+    .box {
+      border: 0;
+      margin: 0;
+      padding: 0;
+      background-color: transparent;
+      color: $text;
+      border-radius: 0;
+      > fieldset {
+        border-radius: 6px;
+        padding: 16px;
+        background-color: $gray10;
+        margin-bottom: 16px;
+        legend {
+          margin-bottom: 0;
+        }
+      }
+    }
+
+    .tabular {
+      border-radius: 6px;
+      padding: 16px;
+      background-color: $gray10;
+      margin-bottom: 16px;
+      p {
+        margin-bottom: 16px;
+      }
+      label {
+        text-align: left;
+        font-size: 14px;
+        line-height: 20px;
+        color: $gray;
+        padding-left: 0;
+        &.block {
+          display: inline-block;
+          input {
+            margin-left: 0;
+            margin-right: 4px;
+          }
+          + .block {
+            margin-left: 24px;
+          }
+        }
+
+        &.inline {
+          padding-left: 0;
+          margin-right: 24px;
+        }
+      }
+    }
+
+    #options {
+      margin-bottom: 0;
+      &:before {
+        display: none;
+      }
+    }
+
+    #filters-table {
+      .filter {
+        margin-bottom: 16px;
+        .field {
+          min-width: 160px;
+          margin-right: 10px;
+          input {
+            margin-right: 4px;
+          }
+          label {
+            color: $darkGray;
+          }
+        }
+      }
+    }
+    .add-filter {
+      label[for="add_filter_select"] {
+        display: flex;
+        align-items: center;
+        width: 160px;
+        margin-right: 10px;
+        color: $gray;
+        &:before {
+          content: "\e969";
+          font-family: "icomoon";
+          font-size: 16px;
+          line-height: 16px;
+          color: $gray;
+          margin-right: 4px;
+        }
+      }
+    }
+
+    #sort {
+      > span {
+        min-width: 30px;
+        margin-right: 10px;
+        font-size: 14px;
+        line-height: 20px;
+        color: $darkGray;
+      }
+    }
+  }
+}
+
+.controller-boards {
+  #content {
+    legend {
+      font-size: 15px;
+      line-height: 22px;
+      font-weight: bold;
+      color: $darkGray;
+      margin-bottom: 16px;
+    }
+    .box {
+      border-radius: 6px;
+      padding: 16px;
+      background-color: $gray10;
+      margin-bottom: 16px;
+      color: $text;
+    }
+    .tabular {
+      border-radius: 6px;
+      padding: 16px;
+      background-color: $gray10;
+      margin-bottom: 16px;
+      p {
+        margin-bottom: 16px;
+        br {
+          display: none;
+        }
+      }
+      label {
+        text-align: left;
+        font-size: 14px;
+        line-height: 20px;
+        color: $gray;
+        padding-left: 0;
+        &.block {
+          display: inline-block;
+          input {
+            margin-left: 0;
+            margin-right: 4px;
+          }
+          + .block {
+            margin-left: 24px;
+          }
+        }
+
+        &.inline {
+          padding-left: 0;
+          margin-right: 24px;
+        }
+      }
+    }
+
+    label[for="message_subject"] {
+      font-size: 13px;
+      line-height: 20px;
+      color: $darkGray;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .attachments_form {
+      margin-top: 8px;
+      display: block;
+    }
+
+    br {
+      display: none;
+    }
+
+    .messages {
+      th {
+        font-size: 12px;
+        line-height: 18px;
+      }
+      .icon-label {
+        font-size: 12px;
+        line-height: 18px;
+        color: $text;
+      }
+      .sort.desc {
+        font-size: 12px;
+        line-height: 18px;
+        font-weight: bold;
+        color: $text;
+        .icon-label {
+          margin-left: 0;
+        }
+        &::after {
+          content: "\e9f9";
+          font-size: 14px;
+          line-height: 14px;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          font-family: "icomoon";
+        }
+      }
+    }
+  }
+}
+
+.controller-files {
+  .autoscroll {
+    box-sizing: border-box;
+  }
+  legend {
+    font-size: 15px;
+    line-height: 22px;
+    font-weight: bold;
+    color: $darkGray;
+    margin-bottom: 16px;
+  }
+  .box {
+    border: 0;
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+    color: $text;
+    border-radius: 0;
+    > fieldset {
+      border-radius: 6px;
+      padding: 16px;
+      background-color: $gray10;
+      margin-bottom: 16px;
+      legend {
+        margin-bottom: 0;
+      }
+    }
+  }
+  .filedroplistner {
+    p {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+  .tabular {
+    border-radius: 6px;
+    padding: 16px;
+    background-color: $gray10;
+    margin-bottom: 16px;
+    p {
+      margin-bottom: 16px;
+      padding-left: 0;
+      margin-left: 0;
+    }
+    label {
+      text-align: left;
+      font-size: 14px;
+      line-height: 20px;
+      color: $gray;
+      padding-left: 0;
+      margin-bottom: 8px;
+      margin-left: 0;
+      &.block {
+        display: inline-block;
+        input {
+          margin-left: 0;
+          margin-right: 4px;
+        }
+        + .block {
+          margin-left: 24px;
+        }
+      }
+
+      &.inline {
+        padding-left: 0;
+        margin-right: 24px;
+      }
+    }
+  }
+}
+
+div.jstElements .jstb_help {
+  background-image: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  &:before {
+    content: "\e9f4";
+    font-family: "icomoon";
+    font-size: 16px;
+    line-height: 16px;
+    color: $gray;
   }
 }
 
@@ -5154,16 +6812,17 @@ div.flash,
 }
 
 .nodata {
-  background-color: rgba(242, 170, 60, 0.9);
+  background-color: $gray20;
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
+  color: $gray;
   &:before {
-    content: "\e9ba";
+    content: "\ea27";
     font-family: "icomoon";
     font-size: 20px;
     line-height: 20px;
-    color: $white;
+    color: $gray;
     margin-right: 8px;
   }
 }

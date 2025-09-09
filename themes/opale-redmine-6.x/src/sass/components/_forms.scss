@@ -95,9 +95,9 @@ input[type="password"] {
   &[disabled],
   &[readonly],
   fieldset[disabled] & {
-    border-color: variables.$input-border;
     opacity: 1;
-    background-color: variables.$input-bg-disabled;
+    color: #d5d5d5;
+    background-color: #e9ecf0;
   }
 }
 
@@ -492,10 +492,10 @@ label[for="closed"] {
   input {
     width: 21.5em;
     margin-right: 0.5em;
-    margin-bottom: variables.$line-height-computed * 0.25;
+    // margin-bottom: variables.$line-height-computed * 0.25;
 
     &.deleted_attachment {
-      width: auto;
+      width: 16px;
     }
   }
 
@@ -540,8 +540,6 @@ label[for="closed"] {
 #issue-form {
   fieldset {
     &:last-child {
-      padding-bottom: 0;
-
       p {
         margin-bottom: 0;
       }
@@ -561,8 +559,6 @@ label[for="closed"] {
   #issue_done_ratio {
     width: 5.5em;
     min-width: 1em;
-    padding-left: 0.2em;
-    text-align: right;
   }
 }
 
