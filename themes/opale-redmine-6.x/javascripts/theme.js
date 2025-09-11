@@ -61,10 +61,10 @@ $(document).ready(function () {
 
   var account = '<div id="userprofile">';
   if (userAvatar) {
-    account += '<div class="profileicon account"></div>';
+    account += '<div class="profileicon account" id="myprofile"></div>';
     console.log("Profile icon created with avatar");
   } else {
-    account += '<div class="profileicon account"></div>';
+    account += '<div class="profileicon account" id="myprofile"></div>';
     console.log("Profile icon created without avatar");
   }
   account += '<div id="profilemenu" style="display: none;"></div></div>';
@@ -79,9 +79,11 @@ $(document).ready(function () {
     var X = this.id;
     if (X == 1) {
       $("#profilemenu").hide();
+      $(".profileicon").removeClass("show");
       $(this).prop("id", "0");
     } else {
       $("#profilemenu").show();
+      $(".profileicon").addClass("show");
       $(this).prop("id", "1");
     }
   });
@@ -90,6 +92,7 @@ $(document).ready(function () {
   });
   $(document).mouseup(function () {
     $("#profilemenu").hide();
+    $(".profileicon").removeClass("show");
     $(".account").prop("id", "");
   });
 
@@ -147,6 +150,7 @@ $(document).ready(function () {
   if ($("body.controller-settings").length) {
     $('label[for="settings_gravatar_enabled"]').parent().hide();
     $('label[for="settings_gravatar_default"]').parent().hide();
+    $('label[for="user_lastname"]').parent().hide();
   }
 
   // Fallback for CSS :has() — hide paragraphs containing .icon-del in the sidebar

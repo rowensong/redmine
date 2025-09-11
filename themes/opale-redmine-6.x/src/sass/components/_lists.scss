@@ -69,6 +69,7 @@ table.list {
     font-size: 14px;
     line-height: 20px;
     text-align: left;
+    word-break: break-all;
     &:first-child {
       color: #333;
       a {
@@ -131,6 +132,7 @@ table.list {
 
   td {
     color: rgba(117, 117, 117, 1);
+
     a {
       color: rgba(117, 117, 117, 1);
     }

@@ -345,8 +345,8 @@ em.info {
 
       > input[type="checkbox"],
       > input[type="radio"] {
-        margin-left: -(variables.$check-input-gutter);
-        float: left;
+        // margin-left: -(variables.$check-input-gutter);
+        // float: left;
       }
     }
 
