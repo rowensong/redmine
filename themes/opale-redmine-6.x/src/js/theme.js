@@ -153,5 +153,9 @@ $(document).ready(function () {
     $('label[for="user_lastname"]').parent().hide();
   }
 
+  if ($("body.controller-my").length) {
+    $('label[for="user_lastname"]').parent().hide();
+  }
+
   // Fallback for CSS :has() — hide paragraphs containing .icon-del in the sidebar
 });

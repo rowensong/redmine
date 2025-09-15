@@ -583,6 +583,19 @@ body {
           padding: 8px 0px 8px 28px;
           border-radius: 6px;
           margin-bottom: 0;
+          img {
+            position: static;
+            margin-right: 4px;
+            flex-shrink: 0;
+            border: 1px solid $border;
+            box-sizing: border-box;
+          }
+          .user {
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+            max-width: 150px;
+          }
         }
         .delete {
           margin-left: auto;
@@ -4103,6 +4116,7 @@ select[multiple] {
 .watchers li {
   img {
     @include profileImageSmall;
+    position: static;
   }
 }
 .note-header {
@@ -4447,9 +4461,19 @@ select[multiple] {
       .icon-label {
         color: $white;
       }
+      &.icon-bookmark-off {
+        &:before {
+          content: "\e936";
+        }
+      }
+      &.icon-bookmark {
+        &:before {
+          content: "\ea2b";
+        }
+      }
       &:before {
+        max-width: 16px;
         color: $white;
-        content: "\e936";
         margin-right: 4px;
       }
     }
@@ -6225,6 +6249,20 @@ select[multiple] {
     border-top: 1px solid $border;
     border-top-left-radius: 6px;
     border-top-right-radius: 6px;
+  }
+
+  .select2-results__option > span {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    img {
+      flex-shrink: 0;
+    }
+    > span {
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+    }
   }
 
   .select2-results__options[role="listbox"] {
