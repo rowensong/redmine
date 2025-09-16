@@ -155,8 +155,6 @@ hr {
   svg {
     display: none;
   }
-  width: 24px;
-  height: 24px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -2489,6 +2487,15 @@ body:not(.controller-issues) {
 }
 
 .controller-my {
+  .icon-sort-handle {
+    width: 32px;
+    height: 32px;
+    border: 1px solid $border;
+    border-radius: 6px;
+    background-color: $white;
+    box-sizing: border-box;
+  }
+
   #content {
     > h2 {
       display: flex;
@@ -2715,15 +2722,6 @@ body:not(.controller-issues) {
       display: flex;
       align-items: center;
       padding: 2px 0;
-      &:before {
-        content: "\ea25";
-        font-family: "icomoon";
-        font-size: 16px;
-        line-height: 16px;
-        color: $placeholder;
-        margin-right: 8px;
-        font-weight: normal;
-      }
     }
     > p {
       font-size: 0;
@@ -3324,6 +3322,56 @@ body:not(.controller-issues) {
       &.inline {
         padding-left: 0;
         margin-right: 24px;
+      }
+    }
+  }
+
+  .list.projects {
+    .child {
+      td.name {
+        &:before {
+          content: "\ea2c";
+          font-family: "icomoon";
+          font-size: 16px;
+          line-height: 16px;
+          color: $gray;
+          margin-right: 2px;
+          font-weight: normal;
+        }
+      }
+    }
+  }
+
+  .splitcontentright {
+    padding: 16px;
+    border: 1px solid $border;
+    border-radius: 16px;
+    background-color: $gray10;
+    margin-bottom: 16px;
+    legend {
+      margin-bottom: 0;
+    }
+    > h3 {
+      font-size: 16px;
+      line-height: 24px;
+      font-weight: bold;
+      display: inline-flex;
+      align-items: center;
+      margin-bottom: 16px;
+      &:before {
+        content: "\ea0f";
+        font-family: "icomoon";
+        font-size: 20px;
+        line-height: 20px;
+        color: $placeholder;
+        margin-right: 8px;
+        font-weight: normal;
+      }
+    }
+
+    .other-formats {
+      a {
+        background-color: $white;
       }
     }
   }
@@ -6930,14 +6978,14 @@ body[class*=" project-"] {
       font-family: "icomoon";
       font-size: 20px;
       line-height: 20px;
-      color: $gray;
+      color: $placeholder;
       margin-right: 8px;
     }
   }
 
   &#block-kanban_widget {
     > .contextual {
-      right: 54px;
+      right: 52px;
     }
     .contextual + div {
       display: flex;
@@ -6951,8 +6999,15 @@ body[class*=" project-"] {
       h3 {
         order: 1;
         margin: 0;
+        display: flex;
+        align-items: center;
         &:before {
           content: "\ea2d";
+          font-family: "icomoon";
+          font-size: 20px;
+          line-height: 20px;
+          color: $placeholder;
+          margin-right: 8px;
         }
       }
       .kanban-table {
@@ -7034,7 +7089,7 @@ body[class*=" project-"] {
   }
 
   &#block-calendar {
-    h3 {
+    > h3 {
       &:before {
         content: "\e910";
       }
@@ -7046,35 +7101,88 @@ body[class*=" project-"] {
     }
   }
   &#block-issuesreportedbyme {
-    h3 {
+    > h3 {
       &:before {
         content: "\ea25";
       }
     }
     .child .subject {
       a {
-        display: inline-block;
+        display: inline-flex;
+        align-items: center;
         &:before {
           content: "\ea2c";
           font-family: "icomoon";
           font-size: 16px;
           line-height: 16px;
           color: $gray;
+          margin-right: 2px;
+          font-weight: normal;
         }
       }
     }
   }
 
   &#block-timelog {
-    h3 {
+    > h3 {
       &:before {
         content: "\e950";
+      }
+      .icon-add {
+        margin-left: 8px;
+        border: 1px solid $border;
+        border-radius: 6px;
+        font-size: 13px;
+        line-height: 18px;
+        background-color: $white;
+        padding: 7px 8px;
+        box-sizing: border-box;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        &::before {
+          content: "\e9df";
+          font-family: "icomoon";
+          font-size: 16px;
+          line-height: 16px;
+          color: $gray;
+          margin-right: 4px;
+        }
+        .icon-label {
+          margin-left: 0;
+        }
+        &:hover {
+          background-color: $whiteHover;
+        }
+      }
+    }
+
+    .icon-actions {
+      &::before {
+        content: "\e933";
+        font-family: "icomoon";
+        font-size: 16px;
+        line-height: 16px;
+        color: $gray;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 24px;
+        height: 24px;
+        border-radius: 6px;
+        background-color: $white;
+        &:hover {
+          background-color: $whiteHover;
+        }
+      }
+      .icon-label {
+        display: none;
       }
     }
   }
 
   &#block-activity {
-    h3 {
+    > h3 {
       &:before {
         content: "\ea0f";
       }
@@ -7082,11 +7190,32 @@ body[class*=" project-"] {
   }
 
   &#block-documents {
-    h3 {
+    > h3 {
       &:before {
         content: "\e9a5";
       }
     }
+    > .contextual {
+      &:first-child {
+        right: 16px;
+      }
+    }
+  }
+
+  &#block-news {
+    > h3 {
+      &:before {
+        content: "\ea25";
+      }
+    }
+    > .contextual {
+      &:first-child {
+        right: 16px;
+      }
+    }
+  }
+
+  &#block-activity {
     > .contextual {
       &:first-child {
         right: 16px;
