@@ -119,7 +119,10 @@ table.list {
     }
 
     &.id,
-    &.legacy_id,
+    &.legacy_id {
+      text-align: center;
+    }
+
     &.estimated_hours,
     &.float,
     &.int,
@@ -461,7 +464,7 @@ tr.entry {
 
   tr.issue .id > a,
   tr.issue .legacy_id > a {
-    display: block;
+    display: inline-block;
     padding: variables.$tracker-list-padding;
 
     &::before {

@@ -150,12 +150,10 @@ $(document).ready(function () {
   if ($("body.controller-settings").length) {
     $('label[for="settings_gravatar_enabled"]').parent().hide();
     $('label[for="settings_gravatar_default"]').parent().hide();
-    $('label[for="user_lastname"]').parent().hide();
   }
 
-  if ($("body.controller-my").length) {
-    $('label[for="user_lastname"]').parent().hide();
-  }
+  // 공통으로 숨겨야할 항목
+  $('label[for="user_lastname"]').parent().hide();
 
   // Fallback for CSS :has() — hide paragraphs containing .icon-del in the sidebar
 });

@@ -44,8 +44,8 @@ button {
   font-size: 13px;
   line-height: 18px;
   color: $white;
-  padding: 7px 10px;
-  min-width: 26px;
+  padding: 5px 10px;
+  min-width: 28px;
   border: none;
   cursor: pointer;
 
@@ -661,6 +661,9 @@ body {
   #principals_for_new_member {
     #principals {
       label {
+        display: inline-block;
+        min-width: 0;
+        width: 100%;
         text-overflow: ellipsis;
         overflow: hidden;
         white-space: nowrap;
@@ -673,16 +676,32 @@ body {
           position: static;
           margin: 0;
           margin-right: 4px;
+          vertical-align: middle;
         }
         img {
           border-radius: 50%;
           margin-right: 4px;
           display: inline-block;
+          vertical-align: middle;
         }
       }
     }
-    .pagination {
-      margin-top: 16px;
+  }
+
+  .objects-selection {
+    height: 400px;
+    overflow: auto;
+  }
+
+  .pagination {
+    position: relative;
+    margin-top: 16px;
+    justify-content: center;
+    float: none;
+    > span {
+      position: absolute;
+      left: 0;
+      top: 5px;
     }
   }
 }
@@ -778,41 +797,95 @@ body {
 }
 
 // 레프트 메뉴가 없는경우 main에 nosidebar 클래스가 붙나 싶음
-
-.contextual:not(.next-prev-links) {
-  a {
-    min-height: 36px;
-    box-sizing: border-box;
-  }
-  > .icon-add {
-    background-color: $text;
-    .icon-label {
-      display: flex;
-      font-size: 14px;
-      line-height: 20px;
-      color: $white;
-      align-items: center;
-      margin: 0;
-      font-weight: bold;
-      &:before {
-        content: "\e969";
-        font-family: "icomoon";
-        font-size: 16px;
-        line-height: 16px;
+#content {
+  .contextual:not(.next-prev-links) {
+    a {
+      min-height: 32px;
+      box-sizing: border-box;
+    }
+    > .icon-add {
+      background-color: $text;
+      .icon-label {
         display: flex;
+        font-size: 14px;
+        line-height: 20px;
+        color: $white;
         align-items: center;
-        justify-content: center;
-        margin-right: 4px;
-        font-weight: normal;
+        margin: 0;
+        font-weight: bold;
+        &:before {
+          content: "\e969";
+          font-family: "icomoon";
+          font-size: 16px;
+          line-height: 16px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-right: 4px;
+          font-weight: normal;
+        }
+      }
+      &:hover {
+        background-color: $textHover;
       }
     }
-    &:hover {
-      background-color: $textHover;
+    // 이게 헤더 쪽인가?
+    .drdn-trigger {
+      .icon-actions {
+        &::before {
+          content: "\e973";
+          font-family: "icomoon";
+          font-size: 16px;
+          line-height: 16px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-weight: normal;
+        }
+        .icon-label {
+          font-size: 0;
+          margin-left: 0;
+        }
+      }
+
+      .icon-copy-link {
+        svg {
+          display: none;
+        }
+      }
     }
-  }
-  // 이게 헤더 쪽인가?
-  .drdn-trigger {
-    .icon-actions {
+
+    .journal-actions {
+      .drdn-trigger {
+        .icon-only.icon-actions {
+          svg {
+            display: none;
+          }
+          &:before {
+            content: "\e973";
+            font-family: "icomoon";
+            font-size: 16px;
+            line-height: 16px;
+          }
+        }
+        .icon-label {
+          font-size: 0;
+        }
+      }
+      .drdn-content {
+        top: 22px;
+      }
+    }
+
+    > .icon-settings {
+      padding: 6px 7px;
+      border: 1px solid $border;
+      background-color: $white;
+      color: $gray;
+      border-radius: 6px;
+      svg {
+        display: none;
+      }
       &::before {
         content: "\e973";
         font-family: "icomoon";
@@ -823,108 +896,59 @@ body {
         justify-content: center;
         font-weight: normal;
       }
+      &:hover {
+        background-color: $whiteHover;
+      }
       .icon-label {
         font-size: 0;
         margin-left: 0;
       }
     }
 
-    .icon-copy-link {
-      svg {
-        display: none;
-      }
-    }
-  }
-
-  .journal-actions {
-    .drdn-trigger {
-      .icon-only.icon-actions {
-        svg {
-          display: none;
-        }
-        &:before {
-          content: "\e973";
-          font-family: "icomoon";
-          font-size: 16px;
-          line-height: 16px;
-        }
-      }
-      .icon-label {
-        font-size: 0;
-      }
-    }
     .drdn-content {
-      top: 22px;
-    }
-  }
-
-  > .icon-settings {
-    padding: 9px !important;
-    border: 1px solid $border;
-    background-color: $gray10;
-    color: $gray;
-    border-radius: 6px;
-    svg {
-      display: none;
-    }
-    &::before {
-      content: "\e973";
-      font-family: "icomoon";
-      font-size: 16px;
-      line-height: 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: normal;
-    }
-    .icon-label {
-      font-size: 0;
-      margin-left: 0;
-    }
-  }
-
-  .drdn-content {
-    .drdn-items {
-      a {
-        padding: 8px;
-        display: flex;
-        width: 100%;
-        cursor: pointer;
-        font-size: 14px;
-        line-height: 20px;
-        color: $text;
-        border-radius: 6px;
-        background-color: $white;
-        &:hover {
-          background-color: $whiteHover;
-        }
-        &:before {
-          font-family: "icomoon";
-          font-size: 16px;
-          line-height: 16px;
+      .drdn-items {
+        a {
+          padding: 8px;
           display: flex;
-          margin-right: 4px;
-          color: $gray;
-        }
-        .icon-label {
-          color: $text;
+          width: 100%;
+          cursor: pointer;
           font-size: 14px;
           line-height: 20px;
-        }
-
-        &.icon-copy-link {
-          svg {
-            display: none;
+          color: $text;
+          border-radius: 6px;
+          background-color: $white;
+          &:hover {
+            background-color: $whiteHover;
           }
           &:before {
-            content: "\e9cd";
+            font-family: "icomoon";
+            font-size: 16px;
+            line-height: 16px;
+            display: flex;
+            margin-right: 4px;
+            color: $gray;
           }
-        }
+          .icon-label {
+            color: $text;
+            font-size: 14px;
+            line-height: 20px;
+            margin-left: 0 !important;
+          }
 
-        &.icon-del {
-          &:before {
-            content: "\e966";
-            display: none;
+          &.icon-copy-link {
+            svg {
+              display: none;
+            }
+            &:before {
+              content: "\e9cd";
+            }
+          }
+
+          &.icon-del {
+            &:before {
+              content: "\e966";
+              display: none;
+            }
           }
         }
       }
@@ -952,6 +976,20 @@ body {
         display: flex;
         align-items: center;
         gap: 0 8px;
+      }
+    }
+  }
+
+  > .contextual {
+    .icon-edit {
+      .icon-label {
+        margin-left: 4px !important;
+      }
+    }
+
+    .icon-del {
+      .icon-label {
+        margin-left: 4px !important;
       }
     }
   }
@@ -1091,6 +1129,9 @@ fieldset#filters {
     .values {
       min-width: 180px;
       flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      gap: 0 8px;
 
       > span {
         display: flex;
@@ -1151,8 +1192,8 @@ fieldset#options {
     }
     .icon {
       border: 1px solid $border;
-      padding-top: 7px;
-      padding-bottom: 7px;
+      padding-top: 5px;
+      padding-bottom: 5px;
       &:hover {
         background-color: $whiteHover;
       }
@@ -1347,6 +1388,9 @@ fieldset#options {
       font-weight: bold;
     }
   }
+  > p {
+    margin-bottom: 16px;
+  }
 }
 
 .pagination .items {
@@ -1462,7 +1506,7 @@ fieldset#options {
 }
 
 #topmenu-nav {
-  padding: 16px;
+  padding: 8px 16px;
   display: flex;
   align-items: center;
   &::before {
@@ -2345,6 +2389,16 @@ table.list {
   }
 }
 
+body:not(.controller-issues) {
+  img.gravatar {
+    top: 0;
+    box-sizing: border-box;
+    border: 1px solid $border;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+}
+
 #footer {
   padding: 20px 60px;
   font-size: 12px;
@@ -2924,14 +2978,17 @@ table.list {
     > h2 {
       display: flex;
       align-items: center;
-      gap: 0 4px;
       img {
+        display: inline-flex;
+        align-items: center;
         width: 32px;
         height: 32px;
+        flex-shrink: 0;
+        border: 1px solid $border;
+        margin: 0 8px;
+        box-sizing: border-box;
         border-radius: 50%;
-        object-fit: cover;
-        margin-right: 8px;
-        top: 0;
+        overflow: hidden;
       }
     }
   }
@@ -4096,6 +4153,9 @@ select[multiple] {
       justify-content: center;
       color: $gray;
       &:hover {
+        &:before {
+          color: $warning;
+        }
         background-color: $whiteHover;
       }
       &:before {
@@ -5600,6 +5660,10 @@ select[multiple] {
       display: flex;
       flex-wrap: wrap;
       gap: 4px 8px;
+      margin-bottom: 16px;
+      &:empty {
+        display: none;
+      }
       label {
         width: calc(100% / 8);
         color: $text;
@@ -5608,7 +5672,6 @@ select[multiple] {
 
     #watchers_form .search_for_watchers {
       margin-left: 0;
-      margin-top: 16px;
       display: block;
     }
 
@@ -6808,13 +6871,36 @@ body[class*=" project-"] {
         color: $gray;
         margin-right: 4px;
       }
+      .icon-label {
+        margin-left: 0;
+      }
     }
   }
 }
 
 .mypage-box {
+  position: relative;
   .contextual {
     margin-top: -8px;
+    position: absolute;
+    right: 0;
+    top: 18px;
+    &:first-child {
+      right: 54px;
+      z-index: 2;
+    }
+    &:nth-child(2) {
+      right: 16px;
+    }
+    + div:not(.contextual) {
+      position: relative;
+      .contextual {
+        position: absolute;
+        right: 0;
+        top: 2px;
+        margin-top: -8px;
+      }
+    }
     a {
       padding-left: 8px;
       padding-right: 8px;
@@ -6829,6 +6915,181 @@ body[class*=" project-"] {
           line-height: 16px;
           margin-right: 4px;
         }
+      }
+    }
+  }
+
+  > h3 {
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: bold;
+    color: $text;
+    display: flex;
+    align-items: center;
+    &:before {
+      font-family: "icomoon";
+      font-size: 20px;
+      line-height: 20px;
+      color: $gray;
+      margin-right: 8px;
+    }
+  }
+
+  &#block-kanban_widget {
+    > .contextual {
+      right: 54px;
+    }
+    .contextual + div {
+      display: flex;
+      flex-direction: column;
+      #kanban-settings {
+        order: 2;
+        .box {
+          margin-bottom: 16px;
+        }
+      }
+      h3 {
+        order: 1;
+        margin: 0;
+        &:before {
+          content: "\ea2d";
+        }
+      }
+      .kanban-table {
+        order: 3;
+
+        .project-name {
+          background-color: $gray10;
+        }
+
+        th,
+        td {
+          border-color: $gray30;
+        }
+        td {
+          padding: 8px;
+        }
+        hr {
+          display: none;
+        }
+        .my-issue-card-low-priority {
+          background-color: $white;
+          margin: 0;
+          border-radius: 6px;
+          padding: 10px 0;
+          min-height: initial;
+          .issue-title,
+          .issue-details {
+            padding: 0 10px;
+          }
+
+          .issue-header {
+            padding: 2px 4px;
+            border-radius: 6px;
+            background-color: #c074ee33;
+
+            display: inline-block;
+            margin: 0 10px;
+            .issue-tracker,
+            .issue-id {
+              color: #c074ee;
+              font-size: 12px;
+              line-height: 13px;
+            }
+          }
+
+          .issue-title {
+            margin-top: 4px;
+          }
+
+          .issue-link {
+            font-size: 13px;
+            line-height: 20px;
+            color: $text;
+          }
+
+          .issue-details {
+            font-size: 11px;
+            line-height: 16px;
+            color: $text;
+            margin-top: 8px;
+            padding-top: 8px;
+            border-top: 1px solid $border;
+            justify-content: flex-start;
+            &:before {
+              content: "\e9df";
+              font-family: "icomoon";
+              font-size: 16px;
+              line-height: 16px;
+              color: $gray;
+              margin-right: 4px;
+            }
+            .issue-estimated-hours {
+              margin-left: auto;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &#block-calendar {
+    h3 {
+      &:before {
+        content: "\e910";
+      }
+    }
+    > .contextual {
+      &:first-child {
+        right: 16px;
+      }
+    }
+  }
+  &#block-issuesreportedbyme {
+    h3 {
+      &:before {
+        content: "\ea25";
+      }
+    }
+    .child .subject {
+      a {
+        display: inline-block;
+        &:before {
+          content: "\ea2c";
+          font-family: "icomoon";
+          font-size: 16px;
+          line-height: 16px;
+          color: $gray;
+        }
+      }
+    }
+  }
+
+  &#block-timelog {
+    h3 {
+      &:before {
+        content: "\e950";
+      }
+    }
+  }
+
+  &#block-activity {
+    h3 {
+      &:before {
+        content: "\ea0f";
+      }
+    }
+  }
+
+  &#block-documents {
+    h3 {
+      &:before {
+        content: "\e9a5";
+      }
+    }
+    > .contextual {
+      &:first-child {
+        right: 16px;
       }
     }
   }
@@ -7033,45 +7294,6 @@ body[class*=" project-"] {
         }
       }
     }
-    .attachments {
-      margin-top: 16px;
-      border: 1px solid $border;
-      border-radius: 6px;
-      padding: 8px 10px;
-      background-color: $gray20;
-      .contextual {
-        margin-left: 8px;
-        margin-top: -4px;
-        a {
-          border: 0;
-          background-color: transparent;
-          padding: 0 8px;
-
-          &:hover {
-            background-color: $gray20hover;
-          }
-        }
-        .icon-label {
-          margin-left: 4px;
-        }
-      }
-      table {
-        td {
-          padding: 0;
-          &:empty {
-            display: none;
-          }
-        }
-      }
-
-      .icon-only {
-        &::before {
-          color: $gray;
-          font-size: 16px;
-          line-height: 16px;
-        }
-      }
-    }
   }
 
   #comments {
@@ -7158,6 +7380,109 @@ body[class*=" project-"] {
           color: $gray;
           margin-right: 4px;
         }
+      }
+    }
+  }
+
+  .wiki {
+    margin-bottom: 68px;
+  }
+
+  .attachments:not(.box) {
+    margin-top: 16px;
+    border: 1px solid $border;
+    border-radius: 6px;
+    padding: 8px 10px;
+    background-color: $gray10;
+    position: relative;
+    .contextual {
+      float: none;
+      margin-left: 0;
+      margin-top: 0;
+      justify-content: flex-end;
+      margin-bottom: 12px;
+      position: absolute;
+      top: -49px;
+      right: 0;
+      a {
+        border: 0;
+        background-color: transparent;
+        padding: 0 8px;
+        &.icon-only {
+          &:before {
+            color: $gray;
+          }
+        }
+        &:hover {
+          &.icon-del {
+            &::before {
+              color: $warning;
+            }
+          }
+          background-color: $gray20hover;
+        }
+      }
+
+      .icon-label {
+        margin-left: 4px;
+      }
+    }
+    table {
+      width: 100%;
+      td {
+        padding: 0;
+        text-align: right;
+        &:first-child {
+          width: 60%;
+          text-align: left;
+        }
+        .icon-attachment {
+          display: none;
+          + .size {
+            display: none;
+          }
+        }
+        .author {
+          color: $text;
+        }
+        .icon-label {
+          word-break: break-all;
+        }
+      }
+    }
+
+    .icon-only {
+      &::before {
+        font-size: 16px;
+        line-height: 16px;
+      }
+    }
+
+    .thumbnails {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0 8px;
+
+      a {
+        display: inline-flex;
+        margin: 0;
+        border: 0;
+        padding: 0;
+        border-radius: 6px;
+        border: 1px solid $border;
+        background-color: $white;
+        flex-shrink: 0;
+      }
+      img {
+        flex-shrink: 0;
+        position: static;
+        top: 0;
+        margin: 0;
+        border-radius: 6px;
+        width: 72px;
+        height: 72px;
+        object-fit: cover;
       }
     }
   }
@@ -7261,6 +7586,9 @@ body[class*=" project-"] {
         font-size: 16px;
         line-height: 24px;
         color: $text;
+        a {
+          font-weight: bold;
+        }
       }
       .updated_on {
         font-size: 14px;
@@ -8410,7 +8738,7 @@ div.flash,
     line-height: 22px;
     font-weight: bold;
     color: $darkGray;
-    margin-bottom: 16px;
+    margin-bottom: 0;
   }
   .box {
     border: 0;
@@ -8422,13 +8750,8 @@ div.flash,
   }
 
   fieldset.box {
-    border-radius: 6px;
-    padding: 16px;
-    background-color: $gray10;
+    padding: 16px 0;
     margin-bottom: 16px;
-    legend {
-      margin-bottom: 0;
-    }
   }
 
   .tabular {
@@ -8500,6 +8823,8 @@ div.flash,
   }
 
   #users_for_watcher {
+    height: 400px;
+    overflow: auto;
     .autocomplete {
       margin-top: 4px;
       margin-bottom: 12px;
@@ -8526,14 +8851,18 @@ div.flash,
 
   #principals {
     label {
-      display: flex;
-      align-items: center;
       font-size: 14px;
       line-height: 20px;
       margin-bottom: 8px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      word-wrap: break-word;
+      white-space: nowrap;
       input {
         margin-top: 0;
         margin-right: 4px;
+        display: inline-block;
+        vertical-align: middle;
       }
       img {
         width: 24px;
@@ -8541,6 +8870,13 @@ div.flash,
         border-radius: 50%;
         object-fit: cover;
         margin-right: 4px;
+        display: inline-block;
+        vertical-align: middle;
+      }
+    }
+    #principal_search {
+      .autocomplete {
+        margin-top: 0;
       }
     }
   }
