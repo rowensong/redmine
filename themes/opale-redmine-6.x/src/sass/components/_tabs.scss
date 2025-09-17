@@ -44,14 +44,10 @@ $tabs-height: variables.$line-height-computed + variables.$tab-padding-vertical 
       > a {
         display: block;
         box-sizing: border-box;
-        min-width: 3em;
         height: $tabs-height;
         margin-right: 2px;
         padding: variables.$tab-padding-vertical
           variables.$tab-padding-horizontal;
-        border: 1px solid transparent;
-        border-radius: variables.$border-radius-base
-          variables.$border-radius-base 0 0;
         text-align: center;
         white-space: nowrap;
       }

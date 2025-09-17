@@ -113,7 +113,13 @@ input[type="checkbox"] {
     }
   }
   &:disabled {
-    opacity: 0.5;
+    background-color: $disabled;
+    &:checked {
+      border-color: $disabled;
+      &:before {
+        background-color: $disabled;
+      }
+    }
   }
 }
 
@@ -143,7 +149,13 @@ input[type="radio"] {
     }
   }
   &:disabled {
-    opacity: 0.5;
+    background-color: $disabled;
+    &:checked {
+      border-color: $disabled;
+      &:before {
+        background-color: $disabled;
+      }
+    }
   }
 }
 
@@ -737,25 +749,48 @@ body {
         margin-top: 0;
         vertical-align: middle;
       }
+      input[type="date"]::-webkit-calendar-picker-indicator {
+        opacity: 0; /* 아이콘 숨김 */
+        cursor: pointer;
+      }
     }
 
     ul {
       list-style: none;
       margin: 12px 10px 0;
-      padding: 18px 0 8px;
+      padding: 18px 0 0px;
       border-top: 1px solid $border;
       li {
-        padding: 0;
+        padding: 8px 0;
+        display: flex;
+        align-items: center;
         a {
           font-size: 14px;
           line-height: 20px;
           color: $text;
         }
+        input {
+          margin-top: 0;
+          margin-right: 4px;
+        }
+        label {
+          line-height: 20px;
+        }
+      }
+    }
+
+    input[name="with_subprojects"] {
+      + p {
+        padding-top: 8px;
+        padding-bottom: 8px;
+        label {
+          line-height: 20px;
+        }
       }
     }
 
     input[type="submit"] {
-      margin-top: 0;
+      margin-top: 8px;
       width: auto;
       margin-left: auto;
       margin-right: 0;
@@ -1490,7 +1525,7 @@ fieldset#options {
       span,
       a {
         border: 1px solid $border;
-        color: $link;
+        color: $subColor;
       }
     }
   }
@@ -1522,6 +1557,10 @@ fieldset#options {
     align-items: center;
     font-size: 18px;
     line-height: 26px;
+    font-weight: bold;
+    .current-project {
+      font-weight: bold;
+    }
   }
 
   #quick-search {
@@ -1597,6 +1636,7 @@ fieldset#options {
         align-items: center;
         justify-content: center;
         font-size: 16px;
+        font-weight: normal;
       }
     }
     &.expanded {
@@ -1737,8 +1777,8 @@ fieldset#options {
       }
 
       strong {
-        color: $text;
-        font-weight: bold;
+        color: $gray;
+        font-weight: normal;
         font-size: 14px;
         line-height: 20px;
         padding: 8px;
@@ -1750,6 +1790,7 @@ fieldset#options {
         padding: 8px 12px;
         border-radius: 6px;
         cursor: pointer;
+        font-weight: normal;
         &:hover {
           background-color: $whiteHover;
         }
@@ -1778,7 +1819,7 @@ fieldset#options {
         font-size: 13px;
         line-height: 14px;
         color: $gray;
-        padding: 0 8px 8px;
+        padding: 8px;
       }
     }
   }
@@ -1795,7 +1836,7 @@ fieldset#options {
     a {
       height: 35px;
       width: auto;
-      padding: 0 4px;
+      padding: 2px 4px 0;
       margin-right: 20px;
       color: $gray;
       font-size: 14px;
@@ -1818,7 +1859,7 @@ fieldset#options {
     font-size: 0;
     display: flex;
     justify-content: center;
-    padding-top: 2px;
+    padding-top: 4px;
     margin-right: 0;
     &:after {
       content: "\e969";
@@ -2054,11 +2095,99 @@ table.list {
       }
     }
   }
+  tbody {
+    tr {
+      &.priority-high3 {
+        .priority {
+          &:before {
+            content: "\ea2e";
+            font-family: "icomoon";
+            font-size: 14px;
+            line-height: 14px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: normal;
+            color: $warning;
+            margin-right: 2px;
+          }
+        }
+      }
+
+      &.priority-lowest {
+        .priority {
+          &:before {
+            content: "\ea2f";
+            font-family: "icomoon";
+            font-size: 14px;
+            line-height: 14px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: normal;
+            color: $favorite;
+            margin-right: 2px;
+          }
+        }
+      }
+
+      &.priority-default {
+        .priority {
+          &:before {
+            content: "\ea31";
+            font-family: "icomoon";
+            font-size: 14px;
+            line-height: 14px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: normal;
+            color: $gray;
+            margin-right: 2px;
+          }
+        }
+      }
+
+      &.priority-high2 {
+        .priority {
+          &:before {
+            content: "\ea30";
+            font-family: "icomoon";
+            font-size: 14px;
+            line-height: 14px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: normal;
+            color: $warning;
+            margin-right: 2px;
+          }
+        }
+      }
+
+      &.priority-highest {
+        .priority {
+          &:before {
+            content: "\ea32";
+            font-family: "icomoon";
+            font-size: 14px;
+            line-height: 14px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: normal;
+            color: $subColor;
+            margin-right: 2px;
+          }
+        }
+      }
+    }
+  }
 }
 
 .autoscroll {
   border-radius: 10px;
-  border: 1px solid $border;
+  border: 1px solid $gray30;
   width: 100%;
   box-sizing: border-box;
   table {
@@ -2195,8 +2324,13 @@ table.list {
 
 .controller-timelog {
   #query_form {
+    position: relative;
+    margin-bottom: 40px;
     .tabs {
+      position: absolute;
+      bottom: -61px;
       height: auto;
+      left: 0;
       + p {
         margin-top: 16px;
       }
@@ -2205,21 +2339,35 @@ table.list {
       height: auto;
       a {
         height: auto;
-        padding: 7px 13px;
+        padding: 6px 13px;
         border-radius: 48px;
         font-size: 15px;
         line-height: 22px;
         color: $gray;
+        margin-right: 4px;
         &.selected {
           border: 1px solid $gray;
           color: $text;
           font-weight: bold;
+        }
+
+        &:hover {
+          background-color: $whiteHover;
         }
       }
     }
   }
 
   #content {
+    .query-totals {
+      padding: 0;
+      font-size: 15px;
+      line-height: 22px;
+      color: $gray;
+      .value {
+        font-weight: normal;
+      }
+    }
     .icon-settings {
       .icon-label {
         margin-left: 0;
@@ -2238,6 +2386,75 @@ table.list {
       &:hover {
         background-color: $whiteHover;
       }
+    }
+  }
+
+  &.action-report {
+    #query_form {
+      margin-bottom: 70px;
+    }
+  }
+
+  .time-entries {
+    td.issue {
+      color: $text;
+    }
+  }
+  .subtotal {
+    a {
+      color: $text;
+      font-style: normal;
+    }
+  }
+
+  .nodata {
+    margin-top: 80px;
+  }
+
+  .autoscroll {
+    th {
+      padding: 10px 14px;
+    }
+    td {
+      padding: 14px;
+    }
+  }
+  #time-report {
+    tr.total {
+      border-top: 1px solid $gray30;
+      background-color: $gray10;
+      td {
+        color: $gray;
+        font-size: 12px;
+        line-height: 18px;
+        font-weight: bold;
+        &.hours {
+          color: $darkGray;
+        }
+      }
+    }
+  }
+
+  .icon-reload {
+    margin-left: 8px;
+    font-size: 13px;
+    line-height: 14px;
+    color: $text;
+    padding: 8px;
+    border-radius: 6px;
+    &:hover {
+      background-color: $whiteHover;
+    }
+    &:before {
+      content: "\e9fa";
+      font-family: "icomoon";
+      font-size: 16px;
+      line-height: 16px;
+      color: $gray;
+      margin-right: 2px;
+    }
+    .icon-label {
+      margin-left: 0;
     }
   }
 }
@@ -2332,13 +2549,21 @@ table.list {
         color: $gray;
         display: flex;
       }
-      &.icon-fav,
       &.icon-fav-off {
         .icon-label {
           margin-left: 0 !important;
         }
         &:before {
-          content: "\e992";
+          content: "\e9e9";
+        }
+      }
+
+      &.icon-fav {
+        .icon-label {
+          margin-left: 0 !important;
+        }
+        &:before {
+          content: "\e9e8";
         }
       }
 
@@ -2381,6 +2606,7 @@ table.list {
       &.icon-del {
         &:before {
           content: "\e966";
+          color: $warning;
         }
       }
     }
@@ -5813,7 +6039,6 @@ select[multiple] {
           font-family: "icomoon";
           font-size: 16px;
           line-height: 16px;
-          color: $gray;
           margin-right: 0;
         }
       }
@@ -6032,7 +6257,7 @@ select[multiple] {
       }
       &:hover {
         &:before {
-          color: $warning;
+          color: $text;
         }
       }
     }
@@ -6130,7 +6355,6 @@ select[multiple] {
 
     .icon-only {
       &::before {
-        color: $gray;
         font-size: 16px;
         line-height: 16px;
       }
@@ -6333,6 +6557,103 @@ select[multiple] {
     }
   }
 
+  .issue.details {
+    &.priority-high3 {
+      .priority {
+        .value {
+          &:before {
+            content: "\ea2e";
+            font-family: "icomoon";
+            font-size: 14px;
+            line-height: 14px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: normal;
+            color: $warning;
+            margin-right: 2px;
+          }
+        }
+      }
+    }
+
+    &.priority-lowest {
+      .priority {
+        .value {
+          &:before {
+            content: "\ea2f";
+            font-family: "icomoon";
+            font-size: 14px;
+            line-height: 14px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: normal;
+            color: $favorite;
+            margin-right: 2px;
+          }
+        }
+      }
+    }
+
+    &.priority-default {
+      .priority {
+        .value {
+          &:before {
+            content: "\ea31";
+            font-family: "icomoon";
+            font-size: 14px;
+            line-height: 14px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: normal;
+            color: $gray;
+            margin-right: 2px;
+          }
+        }
+      }
+    }
+
+    &.priority-high2 {
+      .priority {
+        .value {
+          &:before {
+            content: "\ea30";
+            font-family: "icomoon";
+            font-size: 14px;
+            line-height: 14px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: normal;
+            color: $warning;
+            margin-right: 2px;
+          }
+        }
+      }
+    }
+
+    &.priority-highest {
+      .priority {
+        .value {
+          &:before {
+            content: "\ea32";
+            font-family: "icomoon";
+            font-size: 14px;
+            line-height: 14px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: normal;
+            color: $subColor;
+            margin-right: 2px;
+          }
+        }
+      }
+    }
+  }
+
   .select2-dropdown {
     border: 1px solid $border;
     border-radius: 6px;
@@ -6525,14 +6846,14 @@ body[class*=" project-"] {
       .author + .attributes {
         padding: 12px 16px;
         border-radius: 10px;
-        background-color: $gray20;
+        background-color: $gray10;
         margin-top: 16px;
         margin-bottom: 16px;
         .label {
           margin-left: 0;
           width: 50%;
           max-width: 160px;
-          color: $darkGray;
+          color: $gray;
           font-weight: bold;
           font-size: 13px;
           line-height: 20px;
@@ -6854,22 +7175,24 @@ body[class*=" project-"] {
   &.action-issue_report_details {
     #content {
       > a {
-        padding: 6px 8px;
-        border: 1px solid $border;
+        padding: 6px;
         border-radius: 6px;
         color: $text;
         display: inline-flex;
         align-items: center;
+        font-weight: 700;
+        font-size: 14px;
+        line-height: 15px;
         &:hover {
           background-color: $whiteHover;
         }
         &:before {
-          content: "\e9b4";
+          content: "\e9c3";
           font-family: "icomoon";
           font-size: 16px;
           line-height: 16px;
-          color: $gray;
-          margin-right: 4px;
+          margin-right: 2px;
+          font-weight: normal;
         }
       }
     }
@@ -7267,6 +7590,7 @@ body[class*=" project-"] {
             margin-right: 4px;
             content: "";
             font-family: "icomoon";
+            font-weight: normal;
           }
           &.icon-projects {
             &:before {
@@ -8795,6 +9119,41 @@ div.flash,
 //     }
 //   }
 // }
+
+// breadcrumb
+.breadcrumbs {
+  display: flex;
+  align-items: center;
+  color: $placeholder;
+  font-weight: normal;
+  a {
+    color: $placeholder;
+    font-weight: normal;
+    &:hover {
+      color: $text;
+      text-decoration: underline;
+    }
+  }
+  .separator {
+    font-size: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    &:before {
+      content: "\e9a2";
+      font-family: "icomoon";
+      font-size: 16px;
+      line-height: 16px;
+      color: $placeholder;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 4px;
+      font-weight: normal;
+    }
+  }
+}
 
 // modal
 .ui-dialog.ui-widget-content {
