@@ -128,11 +128,11 @@ img {
 }
 
 .splitcontentleft {
-  margin-right: variables.$padding-side * 0.5;
+  margin-right: 24px;
 }
 
 .splitcontentright {
-  margin-left: variables.$padding-side * 0.5;
+  margin-left: 24px;
 }
 
 .splitcontenttop {
@@ -288,7 +288,7 @@ a.close-icon:not(:has(svg)) {
         .block-text_async
       ) {
       padding: 16px;
-      border: 1px solid #dcdfe5;
+      border: 1px solid #eceef1;
       border-radius: 16px;
       background-color: #fafbfc;
 

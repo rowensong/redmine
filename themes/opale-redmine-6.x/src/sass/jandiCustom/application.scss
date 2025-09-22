@@ -431,7 +431,7 @@ body {
 
   #sidebar {
     border-right: 1px solid $border;
-    padding: 16px;
+    padding: 8px;
     background-color: $gray10;
     .contextual {
       margin-top: 0;
@@ -469,11 +469,15 @@ body {
             display: block;
             font-size: 14px;
             line-height: 20px;
-            color: $text;
+            color: $placeholder;
             padding: 8px 8px 8px 28px;
             border-radius: 6px;
             &:hover {
               background-color: $whiteHover;
+              color: $gray;
+            }
+            &.selected {
+              color: $text;
             }
           }
         }
@@ -507,10 +511,11 @@ body {
           display: block;
           font-size: 14px;
           line-height: 20px;
-          color: $text;
           padding: 8px 8px 8px 28px;
           border-radius: 6px;
+          color: $placeholder;
           &:hover {
+            color: $gray;
             background: $whiteHover;
           }
         }
@@ -735,7 +740,7 @@ body {
       }
     }
     p {
-      padding: 8px 10px;
+      padding: 8px;
       margin: 0;
       select,
       input {
@@ -749,15 +754,11 @@ body {
         margin-top: 0;
         vertical-align: middle;
       }
-      input[type="date"]::-webkit-calendar-picker-indicator {
-        opacity: 0; /* 아이콘 숨김 */
-        cursor: pointer;
-      }
     }
 
     ul {
       list-style: none;
-      margin: 12px 10px 0;
+      margin: 12px 8px 0;
       padding: 18px 0 0px;
       border-top: 1px solid $border;
       li {
@@ -1411,6 +1412,7 @@ fieldset#options {
   }
   .query-columns {
     flex-direction: column;
+    width: 180px;
     label {
       font-size: 13px;
       line-height: 20px;
@@ -1420,9 +1422,18 @@ fieldset#options {
       width: 100%;
       font-weight: bold;
     }
+    select {
+      width: 100% !important;
+    }
+  }
+  #group_by {
+    width: 180px;
   }
   > p {
     margin-bottom: 16px;
+  }
+  label.inline {
+    margin-right: 16px;
   }
 }
 
@@ -2222,6 +2233,11 @@ table.list {
       td {
         padding: 15px 8px;
         text-align: left;
+        &.subject {
+          a {
+            color: $text;
+          }
+        }
       }
     }
     a {
@@ -2614,12 +2630,13 @@ table.list {
 }
 
 body:not(.controller-issues) {
-  img.gravatar {
+  img {
     top: 0;
     box-sizing: border-box;
     border: 1px solid $border;
     border-radius: 50%;
     object-fit: cover;
+    margin-right: 4px;
   }
 }
 
@@ -2627,8 +2644,11 @@ body:not(.controller-issues) {
   padding: 20px 60px;
   font-size: 12px;
   line-height: 16px;
-  color: $placeholder;
+  color: $gray40;
   border-top: 1px solid $border;
+  a {
+    color: $placeholder;
+  }
 }
 
 .controller-my,
@@ -2775,6 +2795,12 @@ body:not(.controller-issues) {
           &:before {
             margin-right: 4px;
             order: 2;
+          }
+
+          &.icon-wiki-page {
+            &:before {
+              content: "\e9f6";
+            }
           }
 
           &.icon-issue {
@@ -3018,6 +3044,13 @@ body:not(.controller-issues) {
       .icon-email-add,
       .icon-passwd {
         display: none;
+      }
+    }
+    #block-form {
+      display: inline-flex;
+      align-items: center;
+      select {
+        margin-left: 8px;
       }
     }
   }
@@ -3375,6 +3408,13 @@ body:not(.controller-issues) {
         display: block;
         order: 1;
       }
+    }
+  }
+
+  .splitcontentright {
+    &.empty {
+      border: 0;
+      background-color: $white;
     }
   }
 
@@ -4311,6 +4351,12 @@ body:not(.controller-issues) {
   }
 }
 
+div.wiki h1,
+div.wiki .h1 {
+  word-break: break-word;
+  margin-bottom: 16px;
+  padding-bottom: 16px;
+}
 div.wiki p,
 div.wiki ul,
 div.wiki ol {
@@ -4329,7 +4375,7 @@ select[multiple] {
   max-height: 216px;
   option {
     border-bottom: 0;
-    padding: 4px 8px;
+    padding: 0px 8px;
     font-size: 14px;
     line-height: 20px;
     border-radius: 6px;
@@ -4514,6 +4560,9 @@ select[multiple] {
 .gravatar-with-child {
   img {
     border-radius: 50%;
+    &:first-child {
+      border: 1px solid $border;
+    }
   }
 }
 
@@ -4558,9 +4607,24 @@ select[multiple] {
 }
 
 .controller-kanban {
-  color: $text;
   #content {
     overflow: initial;
+    .contextual {
+      .icon-add {
+        color: $white;
+        display: inline-flex;
+        align-items: center;
+        &:before {
+          content: "\e969";
+          font-family: "icomoon";
+          font-size: 16px;
+          line-height: 16px;
+          margin-right: 4px;
+          color: $white;
+          font-weight: normal;
+        }
+      }
+    }
   }
   .floatThead-container {
     position: sticky !important;
@@ -4651,10 +4715,10 @@ select[multiple] {
     }
   }
 
-  legend {
-    color: $darkGray;
-    &:before {
-      color: $text;
+  .contextual {
+    + h2 {
+      display: inline-flex;
+      align-items: center;
     }
   }
 
@@ -4667,8 +4731,8 @@ select[multiple] {
     }
     .icon {
       border: 1px solid $border;
-      padding-top: 7px;
-      padding-bottom: 7px;
+      padding-top: 5px;
+      padding-bottom: 5px;
       &:hover {
         background-color: $whiteHover;
       }
@@ -4701,12 +4765,21 @@ select[multiple] {
       &:before {
         content: "\e9fa";
       }
+      + a {
+        &:before {
+          content: "\ea0a";
+        }
+      }
     }
     .icon-save {
       &:before {
         content: "\ea0b";
       }
     }
+  }
+
+  #wrapper {
+    overflow: hidden;
   }
 
   #form1 {
@@ -4727,6 +4800,125 @@ select[multiple] {
       top: -52px;
       left: 0;
       width: 100%;
+    }
+    table {
+      td {
+        div {
+          display: flex;
+          align-items: center;
+          gap: 4px;
+        }
+      }
+    }
+  }
+
+  #sidebar {
+    a {
+      margin: 0;
+    }
+    p {
+      margin: 0;
+      padding: 8px;
+    }
+    .my-journal-table {
+      width: calc(100% - 16px);
+      margin: 8px;
+      &:only-child {
+        background-color: transparent;
+        font-size: 14px;
+        line-height: 20px;
+        color: $placeholder;
+        border: 0;
+        padding-top: 11px;
+      }
+    }
+    table {
+      td {
+        p {
+          padding: 0;
+          text-align: right;
+          margin-top: 12px;
+        }
+      }
+    }
+    > p {
+      > b {
+        color: $gray;
+        font-size: 13px;
+        line-height: 20px;
+        font-weight: normal;
+        margin-top: 16px;
+        display: block;
+      }
+    }
+    .my-comment-table {
+      margin-top: -4px;
+    }
+  }
+
+  input[type="checkbox"],
+  input[type="radio"] {
+    vertical-align: middle;
+  }
+
+  form label {
+    line-height: 20px;
+    vertical-align: middle;
+  }
+
+  legend {
+    font-size: 15px;
+    line-height: 22px;
+    font-weight: bold;
+    color: $darkGray;
+    margin-bottom: 16px;
+  }
+  .box {
+    border: 0;
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+    color: $text;
+    border-radius: 0;
+    > fieldset {
+      border-radius: 6px;
+      padding: 16px;
+      background-color: $gray10;
+      margin-bottom: 16px;
+      legend {
+        margin-bottom: 0;
+      }
+    }
+  }
+  .tabular {
+    border-radius: 6px;
+    padding: 16px;
+    background-color: $gray10;
+    margin-bottom: 16px;
+    p {
+      margin-bottom: 16px;
+    }
+    label {
+      text-align: left;
+      font-size: 14px;
+      line-height: 20px;
+      color: $gray;
+      padding-left: 0;
+      &.block {
+        display: inline-block;
+        input {
+          margin-left: 0;
+          margin-right: 4px;
+        }
+        + .block {
+          margin-left: 24px;
+        }
+      }
+
+      &.inline {
+        padding-left: 0;
+        margin-right: 24px;
+      }
     }
   }
 }
@@ -5087,6 +5279,33 @@ select[multiple] {
       }
       .description {
         margin-top: 10px;
+      }
+    }
+    + p {
+      display: flex;
+      gap: 0 16px;
+      .icon {
+        color: $gray;
+        &:before {
+          font-family: "icomoon";
+          font-size: 16px;
+          line-height: 16px;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          font-weight: normal;
+        }
+        &.icon-user {
+          &:before {
+            content: "\e949";
+          }
+        }
+
+        &.icon-bookmarked-project {
+          &:before {
+            content: "\e936";
+          }
+        }
       }
     }
   }
@@ -5700,7 +5919,7 @@ select[multiple] {
     &.box {
       position: relative;
       border: 1px solid $gray30;
-      border-radius: 6px;
+      border-radius: 12px;
       padding: 16px;
       background-color: $gray10;
       h3 {
@@ -5729,7 +5948,7 @@ select[multiple] {
         line-height: 0;
         margin-bottom: 16px;
         padding-bottom: 16px;
-        border-bottom: 1px solid $border;
+        border-bottom: 1px solid $gray30;
         &:last-of-type {
           margin-bottom: 0;
           padding-bottom: 0;
@@ -5743,6 +5962,7 @@ select[multiple] {
           display: block;
           &:first-child {
             font-weight: bold;
+            margin-bottom: 2px;
           }
           &:last-of-type {
             display: inline-block;
@@ -5769,8 +5989,9 @@ select[multiple] {
       }
 
       .summary {
-        margin-top: 8px;
-        padding: 3px 3px 3px 16px;
+        margin-top: 2px;
+        margin-bottom: 0;
+        padding: 0px 3px 0px 13px;
         border-left: 3px solid $border;
         font-style: normal;
       }
@@ -5795,6 +6016,10 @@ select[multiple] {
       .author {
         margin-top: 12px;
         margin-bottom: 0;
+        color: $gray;
+        .user {
+          color: $darkGray;
+        }
       }
     }
   }
@@ -6460,6 +6685,31 @@ select[multiple] {
 
   .splitcontent {
     align-items: flex-start;
+  }
+
+  .add-filter {
+    label {
+      display: inline-flex;
+      align-items: center;
+      &:before {
+        content: "\e969";
+        font-family: "icomoon";
+        font-size: 16px;
+        line-height: 16px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        color: $gray;
+        margin-right: 4px;
+        font-weight: normal;
+      }
+    }
+  }
+
+  #query_form_content {
+    + .buttons {
+      margin-bottom: 0;
+    }
   }
 
   #attributes {
@@ -8380,6 +8630,18 @@ body[class*=" project-"] {
     }
 
     #existing-attachments {
+    }
+  }
+  #main {
+    #sidebar-wrapper {
+      .wiki {
+        padding: 8px;
+        + h3 {
+          &:before {
+            content: "\e9f6";
+          }
+        }
+      }
     }
   }
 }

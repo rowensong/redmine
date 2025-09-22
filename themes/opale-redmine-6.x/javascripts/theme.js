@@ -125,6 +125,10 @@ $(document).ready(function () {
     $("#user_mail_notification").closest(".box").hide();
     $("#tab-content-memberships .icon-add").hide();
     $("#sidebar-wrapper p").has(".icon-del").hide();
+
+    if ($(".splitcontentright").children().length === 0) {
+      $(".splitcontentright").addClass("empty");
+    }
   }
 
   // Swap positions of <p> blocks wrapping #user_firstname and #user_lastname
