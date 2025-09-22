@@ -565,7 +565,7 @@ body {
       }
       .contextual {
         position: absolute;
-        right: 0;
+        right: 8px;
         top: 10px;
         a {
           display: flex;
@@ -595,7 +595,7 @@ body {
           font-size: 14px;
           line-height: 20px;
           color: $text;
-          padding: 8px 0px 8px 28px;
+          padding: 8px 8px 8px 28px;
           border-radius: 6px;
           margin-bottom: 0;
           img {
@@ -661,7 +661,7 @@ body {
       }
     }
     #sidebar {
-      margin-left: -261px;
+      margin-left: -245px;
     }
   }
 
@@ -2362,7 +2362,7 @@ table.list {
         color: $gray;
         margin-right: 4px;
         &.selected {
-          border: 1px solid $gray;
+          border: 1.5px solid $gray;
           color: $text;
           font-weight: bold;
         }
@@ -2452,7 +2452,6 @@ table.list {
   }
 
   .icon-reload {
-    margin-left: 8px;
     font-size: 13px;
     line-height: 14px;
     color: $text;
@@ -2471,6 +2470,25 @@ table.list {
     }
     .icon-label {
       margin-left: 0;
+    }
+  }
+
+  #content {
+    .contextual {
+      .icon-time-add {
+        background-color: $text;
+        color: $white;
+        border-color: $text;
+        .icon-label {
+          color: $white;
+        }
+
+        &:before {
+          color: $white;
+          content: "\e969";
+          font-weight: normal;
+        }
+      }
     }
   }
 }
@@ -2630,7 +2648,7 @@ table.list {
 }
 
 body:not(.controller-issues) {
-  img {
+  img.gravatar:not(.profile-avatar) {
     top: 0;
     box-sizing: border-box;
     border: 1px solid $border;
@@ -3894,7 +3912,7 @@ body:not(.controller-issues) {
         line-height: 22px;
         color: $gray;
         &.selected {
-          border: 1px solid $gray;
+          border: 1.5px solid $gray;
           color: $text;
           font-weight: bold;
         }
@@ -6040,7 +6058,7 @@ select[multiple] {
           line-height: 22px;
           color: $gray;
           &.selected {
-            border: 1px solid $gray;
+            border: 1.5px solid $gray;
             color: $text;
             font-weight: bold;
           }
@@ -6221,7 +6239,7 @@ select[multiple] {
             line-height: 22px;
             color: $gray;
             &.selected {
-              border: 1px solid $gray;
+              border: 1.5px solid $gray;
               color: $text;
               font-weight: bold;
             }
@@ -6632,6 +6650,50 @@ select[multiple] {
         font-size: 14px;
         line-height: 20px;
         border-top: 0;
+      }
+    }
+
+    .note-header {
+      display: inline-flex;
+      align-items: center;
+      .badge-private {
+        background-color: $white;
+        color: $subColor;
+        font-size: 14px;
+        line-height: 20px;
+        display: inline-flex;
+        align-items: center;
+        font-weight: normal;
+        top: 0;
+        vertical-align: middle;
+        padding: 0;
+        order: -1;
+        margin-right: 4px;
+        &:before {
+          content: "\e93f";
+          font-family: "icomoon";
+          font-size: 16px;
+          line-height: 16px;
+          color: $subColor;
+          margin-right: 2px;
+          font-weight: normal;
+        }
+      }
+
+      > img {
+        margin-right: 21px;
+        order: -1;
+        border: 1px solid $border;
+        border-radius: 50%;
+      }
+
+      .update-info {
+        color: $gray;
+        font-size: 14px;
+        line-height: 20px;
+        font-weight: normal;
+        font-style: normal;
+        margin-left: 4px;
       }
     }
   }
@@ -7303,7 +7365,7 @@ body[class*=" project-"] {
           line-height: 22px;
           color: $gray;
           &.selected {
-            border: 1px solid $gray;
+            border: 1.5px solid $gray;
             color: $text;
             font-weight: bold;
           }
@@ -8429,7 +8491,7 @@ body[class*=" project-"] {
           line-height: 22px;
           color: $gray;
           &.selected {
-            border: 1px solid $gray;
+            border: 1.5px solid $gray;
             color: $text;
             font-weight: bold;
           }
@@ -8641,6 +8703,14 @@ body[class*=" project-"] {
             content: "\e9f6";
           }
         }
+      }
+    }
+  }
+
+  #sidebar-wrapper {
+    .contextual {
+      .icon-edit {
+        margin-right: 8px;
       }
     }
   }
