@@ -842,7 +842,7 @@ body {
       .icon-label {
         display: flex;
         font-size: 14px;
-        line-height: 20px;
+        line-height: 18px;
         color: $white;
         align-items: center;
         margin: 0;
@@ -912,11 +912,12 @@ body {
     }
 
     > .icon-settings {
-      padding: 6px 7px;
+      padding: 7px 9px;
       border: 1px solid $border;
       background-color: $white;
       color: $gray;
       border-radius: 6px;
+      min-height: 36px;
       svg {
         display: none;
       }
@@ -1599,6 +1600,12 @@ fieldset#options {
       }
       input {
         padding-left: 30px;
+        &:-webkit-autofill {
+          background-color: #fff !important;
+          color: #333 !important;
+          -webkit-box-shadow: 0 0 0px 1000px white inset;
+          transition: background-color 5000s ease-in-out 0s;
+        }
       }
     }
 
@@ -2355,7 +2362,7 @@ table.list {
       height: auto;
       a {
         height: auto;
-        padding: 6px 13px;
+        padding: 7px 13px;
         border-radius: 48px;
         font-size: 15px;
         line-height: 22px;
@@ -2365,6 +2372,8 @@ table.list {
           border: 1.5px solid $gray;
           color: $text;
           font-weight: bold;
+          padding-top: 5.5px;
+          padding-bottom: 5.5px;
         }
 
         &:hover {
@@ -2488,6 +2497,76 @@ table.list {
           content: "\e969";
           font-weight: normal;
         }
+      }
+    }
+  }
+
+  legend {
+    font-size: 15px;
+    line-height: 22px;
+    font-weight: bold;
+    color: $darkGray;
+    margin-bottom: 16px;
+  }
+  .box {
+    border: 0;
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+    color: $text;
+    border-radius: 0;
+    > fieldset {
+      border-radius: 6px;
+      padding: 16px;
+      background-color: $gray10;
+      margin-bottom: 16px;
+      legend {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  fieldset.box {
+    border-radius: 6px;
+    padding: 16px;
+    background-color: $gray10;
+    margin-bottom: 16px;
+    legend {
+      margin-bottom: 0;
+    }
+  }
+
+  .tabular {
+    border-radius: 6px;
+    padding: 16px;
+    background-color: $gray10;
+    margin-bottom: 16px;
+    p {
+      margin-bottom: 16px;
+    }
+    legend {
+      margin-bottom: 0;
+    }
+    label {
+      text-align: left;
+      font-size: 14px;
+      line-height: 20px;
+      color: $gray;
+      padding-left: 0;
+      &.block {
+        display: inline-block;
+        input {
+          margin-left: 0;
+          margin-right: 4px;
+        }
+        + .block {
+          margin-left: 24px;
+        }
+      }
+
+      &.inline {
+        padding-left: 0;
+        margin-right: 24px;
       }
     }
   }
@@ -3266,6 +3345,14 @@ body:not(.controller-issues) {
         overflow: hidden;
       }
     }
+    > .contextual {
+      .icon-add,
+      .drdn,
+      .icon-email-add,
+      .icon-del {
+        display: none;
+      }
+    }
   }
 
   #activity {
@@ -3433,17 +3520,6 @@ body:not(.controller-issues) {
     &.empty {
       border: 0;
       background-color: $white;
-    }
-  }
-
-  #content {
-    > .contextual {
-      .icon-add,
-      .drdn,
-      .icon-email-add,
-      .icon-del {
-        display: none;
-      }
     }
   }
 
@@ -3626,36 +3702,38 @@ body:not(.controller-issues) {
     }
   }
 
-  .splitcontentright {
-    padding: 16px;
-    border: 1px solid $border;
-    border-radius: 16px;
-    background-color: $gray10;
-    margin-bottom: 16px;
-    legend {
-      margin-bottom: 0;
-    }
-    > h3 {
-      font-size: 16px;
-      line-height: 24px;
-      font-weight: bold;
-      display: inline-flex;
-      align-items: center;
+  .nosidebar {
+    .splitcontentright {
+      padding: 16px;
+      border: 1px solid $border;
+      border-radius: 16px;
+      background-color: $gray10;
       margin-bottom: 16px;
-      &:before {
-        content: "\ea0f";
-        font-family: "icomoon";
-        font-size: 20px;
-        line-height: 20px;
-        color: $placeholder;
-        margin-right: 8px;
-        font-weight: normal;
+      legend {
+        margin-bottom: 0;
       }
-    }
+      > h3 {
+        font-size: 16px;
+        line-height: 24px;
+        font-weight: bold;
+        display: inline-flex;
+        align-items: center;
+        margin-bottom: 16px;
+        &:before {
+          content: "\ea0f";
+          font-family: "icomoon";
+          font-size: 20px;
+          line-height: 20px;
+          color: $placeholder;
+          margin-right: 8px;
+          font-weight: normal;
+        }
+      }
 
-    .other-formats {
-      a {
-        background-color: $white;
+      .other-formats {
+        a {
+          background-color: $white;
+        }
       }
     }
   }
@@ -3915,6 +3993,8 @@ body:not(.controller-issues) {
           border: 1.5px solid $gray;
           color: $text;
           font-weight: bold;
+          padding-top: 5.5px;
+          padding-bottom: 5.5px;
         }
       }
     }
@@ -5249,6 +5329,17 @@ select[multiple] {
     }
   }
 
+  #tab-content-members {
+    img {
+      top: 0;
+      box-sizing: border-box;
+      border: 1px solid $border;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-right: 4px;
+    }
+  }
+
   #projects-index {
     ul.projects {
       li.root {
@@ -6061,6 +6152,8 @@ select[multiple] {
             border: 1.5px solid $gray;
             color: $text;
             font-weight: bold;
+            padding-top: 5.5px;
+            padding-bottom: 5.5px;
           }
         }
       }
@@ -6242,6 +6335,8 @@ select[multiple] {
               border: 1.5px solid $gray;
               color: $text;
               font-weight: bold;
+              padding-top: 5.5px;
+              padding-bottom: 5.5px;
             }
             &:not(.selected) {
               &:hover {
@@ -6540,6 +6635,28 @@ select[multiple] {
           color: $white;
         }
       }
+    }
+  }
+
+  .badge-private {
+    background-color: $white;
+    color: $subColor;
+    font-size: 12px;
+    line-height: 18px;
+    display: inline-flex;
+    align-items: center;
+    font-weight: normal;
+    vertical-align: middle;
+    padding: 0;
+    margin-right: 4px;
+    &:before {
+      content: "\e93f";
+      font-family: "icomoon";
+      font-size: 14px;
+      line-height: 14px;
+      color: $subColor;
+      margin-right: 2px;
+      font-weight: normal;
     }
   }
 
@@ -7364,10 +7481,17 @@ body[class*=" project-"] {
           font-size: 15px;
           line-height: 22px;
           color: $gray;
+          margin-right: 4px;
           &.selected {
             border: 1.5px solid $gray;
             color: $text;
             font-weight: bold;
+            padding-top: 5.5px;
+            padding-bottom: 5.5px;
+          }
+
+          &:hover {
+            background-color: $whiteHover;
           }
         }
       }
@@ -7379,8 +7503,10 @@ body[class*=" project-"] {
   }
 
   #tab-content-authentication {
-    em {
-      color: $warning;
+    fieldset.box {
+      em {
+        color: $warning;
+      }
     }
   }
 
@@ -8490,10 +8616,17 @@ body[class*=" project-"] {
           font-size: 15px;
           line-height: 22px;
           color: $gray;
+          margin-right: 4px;
           &.selected {
             border: 1.5px solid $gray;
             color: $text;
             font-weight: bold;
+            padding-top: 5.5px;
+            padding-bottom: 5.5px;
+          }
+
+          &:hover {
+            background-color: $whiteHover;
           }
         }
       }
@@ -8753,12 +8886,25 @@ body[class*=" project-"] {
 
 .controller-search {
   #search-form {
-    margin-bottom: 24px;
+    margin-bottom: 60px;
+    border: 1px solid $border;
+    border-radius: 10px;
+    padding: 16px;
+    position: relative;
+    > p:last-child {
+      position: absolute;
+      left: 0;
+      bottom: -45px;
+    }
   }
   #search-results {
     .icon {
       display: inline-flex;
-      align-items: center;
+      align-items: flex-start;
+      .project {
+        font-size: 14px;
+        line-height: 20px;
+      }
       &:before {
         content: "";
         color: $gray;
@@ -8768,7 +8914,6 @@ body[class*=" project-"] {
         align-items: center;
         justify-content: center;
         font-family: "icomoon";
-
         align-self: flex-start;
         margin-top: 3px;
         margin-right: 4px;
@@ -8842,6 +8987,87 @@ body[class*=" project-"] {
         margin-top: 4px;
         display: block;
       }
+    }
+  }
+
+  #content {
+    > .buttons {
+      .icon-list {
+        border: 1px solid $border;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        border-radius: 6px;
+        &:before {
+          content: "\e96e";
+          font-family: "icomoon";
+          font-size: 16px;
+          line-height: 16px;
+          color: $gray;
+        }
+        &:hover {
+          background-color: $whiteHover;
+        }
+      }
+    }
+
+    > h3 {
+      font-size: 16px;
+      line-height: 24px;
+      color: $gray;
+      font-weight: bold;
+    }
+  }
+
+  #search-results-counts {
+    ul {
+      height: auto;
+      a {
+        height: auto;
+        padding: 7px 13px;
+        border-radius: 48px;
+        font-size: 15px;
+        line-height: 22px;
+        color: $gray;
+        margin-right: 4px;
+        &.selected {
+          border: 1.5px solid $gray;
+          color: $text;
+          font-weight: bold;
+          padding-top: 5.5px;
+          padding-bottom: 5.5px;
+        }
+
+        &:hover {
+          background-color: $whiteHover;
+        }
+      }
+    }
+  }
+
+  legend {
+    font-size: 15px;
+    line-height: 22px;
+    font-weight: bold;
+    color: $darkGray;
+    margin-bottom: 16px;
+  }
+  .box {
+    border: 0;
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+    color: $text;
+    border-radius: 0;
+  }
+  fieldset.box {
+    margin-bottom: 16px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid $border;
+  }
+
+  fieldset:not(.collapsible) {
+    legend {
+      display: none;
     }
   }
 }

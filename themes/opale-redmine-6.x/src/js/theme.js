@@ -159,5 +159,41 @@ $(document).ready(function () {
   // 공통으로 숨겨야할 항목
   $('label[for="user_lastname"]').parent().hide();
 
+  (function () {
+    var currentYear = new Date().getFullYear();
+    var $footer = $("#footer");
+
+    // 기존에 삽입된 커스텀 표기 제거 (중복 방지)
+    $footer.find(".jandi-copyright").remove();
+
+    // 기존 푸터 텍스트 내의 연도 범위를 현재 연도로 갱신 (예: "© 2006-2025" → "© 2006-2026")
+    var html = $footer.html();
+    if (typeof html === "string") {
+      var replaced = html.replace(
+        /©\s*(\d{4})(?:\s*[-]\s*(\d{4}))?/i,
+        function (full, start, end) {
+          var startYearNum = parseInt(start, 10);
+          if (!isFinite(startYearNum) || startYearNum > currentYear)
+            return full;
+          var yearText =
+            startYearNum === currentYear
+              ? String(currentYear)
+              : startYearNum + "-" + currentYear;
+          return "© " + yearText;
+        }
+      );
+      if (replaced !== html) {
+        $footer.html(replaced);
+        return;
+      }
+    }
+
+    // 대체: 연도 범위를 찾지 못한 경우 회사 표기를 현재 연도로 추가
+    var companyHtml =
+      "© 2025 - " +
+      currentYear +
+      ' <a href="https://www.jandi.com/landing/" target="_blank" rel="noopener noreferrer">Toss Lab, Inc.</a>';
+    $footer.append('<span class="jandi-copyright">' + companyHtml + "</span>");
+  })();
   // Fallback for CSS :has() — hide paragraphs containing .icon-del in the sidebar
 });
