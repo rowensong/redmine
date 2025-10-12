@@ -196,4 +196,85 @@ $(document).ready(function () {
     $footer.append('<span class="jandi-copyright">' + companyHtml + "</span>");
   })();
   // Fallback for CSS :has() — hide paragraphs containing .icon-del in the sidebar
+
+  // 1) 미디어쿼리 객체
+  const mq = window.matchMedia("(max-width: 899px)");
+
+  // 2) 핸들러
+  function onViewportChange(e) {
+    if (e.matches) {
+      // 899px 이하
+      // ... 모바일 전용 로직
+      $("#header").prepend($("#topmenu-nav"));
+    } else {
+      // 900px 이상
+      // ... 데스크톱 전용 로직
+    }
+  }
+
+  // 3) 초기 1회 실행
+  onViewportChange(mq);
+
+  // 4) 상태 변화 구독
+  if (mq.addEventListener) {
+    mq.addEventListener("change", onViewportChange);
+  } else {
+    // 구형 브라우저 호환
+    mq.addListener(onViewportChange);
+  }
+});
+
+// DOM 준비 후 실행
+$(function () {
+  const htmlEl = document.documentElement; // <html>
+  let wasActive = htmlEl.classList.contains("flyout-is-active");
+
+  const observer = new MutationObserver((mutations) => {
+    for (const m of mutations) {
+      if (m.type === "attributes" && m.attributeName === "class") {
+        const isActive = htmlEl.classList.contains("flyout-is-active");
+        if (isActive !== wasActive) {
+          wasActive = isActive;
+          if (isActive) {
+            // 활성화됨
+            $(document).trigger("flyout:open");
+          } else {
+            // 비활성화됨
+            $(document).trigger("flyout:close");
+          }
+        }
+      }
+    }
+  });
+
+  observer.observe(htmlEl, { attributes: true, attributeFilter: ["class"] });
+});
+
+$(document).on("flyout:open", function () {
+  // 열림 처리
+  const mobileNavTarget = $(".js-project-menu");
+  const mobileNavTarget2 = $(".js-general-menu");
+  const linkClassesProject = [
+    ".activity",
+    ".issues",
+    ".time-entries",
+    ".gantt",
+    ".calendar",
+    ".news",
+    ".display-menu-link",
+    ".documents",
+    ".wiki",
+    ".files",
+    ".settings",
+    ".boards",
+  ];
+  const linkClassesGeneral = [".my-page", ".administration", ".help"];
+  const selector = linkClassesProject.map((cls) => `a${cls}`).join(", ");
+  const selector2 = linkClassesGeneral.map((cls) => `a${cls}`).join(", ");
+  mobileNavTarget.find(selector).closest("li").hide();
+
+  mobileNavTarget2.find(selector2).closest("li").hide();
+});
+$(document).on("flyout:close", function () {
+  // 닫힘 처리
 });

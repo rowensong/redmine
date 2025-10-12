@@ -48,7 +48,8 @@ table.permissions {
 
 table.transitions {
   td.enabled {
-    background: variables.$state-success;
+    // background: variables.$state-success;
+    background-color: #d2e5fb;
   }
 }
 

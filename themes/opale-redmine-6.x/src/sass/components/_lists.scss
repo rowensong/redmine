@@ -234,9 +234,10 @@ tr.issue {
     @include variants.ti-icon-style;
 
     &::before {
-      @include variants.ti-icon-variant(tabler-icons.$ti-icon-chevron-right);
-
-      color: variables.$gray-600;
+      font-family: "icomoon";
+      content: "\ea2c";
+      color: #a2a2a2;
+      font-size: 16px;
     }
   }
 

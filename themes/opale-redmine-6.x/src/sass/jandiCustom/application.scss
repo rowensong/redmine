@@ -247,6 +247,10 @@ em.info {
   }
 }
 
+#top-menu {
+  display: none;
+}
+
 body {
   font-size: 14px;
   line-height: 20px;
@@ -1220,6 +1224,7 @@ fieldset#options {
 #query_form {
   .buttons {
     margin-top: 0;
+    margin-bottom: 0;
     .icon-label {
       margin-left: 0;
       font-size: 14px;
@@ -2323,6 +2328,19 @@ table.list {
     }
     .icon-only {
       margin-right: auto;
+    }
+
+    .attachments {
+      a {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        max-width: 200px;
+        color: $text;
+      }
+      .icon-download {
+        display: none;
+      }
     }
   }
   .sort {
@@ -4723,6 +4741,18 @@ select[multiple] {
         }
       }
     }
+
+    > h2 {
+      img {
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-right: 8px;
+        border: 1px solid $border;
+        box-sizing: border-box;
+      }
+    }
   }
   .floatThead-container {
     position: sticky !important;
@@ -6470,6 +6500,9 @@ select[multiple] {
             &:hover {
               background-color: $whiteHover;
             }
+            &:before {
+              content: "\e933" !important;
+            }
 
             .drdn-items {
               .icon-label {
@@ -6660,95 +6693,98 @@ select[multiple] {
     }
   }
 
-  .attachments:not(.box) {
-    margin-top: 16px;
-    border: 1px solid $border;
-    border-radius: 6px;
-    padding: 8px 10px;
-    background-color: $gray10;
-    position: relative;
-    .contextual {
-      float: none;
-      margin-left: 0;
-      margin-top: 0;
-      justify-content: flex-end;
-      margin-bottom: 12px;
-      position: absolute;
-      top: -49px;
-      right: 0;
-      a {
-        border: 0;
-        background-color: transparent;
-        padding: 0 8px;
+  .issue.details {
+    .attachments:not(.box) {
+      margin-top: 16px;
+      border: 1px solid $border;
+      border-radius: 6px;
+      padding: 8px 10px;
+      background-color: $gray10;
+      position: relative;
+      .contextual {
+        float: none;
+        margin-left: 0;
+        margin-top: 0;
+        justify-content: flex-end;
+        margin-bottom: 12px;
+        position: absolute;
+        top: -49px;
+        right: 0;
+        a {
+          border: 0;
+          background-color: transparent;
+          padding: 0 8px;
 
-        &:hover {
-          background-color: $gray20hover;
-        }
-      }
-      .icon-label {
-        margin-left: 4px;
-      }
-    }
-    table {
-      width: 100%;
-      td {
-        padding: 0;
-        text-align: right;
-        &:first-child {
-          width: 60%;
-          text-align: left;
-        }
-        .icon-attachment {
-          display: none;
-          + .size {
-            display: none;
+          &:hover {
+            background-color: $gray20hover;
           }
         }
-        .author {
-          color: $text;
-        }
         .icon-label {
-          word-break: break-all;
+          margin-left: 4px;
         }
       }
-    }
-
-    .icon-only {
-      &::before {
-        font-size: 16px;
-        line-height: 16px;
+      table {
+        width: 100%;
+        td {
+          padding: 0;
+          text-align: right;
+          &:first-child {
+            width: 60%;
+            text-align: left;
+          }
+          .icon-attachment {
+            display: none;
+            + .size {
+              display: none;
+            }
+          }
+          .author {
+            color: $text;
+          }
+          .icon-label {
+            word-break: break-all;
+          }
+        }
       }
-    }
 
-    .thumbnails {
-      display: flex;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 0 8px;
-
-      a {
-        display: inline-flex;
-        margin: 0;
-        border: 0;
-        padding: 0;
-        border-radius: 6px;
-        border: 1px solid $border;
-        background-color: $white;
-        flex-shrink: 0;
+      .icon-only {
+        &::before {
+          font-size: 16px;
+          line-height: 16px;
+        }
       }
-      img {
-        flex-shrink: 0;
-        position: static;
-        top: 0;
-        margin: 0;
-        border-radius: 6px;
-        width: 72px;
-        height: 72px;
-        object-fit: cover;
+
+      .thumbnails {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 0 8px;
+
+        a {
+          display: inline-flex;
+          margin: 0;
+          border: 0;
+          padding: 0;
+          border-radius: 6px;
+          border: 1px solid $border;
+          background-color: $white;
+          flex-shrink: 0;
+        }
+        img {
+          flex-shrink: 0;
+          position: static;
+          top: 0;
+          margin: 0;
+          border-radius: 6px;
+          width: 72px;
+          height: 72px;
+          object-fit: cover;
+        }
       }
     }
   }
 
+  #tab-content-time_entries,
   #tab-content-history {
     .journal {
       border: 1px solid $border;
@@ -9138,6 +9174,21 @@ body[class*=" project-"] {
       }
     }
   }
+  #content {
+    > h2 {
+      img {
+        width: 32px;
+        height: 32px;
+        margin-right: 8px;
+        border-radius: 50%;
+        object-fit: cover;
+        flex-shrink: 0;
+        border: 1px solid $border;
+        box-sizing: border-box;
+        overflow: hidden;
+      }
+    }
+  }
   .attachments:not(.box) {
     margin-top: 66px;
     border: 1px solid $border;
@@ -9953,6 +10004,30 @@ div.flash,
     }
     &:hover {
       background-color: $whiteHover;
+    }
+  }
+
+  #keyboard-chortcut-dialog {
+    td {
+      padding: 1px 0;
+    }
+
+    + .ui-dialog-buttonpane {
+      padding: 0;
+      border-top: 0;
+      .ui-dialog-buttonset {
+        button {
+          margin: 0;
+          border-radius: 6px;
+          background-color: $text;
+          color: $white;
+          font-size: 14px;
+          line-height: 20px;
+          padding: 8px 10px;
+          min-width: 60px;
+          border: 0;
+        }
+      }
     }
   }
 }
