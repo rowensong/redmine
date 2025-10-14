@@ -131,6 +131,9 @@ $(document).ready(function () {
     }
   }
 
+  if ($("body.controller-groups").length) {
+  }
+
   // Swap positions of <p> blocks wrapping #user_firstname and #user_lastname
   (function () {
     var firstBlock = $("#user_firstname").closest("p");
@@ -154,6 +157,9 @@ $(document).ready(function () {
   if ($("body.controller-settings").length) {
     $('label[for="settings_gravatar_enabled"]').parent().hide();
     $('label[for="settings_gravatar_default"]').parent().hide();
+    $('label[for="settings_user_format"]').parent().hide();
+    $("#tab-api").parent().hide();
+    $("#tab-users").parent().hide();
   }
 
   // 공통으로 숨겨야할 항목
@@ -254,6 +260,7 @@ $(document).on("flyout:open", function () {
   // 열림 처리
   const mobileNavTarget = $(".js-project-menu");
   const mobileNavTarget2 = $(".js-general-menu");
+  // mobile gnb 프로젝트
   const linkClassesProject = [
     ".activity",
     ".issues",
@@ -268,12 +275,19 @@ $(document).on("flyout:open", function () {
     ".settings",
     ".boards",
   ];
-  const linkClassesGeneral = [".my-page", ".administration", ".help"];
+  // mobile gnb 일반
+  const linkClassesGeneral = [
+    ".my-page",
+    ".administration",
+    ".help",
+    ".projects",
+  ];
   const selector = linkClassesProject.map((cls) => `a${cls}`).join(", ");
   const selector2 = linkClassesGeneral.map((cls) => `a${cls}`).join(", ");
   mobileNavTarget.find(selector).closest("li").hide();
 
   mobileNavTarget2.find(selector2).closest("li").hide();
+  $(".js-profile-menu").prev("h3").hide();
 });
 $(document).on("flyout:close", function () {
   // 닫힘 처리

@@ -57,6 +57,7 @@
       #project-jump {
         font-size: 24px;
         line-height: 32px;
+        line-height: 1;
         .drdn-trigger {
           font-size: 18px;
           line-height: 26px;
@@ -113,6 +114,9 @@
       .flyout-menu__search {
         padding: 8px 10px;
         position: relative;
+        // border-bottom: 1px solid $border;
+        // border-left: 1px solid $border;
+        // height: 55px;
         &:after {
           content: "\e960";
           font-family: "icomoon";
@@ -172,10 +176,9 @@
         font-family: "icomoon";
         font-size: 24px;
         line-height: 24px;
+        margin-top: 0;
+        -webkit-font-smoothing: antialiased;
       }
-    }
-    .flyout-is-active .mobile-toggle-button:after {
-      content: "\e9d9";
     }
 
     .js-flyout-menu {
@@ -201,9 +204,6 @@
       }
 
       .js-general-menu {
-        border-bottom: 1px solid $border;
-        margin-bottom: 8px;
-        padding-bottom: 8px;
         display: block;
       }
 
@@ -251,6 +251,7 @@
       flex-direction: column;
       gap: 8px 0;
       align-items: flex-start;
+      float: none;
       .pages {
         display: flex;
       }
@@ -270,6 +271,7 @@
         a {
           display: inline-flex;
           align-items: center;
+          border-radius: 6px;
         }
       }
     }
@@ -279,10 +281,45 @@
     }
   }
 
+  html {
+    &.flyout-is-active {
+      #wrapper {
+        .mobile-toggle-button:after {
+          content: "\e916";
+        }
+        &:after {
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          background-color: rgba($scrim, 0.2);
+          z-index: 10;
+          content: "";
+          display: block;
+        }
+      }
+    }
+  }
+
   #content {
     #issue_tree,
     #relations {
-      overflow: auto;
+      > form[data-cm-url] {
+        overflow: auto;
+      }
+      .contextual {
+        position: absolute;
+        right: 0;
+      }
+    }
+
+    #relations {
+      .new_relation {
+        p {
+          flex-wrap: wrap;
+        }
+      }
     }
     #issue_tree .issue > td:not(.subject),
     #relations .issue > td:not(.subject) {
@@ -303,6 +340,19 @@
     #relations .issue > td.buttons {
       position: static;
     }
+    .jstTabs.tabs ul {
+      flex-wrap: wrap;
+    }
+  }
+
+  #main {
+    #content {
+      .tab-elements {
+        flex: auto;
+        margin-left: 0;
+        gap: 4px;
+      }
+    }
   }
   #footer {
     padding: 20px 16px;
@@ -310,14 +360,6 @@
   }
 
   // 페이지별 스타일 분기
-
-  .controller-projects {
-    #content {
-      > .contextual {
-        display: none;
-      }
-    }
-  }
 
   .controller-search {
     #search-form {
@@ -393,7 +435,44 @@
   .controller-issues {
     #content {
       > .contextual {
-        display: none;
+        margin-bottom: 0 !important;
+        .icon-time-add,
+        .icon-fav-off,
+        .icon-fav,
+        .icon-copy,
+        .drdn {
+          display: none;
+        }
+
+        .icon-edit {
+          min-height: auto;
+          display: block;
+          border: 0;
+          border-radius: 0;
+          padding: 0;
+          margin-left: auto;
+          &:before {
+            color: $text;
+            font-size: 24px;
+            line-height: 24px;
+            margin-right: 0;
+          }
+          &:hover {
+            background-color: initial;
+          }
+          .icon-label {
+            display: none;
+          }
+        }
+
+        ~ .contextual {
+          display: none;
+        }
+      }
+
+      > h2 {
+        font-size: 18px;
+        line-height: 26px;
       }
 
       .attachments {
@@ -439,10 +518,16 @@
           }
         }
       }
+
+      #issue_tree .issues,
+      #relations .issues {
+        border-collapse: collapse;
+      }
     }
     #options {
       display: none;
     }
+
     #filters-table {
       .filter {
         flex-wrap: wrap;
@@ -462,6 +547,105 @@
       label[for="add_filter_select"] {
         width: 100%;
         margin-bottom: 8px;
+      }
+    }
+
+    .tabular input[type="checkbox"] {
+      width: 16px;
+      max-width: initial;
+    }
+
+    #attributes .splitcontentleft p:has(label[for="issue_assigned_to_id"]),
+    #attributes .splitcontentleft p:last-child {
+      display: block;
+    }
+
+    &.action-new,
+    &.action-show {
+      #content {
+        > .contextual {
+          position: absolute;
+          right: 16px;
+          top: 20px;
+          width: auto;
+        }
+        > .flash + .contextual {
+          top: 77px;
+        }
+      }
+      .assign-to-me-link {
+        margin-left: 0;
+        margin-top: 8px;
+        display: inline-block;
+      }
+      .splitcontentright {
+        p {
+          display: block;
+        }
+      }
+      #all_attributes #issue_tracker_id {
+        width: 100%;
+      }
+
+      #update {
+        position: relative;
+        padding-top: 16px;
+        margin-top: 4px;
+        &::before {
+          content: "";
+          display: block;
+          position: absolute;
+          top: 0;
+          left: -16px;
+          width: calc(100% + 32px);
+          height: 8px;
+          background-color: $gray20;
+        }
+        #log_time,
+        #add_notes,
+        #add_attachments {
+          position: relative;
+          padding-top: 25px;
+          margin-top: 42px;
+          &::before {
+            content: "";
+            display: block;
+            position: absolute;
+            top: -40px;
+            left: -16px;
+            width: calc(100% + 32px);
+            height: 8px;
+            background-color: $gray20;
+          }
+        }
+
+        #add_attachments {
+          .attachments_fields input {
+            width: 100%;
+            margin-bottom: 8px;
+          }
+        }
+
+        #new-attachments {
+          width: 100%;
+        }
+      }
+
+      #all_attributes #issue_tracker_id {
+        width: 100%;
+      }
+    }
+
+    &.action-new {
+      #watchers_form #watchers_inputs {
+        label {
+          width: calc(33% - 16px);
+        }
+      }
+      .attachments_form {
+        .icon-attachment {
+          margin-bottom: 8px;
+        }
       }
     }
 
@@ -538,9 +722,54 @@
         }
       }
     }
+
+    .issue.details .attachments:not(.box) .contextual {
+      top: -42px;
+    }
+
+    input[type="submit"] {
+      display: block;
+      height: 40px;
+      text-align: center;
+      font-size: 15px;
+      line-height: 22px;
+      font-weight: bold;
+      &[name="commit"] {
+        width: 100%;
+        color: $white;
+        background-color: $text;
+        margin-bottom: 8px;
+        + a {
+          height: 40px;
+          text-align: center;
+          font-size: 15px;
+          line-height: 40px;
+          font-weight: bold;
+          color: $text;
+          border-radius: 6px;
+          border: 1px solid $border;
+          background-color: $white;
+          display: block;
+          width: 100%;
+          margin: 0 !important;
+        }
+      }
+
+      &[name="continue"] {
+        width: 100%;
+        color: $text;
+        border: 1px solid $border;
+        border-radius: 6px;
+      }
+    }
   }
 
   .controller-projects {
+    #content {
+      > .contextual {
+        display: none;
+      }
+    }
     #filters-table {
       .filter {
         flex-wrap: wrap;
@@ -595,5 +824,198 @@
         }
       }
     }
+
+    .splitcontentleft {
+      .issues {
+        > p:last-child {
+          font-size: 0;
+          a {
+            display: inline-block;
+          }
+          a:last-child {
+            display: none;
+          }
+        }
+      }
+      .spent_time {
+        margin-bottom: 16px;
+        > p:last-child {
+          display: none;
+        }
+      }
+    }
+  }
+
+  .controller-users {
+    #content {
+      > .contextual {
+        display: none;
+      }
+    }
+  }
+
+  .controller-calendars {
+    #query_form_with_buttons .contextual.pagination {
+      bottom: 0;
+      position: static;
+      align-items: flex-end;
+      a {
+        border: 0;
+      }
+      li {
+        width: auto;
+      }
+    }
+    #filters-table .filter {
+      flex-wrap: wrap;
+      .field {
+        margin-bottom: 8px;
+      }
+    }
+    .add-filter {
+      flex-wrap: wrap;
+      label[for="add_filter_select"] {
+        width: 100%;
+        margin-bottom: 8px;
+      }
+    }
+  }
+
+  .controller-attachments {
+    #content {
+      .issue {
+        display: none;
+      }
+      input[type="submit"] {
+        display: block;
+        height: 40px;
+        text-align: center;
+        font-size: 15px;
+        line-height: 22px;
+        font-weight: bold;
+        &[name="commit"] {
+          width: 100%;
+          color: $white;
+          background-color: $text;
+          margin-bottom: 8px;
+          + a {
+            height: 40px;
+            text-align: center;
+            font-size: 15px;
+            line-height: 40px;
+            font-weight: bold;
+            color: $text;
+            border-radius: 6px;
+            border: 1px solid $border;
+            display: block;
+            width: 100%;
+            margin: 0 !important;
+          }
+        }
+      }
+
+      .attachments {
+        table {
+          width: 100%;
+        }
+        tr[id^="attachment-"] {
+          display: flex;
+          flex-direction: column;
+          td {
+            display: block;
+            input {
+              width: 100% !important;
+            }
+          }
+        }
+      }
+
+      .contextual {
+        .icon-download {
+          color: $gray;
+          min-height: 36px;
+          padding: 0 10px;
+          display: inline-flex;
+          align-items: center;
+          border-radius: 6px;
+          border: 1px solid $border;
+          font-size: 14px;
+          line-height: 15px;
+          font-weight: bold;
+          &:before {
+            font-size: 16px;
+            line-height: 16px;
+            color: $gray;
+            margin-right: 4px;
+            font-family: "icomoon";
+            content: "\e91e";
+            display: block;
+          }
+        }
+      }
+    }
+  }
+
+  .controller-news {
+    #content {
+      > .contextual {
+        display: none;
+      }
+      > h2 {
+        display: flex;
+        align-items: center;
+      }
+    }
+    .attachments:not(.box) {
+      .icon-download {
+        color: $gray;
+      }
+    }
+  }
+
+  .pagination ul.pages li.current,
+  .pagination ul.pages li.previous,
+  .pagination ul.pages li.next {
+    width: auto;
+  }
+
+  #issue_tree .issue > td.buttons,
+  #relations .issue > td.buttons {
+    padding-right: 16px;
+  }
+
+  .controller-issues.action-create .box > fieldset,
+  .controller-issues.action-new .box > fieldset,
+  .controller-issues.action-show .box > fieldset,
+  .controller-issues.action-edit .box > fieldset {
+    padding: 0;
+    background-color: $white;
+  }
+
+  .controller-issues.action-create .tabular,
+  .controller-issues.action-new .tabular,
+  .controller-issues.action-show .tabular,
+  .controller-issues.action-edit .tabular {
+    padding: 0;
+    background-color: $white;
+  }
+
+  .ui-dialog.ui-widget-content {
+    padding: 24px 20px;
+    top: auto !important;
+    bottom: 0;
+    max-width: 100%;
+    width: 100% !important;
+    margin: 0;
+    left: 0 !important;
+    position: fixed;
+  }
+}
+
+@media all and (max-width: 599px) {
+  .pagination ul.pages li.current,
+  .pagination ul.pages li.previous,
+  .pagination ul.pages li.next {
+    width: auto !important;
   }
 }
