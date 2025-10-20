@@ -274,6 +274,7 @@ $(document).on("flyout:open", function () {
     ".files",
     ".settings",
     ".boards",
+    ".roadmap",
   ];
   // mobile gnb 일반
   const linkClassesGeneral = [

@@ -624,6 +624,15 @@
             width: 100%;
             margin-bottom: 8px;
           }
+          #existing-attachments {
+            clear: both;
+            margin-top: 45px;
+            span {
+              input[type="text"] {
+                width: 60%;
+              }
+            }
+          }
         }
 
         #new-attachments {

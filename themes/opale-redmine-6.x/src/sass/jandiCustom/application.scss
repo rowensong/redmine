@@ -247,6 +247,14 @@ em.info {
   }
 }
 
+#main-menu {
+  &.tabs {
+    .tabs-buttons {
+      top: 0;
+    }
+  }
+}
+
 #top-menu {
   display: none;
 }
@@ -498,11 +506,13 @@ body {
       font-size: 14px;
       line-height: 20px;
       color: $gray;
+      font-weight: bold;
       &::before {
         content: "\e94b";
         font-family: "icomoon";
         font-size: 16px;
         margin-right: 4px;
+        font-weight: normal;
       }
     }
     .queries {
@@ -799,6 +809,343 @@ body {
       width: auto;
       margin-left: auto;
       margin-right: 0;
+    }
+  }
+}
+
+.controller-versions {
+  #main {
+    #sidebar {
+      #sidebar-wrapper {
+        > form {
+          > h3 {
+            display: flex;
+            align-items: center;
+            margin: 0;
+            padding: 8px;
+            font-size: 15px;
+            line-height: 22px;
+            color: $text;
+          }
+          p {
+            padding: 0 8px;
+            margin: 0;
+            select,
+            input {
+              width: 100%;
+              margin-top: 12px;
+              display: block;
+            }
+            input[type="checkbox"] {
+              width: 16px;
+              display: inline-block;
+              margin-top: 0;
+              vertical-align: middle;
+            }
+            &:empty {
+              display: none;
+            }
+          }
+
+          ul {
+            list-style: none;
+            margin: 0px 8px;
+            padding: 0;
+            li {
+              padding: 8px 0;
+              display: flex;
+              align-items: center;
+              a {
+                font-size: 14px;
+                line-height: 20px;
+                color: $text;
+              }
+              input {
+                margin-top: 0;
+                margin-right: 4px;
+              }
+              label {
+                line-height: 20px;
+              }
+            }
+          }
+        }
+        > h3 + ul {
+          a {
+            color: $text;
+            padding: 6px 8px 6px 28px;
+            &:hover {
+              color: $text;
+            }
+          }
+        }
+        .button-small {
+          width: auto;
+          background-color: $gray20;
+          color: $text;
+          border-radius: 6px;
+          padding: 0 8px;
+          font-size: 13px;
+          line-height: 14px;
+          height: 32px;
+          margin-left: auto;
+        }
+        > p {
+          padding: 8px;
+          margin: 8px 0 0;
+        }
+      }
+
+      .collapsible {
+        color: $gray;
+        font-size: 14px;
+        line-height: 20px;
+        font-weight: 700;
+        &:before {
+          content: "\ea15";
+          font-family: "icomoon";
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 16px;
+          font-weight: normal;
+        }
+        &.icon-expanded {
+          &:before {
+            content: "\ea12";
+          }
+        }
+      }
+      #completed-versions {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        li {
+          a {
+            width: 100%;
+            box-sizing: border-box;
+            color: $text;
+            padding: 6px 8px 6px 28px;
+            display: block;
+            &:hover {
+              background-color: $gray10hover;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  #roadmap {
+    margin-top: 24px;
+    .icon-edit {
+      padding: 0 8px;
+      &:before {
+        margin-right: 2px;
+      }
+    }
+    .version-article {
+      header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 8px;
+      }
+      h3 {
+        font-size: 16px;
+        line-height: 24px;
+        color: $text;
+        font-weight: bold;
+      }
+    }
+
+    .progress-info {
+      margin-top: 4px;
+      color: $gray;
+      a {
+        color: $gray;
+      }
+      a:first-child {
+        font-size: 12px;
+        line-height: 16px;
+
+        padding: 2px 6px;
+        background-color: $gray20;
+        border-radius: 17px;
+      }
+    }
+
+    .related-issues {
+      &.list {
+        border-collapse: separate;
+        border-radius: 10px;
+        border-color: $gray30;
+        td {
+          height: 40px;
+          padding-top: 0;
+          padding-bottom: 0;
+          border-bottom: 1px solid $gray30;
+        }
+        tr {
+          &:last-child {
+            td {
+              border-bottom: none;
+            }
+          }
+          &:hover {
+            background-color: $whiteHover;
+          }
+        }
+        .assigned_to {
+          padding-left: 10px;
+          img {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            object-fit: cover;
+            object-position: center;
+            border: 1px solid $border;
+            box-sizing: border-box;
+          }
+        }
+        .subject {
+          padding-left: 0;
+        }
+      }
+      caption {
+        font-size: 14px;
+        line-height: 20px;
+        color: $text;
+        font-weight: bold;
+      }
+      .icon-actions {
+        width: 28px;
+        height: 28px;
+        border-radius: 6px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-left: auto;
+        &:hover {
+          background-color: $white;
+        }
+        &::before {
+          content: "\e933";
+          font-family: "icomoon";
+          font-size: 16px;
+          line-height: 16px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-weight: normal;
+        }
+        .icon-label {
+          font-size: 0;
+          margin-left: 0;
+        }
+      }
+    }
+
+    .badge {
+      margin-left: 8px;
+      padding: 2px 4px;
+      border: 1px solid $border;
+      border-radius: 6px;
+      color: $darkGray;
+      font-size: 12px;
+      line-height: 13px;
+      top: 1px;
+    }
+
+    &.version-completed,
+    &.version-open,
+    &.version-incomplete,
+    &.version-closed {
+      .badge {
+        top: -2px;
+      }
+    }
+  }
+
+  #content {
+    .contextual {
+      .icon-edit {
+        + .icon-edit {
+          .icon-label {
+            max-width: 200px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+          }
+        }
+      }
+    }
+  }
+
+  &.action-show {
+    #version-summary {
+      .time-tracking {
+        legend {
+          padding: 0.5em 0 8px;
+          margin-bottom: 0;
+          font-size: 14px;
+          line-height: 20px;
+          color: $text;
+          font-weight: bold;
+        }
+        table {
+          tbody {
+            th,
+            td {
+              padding: 8px;
+            }
+            th {
+              text-align: left;
+              padding-left: 0;
+              font-size: 14px;
+              line-height: 20px;
+              color: $gray;
+              font-weight: normal;
+            }
+            .total-hours {
+              a {
+                color: $subColor;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    #status_by {
+      margin-top: 24px;
+      padding-top: 24px;
+      border-top: 1px solid $gray30;
+      legend {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        margin-bottom: 6px;
+        color: $text;
+        select {
+          margin-right: 8px;
+          flex-grow: 1;
+        }
+      }
+      fieldset {
+        > table {
+          td:not(.todo) {
+            padding: 10px;
+            &:first-child {
+              text-align: left !important;
+            }
+          }
+          .progress {
+            td {
+              padding: 0;
+            }
+          }
+        }
+      }
     }
   }
 }
@@ -5209,6 +5556,10 @@ select[multiple] {
     }
 
     #tab-content-versions {
+      .icon-locked {
+        padding: 0 8px;
+        margin-left: 8px;
+      }
       > p {
         text-align: right;
         .icon-add {
@@ -8860,7 +9211,19 @@ body[class*=" project-"] {
       }
     }
 
-    #existing-attachments {
+    .wiki-page {
+      .contextual {
+        .icon-edit {
+          opacity: 1;
+          padding: 0 8px;
+          &:before {
+            margin-right: 2px;
+          }
+          .icon-label {
+            color: $text;
+          }
+        }
+      }
     }
   }
   #main {
