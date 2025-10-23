@@ -481,15 +481,13 @@ body {
             display: block;
             font-size: 14px;
             line-height: 20px;
-            color: $placeholder;
+            // color: $placeholder;
+            color: $text;
             padding: 8px 8px 8px 28px;
             border-radius: 6px;
             &:hover {
               background-color: $whiteHover;
-              color: $gray;
-            }
-            &.selected {
-              color: $text;
+              // color: $gray;
             }
           }
         }
@@ -3883,8 +3881,8 @@ body:not(.controller-issues) {
 
   .splitcontentright {
     &.empty {
-      border: 0;
-      background-color: $white;
+      border: 0 !important;
+      background-color: $white !important;
     }
   }
 
@@ -5065,6 +5063,40 @@ select[multiple] {
     &[disabled] {
       background-color: $gray20hover;
       color: $disabled;
+    }
+  }
+}
+
+#attachments_form {
+  .attachments_fields {
+    > span {
+      input {
+        vertical-align: top;
+      }
+    }
+
+    .ui-progressbar {
+      margin: 0;
+      padding: 7px 8px;
+      width: auto;
+      height: auto;
+    }
+
+    .icon-del {
+      width: 36px;
+      height: 36px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      vertical-align: top;
+      &:before {
+        content: "\e966";
+        font-family: "icomoon";
+        font-size: 16px;
+        line-height: 16px;
+        color: $warning;
+        display: block;
+      }
     }
   }
 }
@@ -8572,6 +8604,18 @@ body[class*=" project-"] {
         }
       }
     }
+    > h2 {
+      display: inline-flex;
+      align-items: center;
+      img {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-right: 4px;
+        border: 1px solid $border;
+      }
+    }
   }
 
   #comments {
@@ -8658,6 +8702,17 @@ body[class*=" project-"] {
           color: $gray;
           margin-right: 4px;
         }
+      }
+    }
+
+    h4 {
+      > img {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-right: 4px;
+        border: 1px solid $border;
       }
     }
   }
@@ -9266,6 +9321,10 @@ body[class*=" project-"] {
             display: none;
           }
         }
+      }
+
+      input {
+        width: 100%;
       }
 
       .author {
@@ -10076,21 +10135,21 @@ div.flash,
 }
 
 // 세팅이 끝난 후 가릴때 쓰는거
-// .controller-custom_fields {
-//   #content {
-//     #tab-UserCustomField {
-//       display: none;
-//     }
-//   }
-// }
+.controller-custom_fields {
+  #content {
+    #tab-UserCustomField {
+      display: none;
+    }
+  }
+}
 
-// .controller-settings {
-//   #content {
-//     #tab-authentication {
-//       display: none;
-//     }
-//   }
-// }
+.controller-settings {
+  #content {
+    #tab-authentication {
+      display: none;
+    }
+  }
+}
 
 // breadcrumb
 .breadcrumbs {
