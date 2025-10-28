@@ -1,4 +1,4 @@
-.isMobile {
+
   /**
   * Redmine - project management software
   * Copyright (C) 2006-  Jean-Philippe Lang
@@ -873,4 +873,3 @@
     #filters-table .filter .field, #list-definition > div .field { width: 100%; }
     #filters-table .values { width: auto; max-width: 100%; }
   }
-}

@@ -271,6 +271,22 @@ body {
   }
 }
 
+#wrapper {
+  .context-menu-selection {
+    &,
+    > td {
+      background-color: $gray10 !important;
+      color: $text !important;
+      &.assigned_to,
+      &.subject {
+        a {
+          color: $text !important;
+        }
+      }
+    }
+  }
+}
+
 #main {
   display: flex;
   align-items: stretch;
@@ -10130,6 +10146,28 @@ div.flash,
       justify-content: center;
       background-color: $white;
       border-radius: 50%;
+    }
+  }
+}
+
+.controller-admin {
+  #content {
+    .context-menu-selection a,
+    .context-menu-selection a:hover {
+      color: $text !important;
+    }
+    .child {
+      td.name {
+        &:before {
+          content: "\ea2c";
+          font-family: "icomoon";
+          font-size: 16px;
+          line-height: 16px;
+          color: $gray;
+          margin-right: 2px;
+          font-weight: normal;
+        }
+      }
     }
   }
 }

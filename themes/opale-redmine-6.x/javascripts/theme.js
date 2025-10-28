@@ -206,6 +206,25 @@ $(document).ready(function () {
   // 1) 미디어쿼리 객체
   const mq = window.matchMedia("(max-width: 899px)");
 
+  // ===== URL 경로 감지: /blocked =====
+  (function detectBlockedRoute() {
+    try {
+      var path =
+        window.location && window.location.pathname
+          ? window.location.pathname
+          : "";
+      // '/blocked' 또는 '/blocked/' 형태 모두 허용
+      var isBlocked = /^\/blocked\/?$/.test(path);
+      if (isBlocked) {
+        $("#quick-search").css("visibility", "hidden");
+      } else {
+        $("#quick-search").css("visibility", "visible");
+      }
+    } catch (e) {
+      // no-op (안전하게 무시)
+    }
+  })();
+
   // 2) 핸들러
   function onViewportChange(e) {
     if (e.matches) {

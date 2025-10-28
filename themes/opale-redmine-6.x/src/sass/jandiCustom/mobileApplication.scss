@@ -555,6 +555,10 @@
       max-width: initial;
     }
 
+    .next-prev-links {
+      display: none;
+    }
+
     #attributes .splitcontentleft p:has(label[for="issue_assigned_to_id"]),
     #attributes .splitcontentleft p:last-child {
       display: block;
