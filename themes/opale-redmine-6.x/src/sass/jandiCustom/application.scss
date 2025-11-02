@@ -715,6 +715,7 @@ body {
         line-height: 20px;
         color: $text;
         padding-left: 0;
+        margin-bottom: 12px;
         input[type="checkbox"] {
           position: static;
           margin: 0;
@@ -5633,8 +5634,12 @@ select[multiple] {
           margin-bottom: 0;
         }
       }
+      #version_name + input[type="submit"] {
+        min-height: 36px;
+      }
       .icon-reload {
         background-color: $white;
+        vertical-align: top;
         &:hover {
           background-color: $whiteHover;
         }
@@ -5728,6 +5733,16 @@ select[multiple] {
         margin-bottom: 8px;
         display: flex;
         justify-content: flex-end;
+      }
+      > .contextual {
+        a {
+          &.icon-settings {
+            min-height: 32px;
+            width: 32px;
+            padding: 6px !important;
+            justify-content: center;
+          }
+        }
       }
     }
   }

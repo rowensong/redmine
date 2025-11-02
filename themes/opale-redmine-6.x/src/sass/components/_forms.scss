@@ -711,5 +711,6 @@ label.no-css {
 
 .objects-selection > div,
 #user_group_ids {
-  columns: auto 200px;
+  columns: auto 300px;
+  column-gap: 24px;
 }
