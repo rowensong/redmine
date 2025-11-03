@@ -74,6 +74,9 @@ $(document).ready(function () {
   $("#topmenu-nav > ul").appendTo($("#quick-search"));
   $("#userprofile").appendTo("#quick-search");
 
+  // GNB 영역의 projects 링크 URL 변경
+  $("#quick-search a.projects").attr("href", "/projects?set_filter=1&sort=");
+
   // For user profile popup setup
   $(".account").click(function () {
     var X = this.id;
