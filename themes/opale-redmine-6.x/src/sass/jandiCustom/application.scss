@@ -7,6 +7,8 @@
   border-radius: 50%;
   margin-right: 4px;
   display: inline-flex;
+  border: 1px solid $border;
+  box-sizing: border-box;
 }
 
 @mixin profileImageSmall {
@@ -1012,6 +1014,7 @@ body {
         }
         .assigned_to {
           padding-left: 10px;
+          padding-right: 10px;
           img {
             width: 24px;
             height: 24px;
@@ -2610,13 +2613,13 @@ table.list {
         &.subject {
           a {
             color: $text;
+            white-space: break-spaces !important;
           }
         }
       }
     }
     a {
       color: #333 !important;
-      white-space: break-spaces !important;
     }
     .icon-sorted-asc {
       .icon-label {
@@ -3361,6 +3364,8 @@ body:not(.controller-issues) {
           border-radius: 50%;
           margin-right: 8px;
           object-fit: cover;
+          border: 1px solid $border;
+          box-sizing: border-box;
           order: 1;
         }
 
@@ -3369,6 +3374,8 @@ body:not(.controller-issues) {
           font-size: 14px;
           line-height: 20px;
           order: 5;
+          display: block;
+          word-break: break-all;
         }
       }
       dd {
@@ -3649,6 +3656,7 @@ body:not(.controller-issues) {
           line-height: 20px;
           color: $text;
           order: 4;
+          flex-shrink: 0;
         }
 
         > img {
@@ -3659,6 +3667,8 @@ body:not(.controller-issues) {
           object-fit: cover;
           order: 1;
           flex-shrink: 0;
+          border: 1px solid $border;
+          box-sizing: border-box;
         }
 
         a {
@@ -3666,6 +3676,7 @@ body:not(.controller-issues) {
           font-size: 14px;
           line-height: 20px;
           order: 5;
+          word-break: break-all;
         }
       }
       dd {
@@ -3849,6 +3860,8 @@ body:not(.controller-issues) {
           object-fit: cover;
           order: 1;
           flex-shrink: 0;
+          border: 1px solid $border;
+          box-sizing: border-box;
         }
 
         a {
@@ -4168,10 +4181,12 @@ body:not(.controller-issues) {
     font-weight: normal;
     font-style: normal;
     .icon-gravatar {
-      width: 14px;
-      height: 14px;
+      width: 16px;
+      height: 16px;
       border-radius: 50%;
       vertical-align: middle;
+      border: 1px solid $border;
+      box-sizing: border-box;
     }
     .icon-projects {
       svg {
@@ -5057,6 +5072,8 @@ select[multiple] {
   h3 {
     img {
       @include profileImage;
+      border: 1px solid $border;
+      box-sizing: border-box;
     }
   }
 }
@@ -5174,6 +5191,24 @@ select[multiple] {
       border: 0;
       td {
         border-bottom: 0;
+      }
+      .group {
+        img {
+          border: 1px solid $border;
+          border-radius: 50%;
+          object-fit: cover;
+          width: 16px;
+          height: 16px;
+          box-sizing: border-box;
+        }
+      }
+      .context-menu-selection {
+        p {
+          color: #757575 !important;
+        }
+        a {
+          color: #333 !important;
+        }
       }
     }
 
@@ -5775,10 +5810,16 @@ select[multiple] {
     }
 
     .icon-settings {
-      min-height: 32px;
+      min-height: 32px !important;
       width: 32px;
       padding: 6px !important;
       justify-content: center;
+    }
+
+    #project_trackers {
+      .floating {
+        color: $text;
+      }
     }
   }
 
@@ -7913,6 +7954,7 @@ body[class*=" project-"] {
       padding-left: 0;
       &.block {
         display: block;
+        color: $text;
         input {
           margin-left: 0;
           margin-right: 4px;
@@ -7922,6 +7964,7 @@ body[class*=" project-"] {
       &.inline {
         padding-left: 0;
         margin-right: 24px;
+        color: $text;
         input {
           margin-left: 0;
           margin-right: 4px;
@@ -7976,6 +8019,7 @@ body[class*=" project-"] {
       &.block {
         display: inline-block;
         width: 16.6%;
+        color: $text;
       }
     }
   }
@@ -10195,6 +10239,13 @@ div.flash,
         }
       }
     }
+    .project {
+      .name {
+        a {
+          white-space: break-spaces;
+        }
+      }
+    }
   }
 }
 
@@ -10428,6 +10479,8 @@ div.flash,
         border-radius: 50%;
         object-fit: cover;
         margin-right: 4px;
+        border: 1px solid $border;
+        box-sizing: border-box;
       }
     }
   }
@@ -10454,6 +10507,8 @@ div.flash,
         object-fit: cover;
         margin-right: 4px;
         display: inline-block;
+        border: 1px solid $border;
+        box-sizing: border-box;
         vertical-align: middle;
       }
     }
