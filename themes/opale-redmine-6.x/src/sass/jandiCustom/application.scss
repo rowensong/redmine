@@ -1511,6 +1511,25 @@ body {
   }
 }
 
+.add-filter {
+  label[for="add_filter_select"] {
+    display: inline-flex;
+    align-items: center;
+    &:before {
+      content: "\e969";
+      font-family: "icomoon";
+      font-size: 16px;
+      line-height: 16px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: $gray;
+      margin-right: 4px;
+      font-weight: normal;
+    }
+  }
+}
+
 fieldset#filters {
   &.collapsible {
     &.collapsed {
@@ -2408,6 +2427,9 @@ fieldset#options {
       &:hover {
         background-color: $whiteHover;
       }
+      &.new-issue {
+        border: 0;
+      }
     }
   }
 }
@@ -2677,6 +2699,7 @@ table.list {
       &.project {
         a {
           color: $text !important;
+          white-space: break-spaces;
         }
       }
     }
@@ -3869,6 +3892,7 @@ body:not(.controller-issues) {
           font-size: 14px;
           line-height: 20px;
           order: 5;
+          word-break: break-all;
         }
       }
       dd {
@@ -6285,6 +6309,12 @@ select[multiple] {
       .icon-label {
         margin-left: 0;
       }
+      .icon-group {
+        @include defaultFontFamily;
+        font-size: 14px;
+        line-height: 20px;
+        vertical-align: top;
+      }
       p {
         .label {
           display: inline-block;
@@ -7366,25 +7396,6 @@ select[multiple] {
 
   .splitcontent {
     align-items: flex-start;
-  }
-
-  .add-filter {
-    label {
-      display: inline-flex;
-      align-items: center;
-      &:before {
-        content: "\e969";
-        font-family: "icomoon";
-        font-size: 16px;
-        line-height: 16px;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        color: $gray;
-        margin-right: 4px;
-        font-weight: normal;
-      }
-    }
   }
 
   #query_form_content {

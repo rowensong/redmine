@@ -121,7 +121,7 @@ img {
 .splitcontentleft,
 .splitcontentright {
   flex: 1;
-
+  min-width: 0;
   > .wiki {
     margin-bottom: variables.$line-height-computed;
   }
