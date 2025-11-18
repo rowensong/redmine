@@ -163,6 +163,7 @@ $(document).ready(function () {
     $('label[for="settings_user_format"]').parent().hide();
     $("#tab-api").parent().hide();
     $("#tab-users").parent().hide();
+    $("#tab-repositories").parent().hide();
   }
 
   // 공통으로 숨겨야할 항목

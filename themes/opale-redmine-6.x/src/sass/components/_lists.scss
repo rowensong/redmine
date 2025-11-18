@@ -425,6 +425,16 @@ tr.entry {
     }
   }
 
+  a.issue,
+  tr.issue .id > a {
+    background-color: #a2a2a233;
+    color: #a2a2a2 !important;
+    &:hover {
+      background-color: #a2a2a233;
+      color: #a2a2a2 !important;
+    }
+  }
+
   a.issue {
     margin-right: 1px;
     padding: variables.$tracker-inline-padding;

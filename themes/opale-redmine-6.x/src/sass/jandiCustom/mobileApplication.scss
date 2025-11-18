@@ -845,6 +845,7 @@
           a {
             display: inline-block;
           }
+          a:nth-child(3),
           a:last-child {
             display: none;
           }

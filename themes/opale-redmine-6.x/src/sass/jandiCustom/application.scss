@@ -2358,6 +2358,16 @@ fieldset#options {
         display: inline-block;
       }
     }
+    ul.cal li.calbody .icon-package {
+      display: block;
+      a {
+        display: block;
+        font-size: 14px;
+        line-height: 20px;
+        margin-bottom: 8px;
+        margin-top: 4px;
+      }
+    }
   }
 
   #query_form_with_buttons {
