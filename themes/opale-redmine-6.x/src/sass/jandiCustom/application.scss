@@ -5876,6 +5876,7 @@ select[multiple] {
         border: 1px solid $gray30;
         background-color: $gray10;
         overflow: hidden;
+        color: $text;
         svg {
           display: none;
         }
@@ -5908,6 +5909,12 @@ select[multiple] {
               order: 3;
               justify-self: end;
             }
+          }
+          &.child {
+            font-weight: bold;
+          }
+          &:hover {
+            text-decoration: underline;
           }
         }
       }
@@ -8101,6 +8108,21 @@ body[class*=" project-"] {
       }
       &:hover {
         background-color: $whiteHover;
+      }
+    }
+  }
+}
+
+.controller-issue_statuses {
+  .issue_statuses {
+    .icon-checked {
+      &:before {
+        content: "\e96e";
+        font-family: "icomoon";
+        font-size: 16px;
+        line-height: 16px;
+        color: $mainColor;
+        display: block;
       }
     }
   }
@@ -10597,4 +10619,8 @@ div.flash,
 .ui-widget-overlay {
   opacity: 1;
   background-color: rgba($scrim, 0.12);
+}
+
+.user.user-mention {
+  color: #00c473;
 }
