@@ -19,6 +19,18 @@ $(document).ready(function () {
   const srch = "<div class = expandSearch ></div>";
   $("#quick-search #q").before(srch).prependTo(".expandSearch");
   $("#project-jump .drdn-trigger").prop("title", "Jump to project");
+  $("#project-jump .drdn-trigger").each(function () {
+    var $trigger = $(this);
+    if ($trigger.children("span").length) {
+      return;
+    }
+    var $textNodes = $trigger.contents().filter(function () {
+      return this.nodeType === 3 && $.trim(this.textContent) !== "";
+    });
+    if ($textNodes.length) {
+      $textNodes.wrapAll("<span></span>");
+    }
+  });
   $("#userprofile").prop("title", "User profile");
   $("#loggedas").prependTo("#account");
   $("#account").appendTo("#topmenu-nav");
@@ -277,6 +289,7 @@ $(function () {
   });
 
   observer.observe(htmlEl, { attributes: true, attributeFilter: ["class"] });
+  $("#project-jump .drdn-trigger").click(function () {});
 });
 
 $(document).on("flyout:open", function () {

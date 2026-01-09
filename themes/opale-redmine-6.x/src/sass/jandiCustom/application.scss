@@ -2651,7 +2651,10 @@ table.list {
       }
     }
     a {
-      color: #333 !important;
+      color: $text !important;
+      &:hover {
+        color: $text !important;
+      }
     }
     .icon-sorted-asc {
       .icon-label {
@@ -2984,6 +2987,26 @@ table.list {
       &.inline {
         padding-left: 0;
         margin-right: 24px;
+      }
+    }
+  }
+}
+
+.controller-journals {
+  &.action-diff {
+    #content {
+      p > a[onclick] {
+        padding: 4px 6px;
+        display: inline-flex;
+        align-items: center;
+        &:before {
+          content: "\e9c3";
+          font-family: "icomoon";
+          font-size: 16px;
+          line-height: 16px;
+          color: $text;
+          margin-right: 4px;
+        }
       }
     }
   }
@@ -7308,6 +7331,7 @@ select[multiple] {
         background-color: $white;
         margin-bottom: 8px;
         padding: 0;
+
         &:before {
           display: none;
         }
@@ -7322,6 +7346,10 @@ select[multiple] {
     .note-header {
       display: inline-flex;
       align-items: center;
+      color: $gray;
+      a {
+        color: $text;
+      }
       .badge-private {
         background-color: $white;
         color: $subColor;
@@ -8952,6 +8980,9 @@ body[class*=" project-"] {
 
 .controller-documents {
   #content {
+    em {
+      color: $gray;
+    }
     .icon-add {
       background-color: $text;
       color: $white;
